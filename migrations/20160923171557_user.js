@@ -11,6 +11,7 @@ exports.up = function(knex, Promise) {
     table.string('state');
     table.integer('zip');
     table.string('imageURL');
+    table.boolean('admin');
   });
 };
 
