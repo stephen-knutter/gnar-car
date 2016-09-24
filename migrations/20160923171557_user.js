@@ -10,6 +10,7 @@ exports.up = function(knex, Promise) {
     table.string('city');
     table.string('state');
     table.integer('zip');
+    table.string('imageURL');
   });
 };
 
