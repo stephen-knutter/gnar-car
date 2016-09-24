@@ -7,6 +7,8 @@ exports.up = function(knex, Promise) {
     table.integer('max_seats');
     table.integer('drive_id').references('id').inTable('drive');
     table.boolean('ski_rack');
+    table.boolean('smoking');
+    table.boolean('dog');
   });
 };
 
