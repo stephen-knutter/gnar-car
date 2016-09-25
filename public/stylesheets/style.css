@@ -1,8 +1,88 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color: #FFFEF3;
 }
 
-a {
-  color: #00B7FF;
+h1 {
+    font-family: 'Oswald', sans-serif;
+}
+
+#signin-form {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.caroussel-inner {
+    height: 10em;
+}
+.navbar-default {
+  background-color: transparent;
+  border-color: transparent;
+  margin-bottom: 0px;
+  position: fixed;
+  width: 100%;
+  border-radius: 0px;
+  z-index: 10007;
+}
+.content-block-one {
+  padding: 30px;
+  margin-bottom: 0px;
+  color: inherit;
+  background-color: #eee;
+}
+.content-block-one h1,
+.content-block-one .h1 {
+  color: inherit;
+}
+.content-block-one p {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 200;
+}
+.content-block-one > hr {
+  border-top-color: #d5d5d5;
+}
+.container .content-block-one {
+  border-radius: 6px;
+}
+.content-block-one .container {
+  max-width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .content-block-one {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .container .content-block-one {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .content-block-one h1,
+  .content-block-one .h1 {
+    font-size: 63px;
+  }
+}
+.content-space-one {
+  padding: 0px;
+  margin-bottom: 0px;
+  color: inherit;
+  background: url(http://placehold.it/1200x650/0033cc/ffffff) no-repeat center center fixed;
+  background-size: cover;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.content-space-two {
+  padding: 0px;
+  margin-bottom: 0px;
+  color: inherit;
+  background: url(http://placehold.it/1200x650/cc0000/ffffff) no-repeat center center fixed;
+  background-size: cover;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.page-break {
+    width: 50%;
+    height: 3px;
+    background-color: #fff;
+    margin: 0 auto;
 }
