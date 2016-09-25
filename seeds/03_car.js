@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('car').insert({make: 'toyota', model: '4Runner', max_seats: 4, drive_id: 'AWD', ski_rack: true, smoking: false, dog: true})
+        knex('car').insert({id: 1, make: 'toyota', model: '4Runner', max_seats: 4, drive_id: 1, ski_rack: true, smoking: false, dog: true})
       ]);
     });
 };

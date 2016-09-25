@@ -1,12 +1,14 @@
 
 exports.up = function(knex, Promise) {
-  knex.schema.createTable('rating_rider', function(table){
+  return knex.schema.createTable('rating_rider', function(table){
     table.increments();
-    table.integer('user_id').references('id').inTable('user').onDelete('CASCADE');
+    table.integer('user_id').references('id').inTable('users').onDelete('CASCADE');
     table.integer('rating');
+    table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
+    table.timestamp("updated_at").notNullable().defaultTo(knex.fn.now());
   });
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTable('rating_rider');
+  return knex.schema.dropTable('rating_rider');
 };
