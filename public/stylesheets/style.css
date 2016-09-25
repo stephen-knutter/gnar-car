@@ -14,13 +14,14 @@ h1 {
   margin-left: -15px;
 }
 
-.signin-form {
+.container, .signin-form {
   display: flex;
   justify-content: flex-end;
+  padding-right: 0;
 }
 
 .caroussel-inner {
-    height: 10em;
+  height: 10em;
 }
 .loginNav {
   background-color: transparent;
