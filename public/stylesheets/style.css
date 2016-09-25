@@ -7,14 +7,32 @@ h1 {
   font-family: 'Oswald', sans-serif;
 }
 
-.signin-form {
-  display: flex;
-  justify-content: flex-end;
+h2 {
+  font-family: 'Oswald', sans-serif;
 }
 
-.caroussel-inner {
-    height: 10em;
+.container, .signin-form {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0;
 }
+
+.carousel-inner > .item > img {
+  margin: 0 auto;
+  width: auto;
+  max-height: 540px;
+}
+
+.mainItems {
+  display: flex;
+  text-align: center;
+}
+
+.smallpic {
+  max-width: 300px;
+  height: 200px;
+}
+
 .loginNav {
   background-color: transparent;
   border-color: transparent;
@@ -25,6 +43,8 @@ h1 {
   z-index: 10007;
 }
 .content-block-one {
+  /*display: flex;
+  align-self: auto;*/
   padding: 30px;
   margin-bottom: 0px;
   color: inherit;
@@ -63,23 +83,15 @@ h1 {
   }
 }
 .content-space-one {
-  padding: 0px;
+  /*padding: 0px;*/
   margin-bottom: 0px;
   color: inherit;
-  background: url(http://placehold.it/1200x650/0033cc/ffffff) no-repeat center center fixed;
+  background: url(https://skimap.org/data/510/7/1209336166.jpg) repeat center center fixed;
   background-size: cover;
-  padding-top: 100px;
+  padding-top: 200px;
   padding-bottom: 100px;
 }
-.content-space-two {
-  padding: 0px;
-  margin-bottom: 0px;
-  color: inherit;
-  background: url(http://placehold.it/1200x650/cc0000/ffffff) no-repeat center center fixed;
-  background-size: cover;
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
+
 .page-break {
     width: 50%;
     height: 3px;
