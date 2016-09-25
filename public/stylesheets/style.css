@@ -1,13 +1,13 @@
 body {
   font-family: 'Roboto Condensed', sans-serif;
-  background-color: #FFFEF3;
+  background-color: white;
 }
 
 h1 {
-    font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
-#signin-form {
+.signin-form {
   display: flex;
   justify-content: flex-end;
 }
@@ -15,7 +15,7 @@ h1 {
 .caroussel-inner {
     height: 10em;
 }
-.navbar-default {
+.loginNav {
   background-color: transparent;
   border-color: transparent;
   margin-bottom: 0px;
@@ -85,4 +85,21 @@ h1 {
     height: 3px;
     background-color: #fff;
     margin: 0 auto;
+}
+
+/*Mountain.hbs*/
+
+.mountainInfo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mountainImage {
+  height: 200px;
+  width: auto;
+}
+
+.materialCard {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
