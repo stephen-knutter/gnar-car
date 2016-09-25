@@ -80,6 +80,10 @@ h2 {
 }
 
 @media (max-width: 991px) {
+    form {
+      display: block;
+    }
+
     .navbar-header {
         float: none;
     }
@@ -98,7 +102,7 @@ h2 {
     }
 
     .navbar-nav {
-        float: none!important;
+        /*float: none!important;*/
         margin: 7.5px -15px;
     }
 
@@ -119,7 +123,7 @@ h2 {
     .navbar-collapse.collapse.in {
         display: block!important;
     }
-    
+
     .collapsing {
         overflow: hidden!important;
     }
