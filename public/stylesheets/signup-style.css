@@ -1,0 +1,14 @@
+.signup-wrap {
+  margin: 0 0 20px 0;
+}
+
+.signup-head {
+  margin: 0 0 5px 0;
+  text-align: center;
+}
+
+.img-signup {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}

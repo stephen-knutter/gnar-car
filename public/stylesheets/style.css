@@ -7,6 +7,13 @@ h1 {
   font-family: 'Oswald', sans-serif;
 }
 
+.navbar-form{
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: 0;
+  margin-left: -15px;
+}
+
 .signin-form {
   display: flex;
   justify-content: flex-end;
