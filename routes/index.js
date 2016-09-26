@@ -47,12 +47,6 @@ router.post('/signup', function(req, res, next) {
   });
 });
 
-router.get('/:signedinUser', function(req, res, next) {
-  var signedinUser = req.params.username;
-
-  res.render('signedinUser', {title: signedinUser});
-});
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {title: 'GnarCar'});
