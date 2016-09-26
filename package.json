@@ -21,6 +21,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pg": "^6.1.0",
+<<<<<<< HEAD
     "req-flash": "0.0.3",
     "serve-favicon": "~2.3.0",
     "sqlite3": "^3.1.4",
@@ -29,5 +30,12 @@
   "devDependencies": {
     "eslint": "^3.6.0",
     "eslint-config-google": "^0.6.0"
+=======
+    "request": "^2.75.0",
+    "serve-favicon": "~2.3.0",
+    "sqlite3": "^3.1.4",
+    "validator": "^5.7.0",
+    "xml2js": "^0.4.17"
+>>>>>>> api
   }
 }
