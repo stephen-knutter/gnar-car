@@ -1,8 +1,4 @@
-var bcrypt = require('bcrypt');
 var knex = require('./db/knex.js');
-
-
-
 
 // Mountains Queries
 
@@ -15,7 +11,6 @@ function findMountainsById(id){
 }
 
 // Weather Icon Queries
-
 function getWeatherIcon(id){
   return knex('icons').select('icon').where('id',id);
 }
