@@ -14,6 +14,7 @@ var flash = require('req-flash');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var mountains = require('./routes/mountains');
+var rides = require('./routes/rides');
 
 var app = express();
 
@@ -37,13 +38,16 @@ app.use(session({
   saveUninitialized: true,
   resave: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/', mountains);
+app.use('/mountains', mountains);
+app.use('/rides', rides);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

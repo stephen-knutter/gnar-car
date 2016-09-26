@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/signup', function(req, res, next) {
   var msg = false;
-  if (req.flash) msg = req.flash();
+  if (req.flash()) msg = req.flash();
   res.render('signup', {title: 'Sign Up', msg: msg});
 });
 
@@ -47,9 +47,17 @@ router.post('/signup', function(req, res, next) {
     return;
   }
 
-  users.addUser(username, email, password)
-  .then(function(){
-    res.redirect('/rides');
+  users.findUser(username).then(function(data) {
+    if (data.length) {
+      req.flash('username', 'Invalid username');
+      res.redirect('/signup');
+      return;
+    }
+
+    users.addUser(username, email, password)
+    .then(function() {
+      res.redirect('/rides/' + username);
+    });
   });
 });
 

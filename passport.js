@@ -25,3 +25,5 @@ passport.deserializeUser(function(username, done) {
     done(null, user);
   });
 });
+
+module.exports = passport;
