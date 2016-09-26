@@ -5,11 +5,7 @@ var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
 var mountain = require('../database/mountain.js');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('mountains', {title: 'Mountains | GnarCar'});
-});
-
+/* GET mountain page page. */
 router.get('/:mountainId', function(req, res, next) {
   var conditions;
   var forecast;
