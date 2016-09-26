@@ -9,31 +9,31 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next) {
-  // var formVars = req.body;
-  //
-  // var errors = {};
-  // var username = formVars.username;
-  // var email = formVars.email;
-  // var password = formVars.password;
-  // var confirm = formVars.confirm;
-  //
-  // if (!username || !email || !password || !confirm) return false;
-  //
-  // if (validator.isEmail(email)) {
-  //   errors.email = true;
-  // }
-  //
-  // if (password !== confirm) {
-  //   errors.password = true;
-  // }
-  //
-  // if (!validator.isAlphanumeric(username) ||
-  //   (username.length < 5 || username.length > 20)
-  // ) {
-  //   errors.username = true;
-  // }
-  //
-  // if (errors) res.send(req.flash({errors}));
+  var formVars = req.body;
+
+  var errors = {};
+  var username = formVars.username;
+  var email = formVars.email;
+  var password = formVars.password;
+  var confirm = formVars.confirm;
+
+  if (!username || !email || !password || !confirm) return false;
+
+  if (validator.isEmail(email)) {
+    errors.email = true;
+  }
+
+  if (password !== confirm) {
+    errors.password = true;
+  }
+
+  if (!validator.isAlphanumeric(username) ||
+    (username.length < 5 || username.length > 20)
+  ) {
+    errors.username = true;
+  }
+
+  if (errors) res.send(req.flash({errors}));
 
   users.getAllUsers().then(function(data) {
     console.log(data);
