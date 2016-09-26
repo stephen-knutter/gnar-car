@@ -9,8 +9,8 @@ router.get('/mountain/:mountainId', function(req, res, next) {
   var conditions;
   var forecast;
   var forecastDescription;
-  var weatherIcon;
-  // res.render('mountains');
+  var weatherCodes = [];
+  var weatherIcons = [];
 
   // query.findMountainsById(req.params.mountainId)
   // .then(function(mountainInfo){
@@ -22,16 +22,30 @@ router.get('/mountain/:mountainId', function(req, res, next) {
     //     });
     //   }
     // });
+
     request('http://www.myweather2.com/developer/weather.ashx?uac=lWSw6eGT9t&uref=ee1b280c-f69d-45a2-8373-6e19cd428117', function(error, response, body){
       if(!error & response.statusCode == 200){
         parser.parseString(body, function(err,result){
           result = result.weather;
           conditions = result.snow_report;
           forecast = result.forecast;
-          console.log(forecast);
+          for (var i = 0; i < forecast.length; i++) {
+            weatherCodes.push(Number(forecast[i].day[0].weather_code[0]));
+          }
           // Need to make a query to get the associated weather Icon
-          res.render('mountains', {weatherData: result, conditions: conditions, forecast: forecast, forecastDescription: forecastDescription});
-          // res.render('mountains', {mountainInfo: mountainInfo, weatherData:result});
+          // for (var j = 0; j < weatherCodes.length; j++) {
+          //   query.getWeatherIcon(weatherCodes[j])
+          //   .then(function(weatherIcon){
+          //     weatherIcons.push(weatherIcon);
+          //   });
+          // }
+          weatherIcons = ['/images/weather_icons/Sunny.gif','/images/weather_icons/Sunny.gif','/images/weather_icons/Sunny.gif','/images/weather_icons/Sunny.gif','/images/weather_icons/PartCloudRainThunderDay.gif','/images/weather_icons/Sunny.gif'];
+
+          for (var k = 0; k < forecast.length; k++) {
+            forecast[k].weatherIcon = weatherIcons[k];
+          }
+
+          res.render('mountains', {weatherData: result, conditions: conditions, forecast: forecast});
         });
       }
     // });

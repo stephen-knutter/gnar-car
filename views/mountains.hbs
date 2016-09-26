@@ -26,12 +26,9 @@
     <div class="row">
       <div class="col-lg-10">
         <h3>Weather Conditions</h3>
-        <!-- weather[snow_report][lower_snow_depth] -->
         {{#each conditions}}
         <h5>Lower Snow Depth: {{lower_snow_depth}} ft.</h5>
-        <!-- weather[snow_report][upper_snow_depth] -->
         <h5>Upper Snow Depth: {{upper_snow_depth}} ft.</h5>
-        <!-- weather[snow_report][conditions] -->
         <h4>Current Conditions: {{conditions}}</h4>
         {{/each}}
       </div>
@@ -41,70 +38,19 @@
       {{#each forecast}}
       <div class="col-lg-2">
         <h3>{{date}}</h3>
-        {{#each result}}
-          <h5>{{forecast.day}}</h5>
+
+        {{#each this.day}}
+          <h5>{{weather_text}}</h5>
         {{/each}}
-        <img src="/images/weather_icons/Sunny.gif" class="icon" alt="" />
+
+        <img src="{{weatherIcon}}" alt="" />
+
         <h6>{{night_min_temp}} &#8451</h6>
         <h6>{{day_max_temp}} &#8451</h6>
+
       </div>
+
       {{/each}}
     </div>
-
-
-  <!-- <div class="row">
-    <div class="col-lg-10">
-      <h3>Weather Conditions</h3>
-      <h5>Lower Snow Depth: 0 ft.</h5>
-      <h5>Upper Snow Depth: 0 ft.</h5>
-      <h4>Current Conditions: "No Report Available Today."</h4>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-2">
-      <h3>2016-09-26</h3>
-      <h5>Sunny Skies</h5>
-      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
-      <h6>-5 &#8451</h6>
-      <h6>17 &#8451</h6>
-    </div>
-    <div class="col-lg-2">
-      <h3>2016-09-27</h3>
-      <h5>Sunny Skies</h5>
-      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
-      <h6>-3 &#8451</h6>
-      <h6>19 &#8451</h6>
-    </div>
-    <div class="col-lg-2">
-      <h3>2016-09-28</h3>
-      <h5>Sunny Skies</h5>
-      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
-      <h6>-1 &#8451</h6>
-      <h6>18 &#8451</h6>
-    </div>
-    <div class="col-lg-2">
-      <h3>2016-09-29</h3>
-      <h5>Sunny Skies</h5>
-      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
-      <h6>-2 &#8451</h6>
-      <h6>15 &#8451</h6>
-    </div>
-    <div class="col-lg-2">
-      <h3>2016-09-30</h3>
-      <h5>Sunny Skies</h5>
-      <img src="/images/weather_icons/PartCloudRainThunderDay.gif" class="icon" alt="" />
-      <h6>-2 &#8451</h6>
-      <h6>15 &#8451</h6>
-    </div>
-    <div class="col-lg-2">
-      <h3>2016-10-01</h3>
-      <h5>Sunny Skies</h5>
-      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
-      <h6>-2 &#8451</h6>
-      <h6>18 &#8451</h6>
-    </div>
-
-  </div> -->
 
 </div>
