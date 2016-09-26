@@ -12,6 +12,10 @@ h4,h5,h6 {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.navPadding {
+  padding-top: 59px;
+}
+
 .loginNav {
   margin-bottom: 0px;
   border-radius: 0px;
@@ -23,9 +27,6 @@ h4,h5,h6 {
   border-radius: 0px;
   z-index: 10007;
 }
-
-/*.navbar-default {
-}*/
 
 .navbar-form{
   padding-left: 5px;
@@ -43,19 +44,18 @@ h4,h5,h6 {
   justify-content: flex-end;
 }
 
-/*.container, .signin-form {
-  padding-right: 0;
-  padding-left: 0;
-}*/
-
-.caroussel-inner {
-  height: 10em;
+.splash {
+  height: 800px;
+  background: url('https://static.pexels.com/photos/30313/pexels-photo-30313-large.jpg') no-repeat center center fixed;
+  background-position: center;
+  background-size: cover;
+  position:relative;
 }
 
-.carousel-inner > .item > img {
-  margin: 0 auto;
-  width: auto;
-  max-height: 540px;
+.signup-btn {
+  position: absolute;
+  top: 45%;
+  left: 45%;
 }
 
 .mainItems {
@@ -160,7 +160,7 @@ h4,h5,h6 {
   /*padding: 0px;*/
   margin-bottom: 0px;
   color: inherit;
-  background: url(https://skimap.org/data/510/7/1209336166.jpg) repeat center center fixed;
+  background: url(https://skimap.org/data/510/7/1209336166.jpg) no-repeat center center fixed;
   background-size: cover;
   padding-top: 200px;
   padding-bottom: 100px;
@@ -176,7 +176,7 @@ h4,h5,h6 {
 /*signedInUser.hbs*/
 
 .pageTitle {
-  padding: 20px 0 20px 40px;
+  padding: 79px 0 20px 40px;
 }
 
 .destinationList {
