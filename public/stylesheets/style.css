@@ -212,18 +212,16 @@ h4,h5,h6 {
 /*Mountain.hbs*/
 
 .mountainInfo{
-  display: flex;
-  width: 75%;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 20px;
 }
 
 .mountainImage {
-  display: flex;
-  height: 200px;
-  width: auto;
+  margin-top: 10px;
+  width: 250px;
+  height: auto;
   max-width: 250px;
 }
+
 .materialCard {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
