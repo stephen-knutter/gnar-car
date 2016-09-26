@@ -2,7 +2,7 @@ var passport = require("passport");
 var Strategy = require("passport-local").Strategy;
 var users = require("./database/user");
 
-passport.use(new Strateg(function(username, password, done) {
+passport.use(new Strategy(function(username, password, done) {
   users.findByUsername(username).then(function(user) {
     user = user[0];
     if (!user) done(null, false);

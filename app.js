@@ -7,6 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var hbs = require('hbs');
+var session = require('express-session');
+var passport = require('./passport');
+var flash = require('req-flash');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -28,6 +31,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
+app.use(session({
+  secret: process.env.SECRET,
+  saveUninitialized: true,
+  resave: true
+}));
+
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
