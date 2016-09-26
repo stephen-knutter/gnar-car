@@ -3,6 +3,7 @@ var router = express.Router();
 var request = require('request');
 var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
+var mountain = require('../database/mountains.js');
 
 /* GET home page. */
 router.get('/mountain/:mountainId', function(req, res, next) {
@@ -12,9 +13,9 @@ router.get('/mountain/:mountainId', function(req, res, next) {
   var weatherCodes = [];
   var weatherIcons = [];
 
-  // query.findMountainsById(req.params.mountainId)
+  // mountain.findMountainsById(req.params.mountainId)
   // .then(function(mountainInfo){
-    // request(mountainInfo[api_url], function(error, response, body){
+    // request(mountainInfo[api_url], function(error, response, body)
     //   if(!error & response.statusCode == 200){
     //     parser.parseString(body, function(err,result){
     //       // res.json({weatherData: result});
@@ -32,9 +33,9 @@ router.get('/mountain/:mountainId', function(req, res, next) {
           for (var i = 0; i < forecast.length; i++) {
             weatherCodes.push(Number(forecast[i].day[0].weather_code[0]));
           }
-          // Need to make a query to get the associated weather Icon
+          // Need to make a mountain to get the associated weather Icon
           // for (var j = 0; j < weatherCodes.length; j++) {
-          //   query.getWeatherIcon(weatherCodes[j])
+          //   mountain.getWeatherIcon(weatherCodes[j])
           //   .then(function(weatherIcon){
           //     weatherIcons.push(weatherIcon);
           //   });
