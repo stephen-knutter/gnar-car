@@ -1,4 +1,4 @@
-var knex = require('./db/knex.js');
+var knex = require('./config');
 
 // Mountains Queries
 
