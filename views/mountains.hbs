@@ -3,10 +3,8 @@
 <div class="pageTitle">
   <h2>Mountain Information</h2>
 </div>
->>>>>>> d117e731c4e7368f4d945d1af87dfd69ab46abf0
 
 <div class="mountainInfo materialCard fluid-container col-lg-8 col-lg-offset-2">
-
   <div class="row">
     <div class="col-lg-4">
       <img src="http://powderskiingcolorado.com/wp-content/uploads/2011/02/arapahoe-basin.jpg" class="mountainImage" alt="" />
@@ -19,7 +17,8 @@
       <h5>Summit Elevation: 13050</h5>
       <h5>Runs: 109</h5>
       <h5>
-        <a href="#">
+        <!-- Need to Update so it calls correct mountain id -->
+        <a href="/mountain/1/rides">
           View rides going to this mountain
         </a>
       </h5>
@@ -41,19 +40,13 @@
       {{#each forecast}}
       <div class="col-lg-2">
         <h3>{{date}}</h3>
-
         {{#each this.day}}
           <h5>{{weather_text}}</h5>
         {{/each}}
-
         <img src="{{weatherIcon}}" alt="" />
-
         <h6>{{night_min_temp}} &#8451</h6>
         <h6>{{day_max_temp}} &#8451</h6>
-
       </div>
-
       {{/each}}
     </div>
-
 </div>
