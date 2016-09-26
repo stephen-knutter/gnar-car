@@ -42,7 +42,6 @@ var query = {
   },
 
   addUser: function(username, email, password) {
-<<<<<<< HEAD
     return knex('users')
      .insert({
        username: username,
@@ -55,7 +54,6 @@ var query = {
        image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
        admin: false
      });
-=======
     if (!username || !email || !password) {
       return false;
     }
@@ -75,7 +73,6 @@ var query = {
     .catch(function(err) {
       return err;
     });
->>>>>>> a1e5fca26a444200c30dc4affc9d23d0a0e03180
   }
 };
 

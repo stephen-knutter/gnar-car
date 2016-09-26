@@ -47,6 +47,7 @@ router.post('/signup', function(req, res, next) {
     return;
   }
 
+<<<<<<< HEAD
   users.findUser(username).then(function(data) {
     if (data.length) {
       req.flash('username', 'Invalid username');
@@ -61,6 +62,16 @@ router.post('/signup', function(req, res, next) {
       return;
     });
   });
+=======
+  users.getUserByUsername(username).then(function(data) {
+    console.log(data);
+  });
+});
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', {title: 'GnarCar'});
+>>>>>>> ac3edf6f84810272a92fb308a65a335cd516265b
 });
 
 module.exports = router;
