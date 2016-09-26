@@ -4,8 +4,12 @@ body {
   padding-top: 59px;
 }
 
-h1 {
+h1,h2,h3 {
   font-family: 'Oswald', sans-serif;
+}
+
+h4,h5,h6 {
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .navbar-form{
@@ -13,10 +17,6 @@ h1 {
   padding-right: 0;
   margin-right: 0;
   margin-left: -15px;
-}
-
-h2 {
-  font-family: 'Oswald', sans-serif;
 }
 
 .nav.navbar-nav{
@@ -160,6 +160,26 @@ h2 {
     margin: 0 auto;
 }
 
+/*signedInUser.hbs*/
+
+.pageTitle {
+  padding: 20px 0 20px 40px;
+}
+
+.destinationList {
+  padding-left: 40px;
+}
+
+.currentDestinations {
+  display: flex;
+  margin-bottom: 20px;
+  width: 80%;
+  padding-left: 40px;
+}
+.currentRides {
+  margin-bottom: 30px;
+}
+
 /*Mountain.hbs*/
 
 .mountainInfo{
@@ -170,15 +190,11 @@ h2 {
 }
 
 .mountainImage {
+  display: flex;
   height: 200px;
   width: auto;
+  max-width: 250px;
 }
-
-.currentDestinations {
-  display: flex;
-  margin-bottom: 20px;
-}
-
 .materialCard {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
