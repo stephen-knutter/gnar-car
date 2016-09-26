@@ -39,7 +39,6 @@ h4,h5,h6 {
 }
 
 .mainItems {
-  display: flex;
   text-align: center;
 }
 
@@ -53,8 +52,6 @@ h4,h5,h6 {
   border-radius: 0px;
 }
 .content-block-one {
-  /*display: flex;
-  align-self: auto;*/
   padding: 30px;
   margin-bottom: 0px;
   color: inherit;
@@ -171,11 +168,11 @@ h4,h5,h6 {
 }
 
 .currentDestinations {
-  display: flex;
   margin-bottom: 20px;
   width: 80%;
   padding-left: 40px;
 }
+
 .currentRides {
   margin-bottom: 30px;
 }
