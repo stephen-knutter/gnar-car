@@ -27,6 +27,8 @@ h4,h5,h6 {
   margin-bottom: 0px;
   position: fixed;
   width: 100%;
+  border-radius: 0;
+  z-index: 10007;
 }
 
 .navbar-form{
