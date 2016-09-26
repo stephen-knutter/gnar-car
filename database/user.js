@@ -16,13 +16,13 @@ var query = {
   },
 
   findUserInformation: function(username) {
-    return knex('user')
+    return knex('users')
       .select('id', 'username', 'fullName')
       .where('username', username).first();
   },
 
   findHashedPassword: function(username) {
-    return knex('user')
+    return knex('users')
       .select('user.password')
       .where('user.username', username).first();
   },
@@ -50,7 +50,7 @@ var query = {
       if (data) {
         return false;
       }
-      return knex('user')
+      return knex('users')
        .insert({username: username,
          password: this.hashPassword(password),
          city: 'Denver',
