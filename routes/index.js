@@ -12,6 +12,7 @@ router.get('/signup', function(req, res, next) {
 router.post('/signup', function(req, res, next) {
   var formVars = req.body;
 
+  var errors = false;
   var username = formVars.username;
   var email = formVars.email;
   var password = formVars.password;
@@ -19,26 +20,31 @@ router.post('/signup', function(req, res, next) {
 
   if (!username || !email || !password || !confirm) return false;
 
-  if (validator.isEmail(email)) {
+  if (!validator.isEmail(email)) {
     req.flash('email', email);
+    errors = true;
   }
 
   if (password !== confirm) {
     req.flash('password', true);
+    errors = true;
   }
 
   if (!validator.isAlphanumeric(username) ||
     (username.length < 5 || username.length > 20)
   ) {
     req.flash('username', username);
+    errors = true;
   }
 
-  if (req.flash()) res.redirect('/signup');
-  // if (errors) return res.send(req.flash({errors}));
-  //
-  // users.getAllUsers().then(function(data) {
-  //   console.log(data);
-  // });
+  if (errors) {
+    res.redirect('/signup');
+    return;
+  }
+
+  users.getUserByUsername(username).then(function(data) {
+    console.log(data);
+  });
 });
 
 router.get('/:signedinUser', function(req, res, next) {

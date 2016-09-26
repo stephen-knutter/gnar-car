@@ -6,6 +6,13 @@
   </div>
 
   <div class="col-md-5 col-sm-12">
+    {{#if msg}}
+      <ul class="error-list">
+        {{#each msg}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
     <h2 class="signup-head">Sign Up</h2>
     <form id="signup-form" class="signup-form" action="/signup" method="post">
       <div class="form-group username-group">
