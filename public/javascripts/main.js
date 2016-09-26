@@ -9,7 +9,6 @@ $(document).ready(function(){
         $('.loginNav').css('background-color', '#ffffff');
       } else {
         $('.loginNav').css('background-color', 'transparent');
-
       }
     });
   }
