@@ -3,6 +3,11 @@ var router = express.Router();
 var validator = require('validator');
 var users = require('../database/user');
 
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', {title: 'GnarCar'});
+});
+
 router.get('/signup', function(req, res, next) {
   var msg = false;
   if (req.flash) msg = req.flash();
@@ -42,20 +47,10 @@ router.post('/signup', function(req, res, next) {
     return;
   }
 
-  users.getUserByUsername(username).then(function(data) {
-    console.log(data);
+  users.addUser(username, email, password)
+  .then(function(){
+    res.redirect('/rides');
   });
-});
-
-router.get('/:signedinUser', function(req, res, next) {
-  var signedinUser = req.params.username;
-
-  res.render('signedinUser', {title: signedinUser});
-});
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {title: 'GnarCar'});
 });
 
 module.exports = router;
