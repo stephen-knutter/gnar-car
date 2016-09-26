@@ -2,21 +2,109 @@
   <h2>Mountain Information</h2>
 </div>
 
-<div class="mountainInfo materialCard row fluid-container col-lg-10 col-lg-offset-2">
-  <div class="col-lg-4">
-    <img src="http://powderskiingcolorado.com/wp-content/uploads/2011/02/arapahoe-basin.jpg" class="mountainImage" alt="" />
+<div class="mountainInfo materialCard fluid-container col-lg-8 col-lg-offset-2">
+
+  <div class="row">
+    <div class="col-lg-4">
+      <img src="http://powderskiingcolorado.com/wp-content/uploads/2011/02/arapahoe-basin.jpg" class="mountainImage" alt="" />
+    </div>
+    <div>
+      <h1>Arapahoe Basin</h1>
+      <h4>
+        Since 1946, Arapahoe Basin has been serving up a fantastic ride for skiers and riders from Colorado and all over the world. We're often the first in Colorado to open - if not the nation - and the last in Colorado to close. Arapahoe Basin receives over 350 inches of snowfall annually.
+      </h4>
+      <h5>Summit Elevation: 13050</h5>
+      <h5>Runs: 109</h5>
+      <h5>
+        <a href="#">
+          View rides going to this mountain
+        </a>
+      </h5>
+    </div>
   </div>
-  <div>
-    <h1>Arapahoe Basin</h1>
-    <h4>
-      Since 1946, Arapahoe Basin has been serving up a fantastic ride for skiers and riders from Colorado and all over the world. We're often the first in Colorado to open - if not the nation - and the last in Colorado to close. Arapahoe Basin receives over 350 inches of snowfall annually.
-    </h4>
-    <h5>Summit Elevation: 13050</h5>
-    <h5>Runs: 109</h5>
-    <h5>
-      <a href="#">
-        View rides going to this mountain
-      </a>
-    </h5>
+
+    <div class="row">
+      <div class="col-lg-10">
+        <h3>Weather Conditions</h3>
+        <!-- weather[snow_report][lower_snow_depth] -->
+        {{#each conditions}}
+        <h5>Lower Snow Depth: {{lower_snow_depth}} ft.</h5>
+        <!-- weather[snow_report][upper_snow_depth] -->
+        <h5>Upper Snow Depth: {{upper_snow_depth}} ft.</h5>
+        <!-- weather[snow_report][conditions] -->
+        <h4>Current Conditions: {{conditions}}</h4>
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="row">
+      {{#each forecast}}
+      <div class="col-lg-2">
+        <h3>{{date}}</h3>
+        {{#each result}}
+          <h5>{{forecast.day}}</h5>
+        {{/each}}
+        <img src="/images/weather_icons/Sunny.gif" class="icon" alt="" />
+        <h6>{{night_min_temp}} &#8451</h6>
+        <h6>{{day_max_temp}} &#8451</h6>
+      </div>
+      {{/each}}
+    </div>
+
+
+  <!-- <div class="row">
+    <div class="col-lg-10">
+      <h3>Weather Conditions</h3>
+      <h5>Lower Snow Depth: 0 ft.</h5>
+      <h5>Upper Snow Depth: 0 ft.</h5>
+      <h4>Current Conditions: "No Report Available Today."</h4>
+    </div>
   </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+      <h3>2016-09-26</h3>
+      <h5>Sunny Skies</h5>
+      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
+      <h6>-5 &#8451</h6>
+      <h6>17 &#8451</h6>
+    </div>
+    <div class="col-lg-2">
+      <h3>2016-09-27</h3>
+      <h5>Sunny Skies</h5>
+      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
+      <h6>-3 &#8451</h6>
+      <h6>19 &#8451</h6>
+    </div>
+    <div class="col-lg-2">
+      <h3>2016-09-28</h3>
+      <h5>Sunny Skies</h5>
+      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
+      <h6>-1 &#8451</h6>
+      <h6>18 &#8451</h6>
+    </div>
+    <div class="col-lg-2">
+      <h3>2016-09-29</h3>
+      <h5>Sunny Skies</h5>
+      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
+      <h6>-2 &#8451</h6>
+      <h6>15 &#8451</h6>
+    </div>
+    <div class="col-lg-2">
+      <h3>2016-09-30</h3>
+      <h5>Sunny Skies</h5>
+      <img src="/images/weather_icons/PartCloudRainThunderDay.gif" class="icon" alt="" />
+      <h6>-2 &#8451</h6>
+      <h6>15 &#8451</h6>
+    </div>
+    <div class="col-lg-2">
+      <h3>2016-10-01</h3>
+      <h5>Sunny Skies</h5>
+      <img src="/images/weather_icons/Clear.gif" class="icon" alt="" />
+      <h6>-2 &#8451</h6>
+      <h6>18 &#8451</h6>
+    </div>
+
+  </div> -->
+
 </div>
