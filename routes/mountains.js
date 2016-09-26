@@ -3,7 +3,7 @@ var router = express.Router();
 var request = require('request');
 var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
-var mountain = require('../database/mountains.js');
+var mountain = require('../database/mountain.js');
 
 /* GET home page. */
 router.get('/mountain/:mountainId', function(req, res, next) {
