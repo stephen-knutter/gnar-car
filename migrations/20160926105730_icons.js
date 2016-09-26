@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('icons', function(table){
+  return knex.schema.createTable('icons', function(table) {
     table.increments();
     table.string('icon');
   });

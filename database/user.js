@@ -42,25 +42,18 @@ var query = {
   },
 
   addUser: function(username, email, password) {
-    if (!username || !email || !password) {
-      return false;
-    }
-    return this.findUser(username)
-    .then(function(data) {
-      if (data) {
-        return false;
-      }
-      return knex('user')
-       .insert({username: username,
-         password: this.hashPassword(password),
-         city: 'Denver',
-         state: 'CO', zip: '80216',
-         image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
-         admin: false});
-    })
-    .catch(function(err) {
-      return err;
-    });
+    return knex('users')
+     .insert({
+       username: username,
+       password: this.hashPassword(password),
+       phone: null,
+       email: null,
+       city: 'Denver',
+       state: 'CO',
+       zip: '80216',
+       image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
+       admin: false
+     });
   }
 };
 

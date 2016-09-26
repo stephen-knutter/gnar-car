@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('mountain', function(table){
+  return knex.schema.createTable('mountain', function(table) {
     table.increments();
     table.string('name');
     table.string('api_url');
@@ -11,8 +11,8 @@ exports.up = function(knex, Promise) {
     table.integer('runs');
     table.string('image_url');
     table.string('website');
-    table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
-    table.timestamp("updated_at").notNullable().defaultTo(knex.fn.now());
+    table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
+    table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now());
   });
 };
 

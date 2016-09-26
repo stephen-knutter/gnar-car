@@ -12,8 +12,8 @@ exports.up = function(knex, Promise) {
     table.integer('zip');
     table.string('image_url');
     table.boolean('admin');
-    table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
-    table.timestamp("updated_at").notNullable().defaultTo(knex.fn.now());
+    table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
+    table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now());
   });
 };
 

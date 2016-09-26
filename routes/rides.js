@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var validator = require('validator');
 var rides = require('../database/ride.js');
+var passport = require('../passport.js');
 
 router.get('/:username', function(req, res, next) {
   if(!req.isAuthenticated()){

@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('car', function(table){
+  return knex.schema.createTable('car', function(table) {
     table.increments();
     table.string('make');
     table.string('model');
@@ -9,8 +9,8 @@ exports.up = function(knex, Promise) {
     table.boolean('ski_rack');
     table.boolean('smoking');
     table.boolean('dog');
-    table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
-    table.timestamp("updated_at").notNullable().defaultTo(knex.fn.now());
+    table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
+    table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now());
   });
 };
 

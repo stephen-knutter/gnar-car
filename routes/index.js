@@ -55,8 +55,10 @@ router.post('/signup', function(req, res, next) {
     }
 
     users.addUser(username, email, password)
-    .then(function() {
+    .then(function(data) {
+      console.log(data);
       res.redirect('/rides/' + username);
+      return;
     });
   });
 });
