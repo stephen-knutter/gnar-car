@@ -16,13 +16,13 @@ var query = {
   },
 
   findUserInformation: function(username) {
-    return knex('user')
+    return knex('users')
       .select('id', 'username', 'fullName')
       .where('username', username).first();
   },
 
   findHashedPassword: function(username) {
-    return knex('user')
+    return knex('users')
       .select('user.password')
       .where('user.username', username).first();
   },
@@ -42,6 +42,7 @@ var query = {
   },
 
   addUser: function(username, email, password) {
+<<<<<<< HEAD
     return knex('users')
      .insert({
        username: username,
@@ -54,6 +55,27 @@ var query = {
        image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
        admin: false
      });
+=======
+    if (!username || !email || !password) {
+      return false;
+    }
+    return this.findUser(username)
+    .then(function(data) {
+      if (data) {
+        return false;
+      }
+      return knex('users')
+       .insert({username: username,
+         password: this.hashPassword(password),
+         city: 'Denver',
+         state: 'CO', zip: '80216',
+         image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
+         admin: false});
+    })
+    .catch(function(err) {
+      return err;
+    });
+>>>>>>> a1e5fca26a444200c30dc4affc9d23d0a0e03180
   }
 };
 
