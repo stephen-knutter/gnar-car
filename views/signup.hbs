@@ -6,6 +6,7 @@
   </div>
 
   <div class="col-md-5 col-sm-12">
+    <h2 class="signup-head">Sign Up</h2>
     {{#if msg}}
       <ul class="error-list">
         {{#each msg}}
@@ -13,15 +14,14 @@
         {{/each}}
       </ul>
     {{/if}}
-    <h2 class="signup-head">Sign Up</h2>
     <form id="signup-form" class="signup-form" action="/signup" method="post">
       <div class="form-group username-group">
         <label for="username">Username:</label>
-        <input type="text" class="form-control {{#if msg.email}}error-outline{{/if}}" name="username" value="{{msg.username}}" placeholder="Enter username..." />
+        <input type="text" class="form-control {{#if msg.email}}error-outline{{/if}}" name="username" placeholder="Enter username..." />
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" name="email" class="form-control {{#if msg.email}}error-outline{{/if}}" value="{{msg.email}}" placeholder="me@example.com" />
+        <input type="email" name="email" class="form-control {{#if msg.email}}error-outline{{/if}}" placeholder="me@example.com" />
       </div>
       <div class="form-group">
         <label for="password">Password:</label>

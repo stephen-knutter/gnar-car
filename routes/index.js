@@ -21,19 +21,19 @@ router.post('/signup', function(req, res, next) {
   if (!username || !email || !password || !confirm) return false;
 
   if (!validator.isEmail(email)) {
-    req.flash('email', email);
+    req.flash('email', 'Invalid email');
     errors = true;
   }
 
   if (password !== confirm) {
-    req.flash('password', true);
+    req.flash('password', 'Invalid password');
     errors = true;
   }
 
   if (!validator.isAlphanumeric(username) ||
     (username.length < 5 || username.length > 20)
   ) {
-    req.flash('username', username);
+    req.flash('username', 'Invalid username');
     errors = true;
   }
 
