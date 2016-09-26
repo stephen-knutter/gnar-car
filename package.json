@@ -20,8 +20,13 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pg": "^6.1.0",
+    "req-flash": "0.0.3",
     "serve-favicon": "~2.3.0",
     "sqlite3": "^3.1.4",
     "validator": "^5.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.6.0",
+    "eslint-config-google": "^0.6.0"
   }
 }
