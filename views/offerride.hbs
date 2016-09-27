@@ -5,89 +5,47 @@
 </div>
 
 <div class="container">
-  <div class="driver col-md-4">
+  <div class="col-md-6 row">
     <form action="/rides/offer" method="post" class="form-horizontal">
       <fieldset>
         <div class="form-group">
-          <label for="destination" class="col-lg-2 control-label">Destination</label>
+          <label for="select" class="col-lg-2 control-label">Destination</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" placeholder="Destination" name="destination">
+            <select class="form-control" id="select">
+               <option value="" disabled selected>Select your option</option>
+              {{#each mountains}}
+                <option value={{id}}>{{name}}</option>
+              {{/each}}
+            </select>
           </div>
         </div>
         <div class="form-group">
           <label for="departureDate" class="col-lg-2 control-label">Departure date</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" placeholder="Departure Date" name="departureDate">
+            <input id="departureDate" type="text" class="form-control" placeholder="Departure Date" name="departureDate">
           </div>
         </div>
         <div class="form-group">
-          <label for="meetuoLocation" class="col-lg-2 control-label">Meetup location</label>
+          <label for="meetupLocation" class="col-lg-2 control-label">Meetup location</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" placeholder="Meetup Location" name="meetupLocation">
+            <input id="meetupLocation" type="text" class="form-control" placeholder="Meetup Location" name="meetupLocation">
           </div>
         </div>
-        <h3>Car Details</h3>
         <div class="form-group">
-          <label for="carMake" class="col-lg-2 control-label">Car Make</label>
+          <label for="seatsAvailable" class="col-lg-2 control-label">Seats available</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" placeholder="carMake" name="carMake">
+            <input id="seatsAvailable" type="text" class="form-control" placeholder="Seats available" name="seatsAvailable">
           </div>
         </div>
-        <div class="form-group">
-          <label for="carModel" class="col-lg-2 control-label">Car Model</label>
-          <div class="col-lg-10">
-            <input type="text" class="form-control" placeholder="carModel" name="carModel">
-          </div>
-        </div>
-        <div class="form-group">
-      <label class="col-lg-2 control-label">Transmission</label>
-      <div class="col-lg-10">
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-            AWD
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-            4WD
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-            FWD
-          </label>
-        </div>
-      </div>
-      <label class="col-lg-2 control-label">Smoking</label>
-      <div class="col-lg-10">
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-            Yes
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-            No
-          </label>
-        </div>
-      </div>
-    </div>
-
         <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
             <button type="submit" class="btn btn-primary">Register offer</button>
           </div>
         </div>
-      </fieldset>
-    </form>
+      </form>
+    </fieldset>
   </div>
-
-  <div class="riders col-md-8 text-center">
+  <div class="col-md-6 text-center row">
     <h2>Driver {{user.username}}</h2>
     <img src="{{user.image_url}}" alt="" />
   </div>

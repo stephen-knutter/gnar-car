@@ -3,6 +3,7 @@ var router = express.Router();
 var validator = require('validator');
 var rides = require('../database/ride.js');
 var users = require('../database/user.js');
+var mountains = require('../database/mountain.js')
 var passport = require('../passport.js');
 
 router.get('/', function(req, res, next) {
@@ -25,10 +26,16 @@ router.get('/offer', function(req, res, next) {
   }
   var destination = req.body.destination
   var user = req.user;
-  console.log("user here: ", user.username)
-  res.render('offerride', {
-    user: user
-  })
+
+  mountains.findMountains()
+    .then( function(mountains) {
+      console.log("user here: ", user.username)
+      console.log(mountains.name)
+      res.render('offerride', {
+        user: user,
+        mountains: mountains
+      })
+    })
 })
 
 router.get('/offer', function(req, res, next) {
@@ -39,6 +46,8 @@ router.get('/offer', function(req, res, next) {
   var destination = req.body.destination
   var user = req.user;
   console.log("user here: ", user.username)
+
+
   res.render('offerride', {
     user: user
   })
