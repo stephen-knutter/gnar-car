@@ -6,11 +6,11 @@ function getRides(){
 }
 
 function getRideMountainDriverData(){
-  return knex('ride').select('ride.id AS rideID','ride.seats_avail', 'ride.cost_seat', 'ride.home_depTime','mountain.name','mountain.id AS mountainID','mountain.image_url','users.username').innerJoin('mountain','mountain.id','ride.mountain_id').innerJoin('car_user','car_user.car_id','ride.car_id').innerJoin('users','users.id','car_user.user_id');
+  return knex('ride').select('ride.id AS rideID','ride.seats_avail', 'ride.cost_seat', 'ride.home_depTime','mountain.name','mountain.id AS mountainID','mountain.image_url','users.username').innerJoin('mountain','mountain.id','ride.mountain_id').innerJoin('car_user','car_user.car_id','ride.car_id').innerJoin('users','users.id','car_user.user_id').orderBy('ride.home_depTime','asc');
 }
 
 function getRideDataLimitThree(){
-  return getRideMountainDriverData().orderBy('ride.home_depTime','desc').limit(3);
+  return getRideMountainDriverData().limit(3);
 }
 
 function getRideMountainDriverDataByMountainId(id){
