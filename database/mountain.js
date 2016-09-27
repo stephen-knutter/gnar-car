@@ -11,6 +11,11 @@ function findMountainsById(id){
 }
 
 // Weather Icon Queries
+
+function getAllIcons(){
+  return knex('icons');
+}
+
 function getWeatherIcon(id){
   return knex('icons').select('icon').where('id',id);
 }
@@ -18,5 +23,6 @@ function getWeatherIcon(id){
 module.exports = {
   findMountains: findMountains,
   findMountainsById: findMountainsById,
+  getAllIcons: getAllIcons,
   getWeatherIcon: getWeatherIcon
 };
