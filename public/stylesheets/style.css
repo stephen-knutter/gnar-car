@@ -64,10 +64,13 @@ h4,h5,h6,p {
   position:relative;
 }
 
-.signup-btn {
-  position: absolute;
-  top: 45%;
-  left: 45%;
+.signup-link a {
+  text-align: left;
+  color: #454545;
+  padding-right: 23px;
+}
+.signup-link a:hover {
+  text-decoration: underline;
 }
 
 .mainItems {
@@ -77,6 +80,7 @@ h4,h5,h6,p {
 .smallpic {
   max-width: 300px;
   height: 200px;
+  padding-bottom: 30px;
 }
 
 .loginNav {
