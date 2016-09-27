@@ -18,8 +18,68 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/offer', function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+  var destination = req.body.destination
+  var user = req.user;
+  console.log("user here: ", user.username)
+  res.render('offerride', {
+    user: user
+  })
+})
+
+router.get('/offer', function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+  var destination = req.body.destination
+  var user = req.user;
+  console.log("user here: ", user.username)
+  res.render('offerride', {
+    user: user
+  })
+})
+
+
+
+// queries.Rides({
+//       title: postTitle,
+//       post_body: postEntry,
+//       author_id: data[0].uid,
+//       postDate: postDate
+//     })
+//   })
+//   .then(function(data) {
+//       res.redirect('/users/posts')
+//       console.log("Hello")
+//   })
+//   .catch(function(err) {
+//       next(err)
+//   })
+
+
+////
+
+
 router.get('/:rideID', function(req, res, next) {
   console.log('Router reached');
+// Added this lines just for reference
+// Will have to correct functionality
+  var rideID = req.params.rideID;
+  users.getAllUsers()
+    .then(function(data) {
+      console.log(data);
+      res.render('ride', {
+        data: data
+      });
+    })
+    .catch(function(err) {
+      next(err);
+    });
 });
 
 router.get('/mountains/:mountainId', function(req, res, next) {

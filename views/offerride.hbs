@@ -1,31 +1,94 @@
 {{> navbar}}
 
 <div class="pageTitle">
-  <h1>Offer a Ride {{title}}</h1>
-  <h4>Destination</h4>
-  <h4>Departure date and time</h4>
-  <h4>Meetup Location</h4>
-  <h5>Car Details</h5>
-  <ul>
-    <li>Car make</li>
-  </ul>
+  <h1>Offer a Ride {{user.username}}</h1>
 </div>
 
 <div class="container">
   <div class="driver col-md-4">
-    <h2>Driver {{data.[0].username}}</h2>
-    <img src="{{data.[0].image_url}}" alt="" />
-    <h4>Rating </h4>
-    <h4>Cost</h2>
-    <h4>Smoking Y/N</h2>
-  </div>
-  <div class="riders col-md-8 text-center">
-    <h2>Riders </h2>
-    {{#each data}}
-    <h4>{{username}}</h3>
-      <div class="ridersImages">
-        <img class="ridersImages" src="{{image_url}}" alt="" />
+    <form action="/rides/offer" method="post" class="form-horizontal">
+      <fieldset>
+        <div class="form-group">
+          <label for="destination" class="col-lg-2 control-label">Destination</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" placeholder="Destination" name="destination">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="departureDate" class="col-lg-2 control-label">Departure date</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" placeholder="Departure Date" name="departureDate">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="meetuoLocation" class="col-lg-2 control-label">Meetup location</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" placeholder="Meetup Location" name="meetupLocation">
+          </div>
+        </div>
+        <h3>Car Details</h3>
+        <div class="form-group">
+          <label for="carMake" class="col-lg-2 control-label">Car Make</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" placeholder="carMake" name="carMake">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="carModel" class="col-lg-2 control-label">Car Model</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" placeholder="carModel" name="carModel">
+          </div>
+        </div>
+        <div class="form-group">
+      <label class="col-lg-2 control-label">Transmission</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+            AWD
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+            4WD
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+            FWD
+          </label>
+        </div>
       </div>
-    {{/each}}
+      <label class="col-lg-2 control-label">Smoking</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+            Yes
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+            No
+          </label>
+        </div>
+      </div>
+    </div>
+
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="submit" class="btn btn-primary">Register offer</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="riders col-md-8 text-center">
+    <h2>Driver {{user.username}}</h2>
+    <img src="{{user.image_url}}" alt="" />
   </div>
 </div>
