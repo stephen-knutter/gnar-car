@@ -1,0 +1,19 @@
+<div class="destinationList row">
+  {{#each rideData}}
+  <div class="mountainInfo materialCard fluid-container col-lg-8 col-lg-offset-2">
+    <div class="col-lg-4">
+      <img src="{{image_url}}" class="mountainImage" alt="" />
+    </div>
+    <div class="col-lg-8">
+      <h1>{{name}}</h1>
+      <a href="/mountains/{{mountainID}}">
+        <h5>Mountain Information</h5>
+      </a>
+      <h4>Date: {{home_depTime}}</h4>
+      <h5>Seats Available: {{seats_avail}}</h5>
+      <h5>Price/Seat: ${{cost_seat}}</h5>
+      <a href="/rides/{{rideID}}" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</a>
+    </div>
+  </div>
+  {{/each}}
+</div>

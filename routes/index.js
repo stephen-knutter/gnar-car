@@ -5,6 +5,7 @@ var users = require('../database/user');
 var passport = require('../passport');
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
+var rides = require('../database/ride.js');
 
 var auth = expressJWT({secret: process.env.SECRET, userProperty: 'payload'});
 
@@ -93,7 +94,11 @@ router.get('/:username', function(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var user = req.user;
-  res.render('index', {title: 'GnarCar', user: user});
+  rides.getRideMountainDriverData()
+  .then(function(rideData) {
+    res.render('index',
+      {title: 'GnarCar', rideData: rideData, user: user});
+  });
 });
 
 module.exports = router;
