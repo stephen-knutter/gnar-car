@@ -5,24 +5,22 @@
   <h2>Current Rides</h2>
 </div>
 
-
 <div class="destinationList">
   {{#each rideData}}
   <div class="mountainInfo materialCard row fluid-container col-lg-8 col-lg-offset-2">
     <div class="col-lg-4">
-      <!-- Need to get mtn image -->
       <img src="{{image_url}}" class="mountainImage" alt="" />
     </div>
     <div>
       <h1>{{name}}</h1>
-      <a href="/mountains/{{id}}">
+      <a href="/mountains/{{mountainID}}">
         <h5>Mountain Information</h5>
       </a>
       <h4>Date: {{home_depTime}}</h4>
       <h4>Seats available: {{seats_avail}}</h4>
       <h4>Price/Seat: ${{cost_seat}}</h4>
       <h4>Driver: {{username}}</h4>
-      <a href="#">Reserve a seat!</a>
+      <a href="/rides/{{rideID}}">Reserve a seat!</a>
     </div>
   </div>
   {{/each}}

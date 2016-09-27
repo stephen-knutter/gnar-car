@@ -8,33 +8,16 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/rides/:username', function(req, res, next) {
+router.get('/:username/rides', function(req, res, next) {
   if(!req.isAuthenticated()) return res.redirect('/');
   var user = req.user;
 
   res.render('rides', {title: user.username + ' | Rides', user: user});
 });
 
-router.get('/ride/:id', function(req, res, next) {
-  var id = req.params.id;
-  var user1 = 'user1';
-
-  queries.getAllUsers()
-    .then(function(data) {
-      console.log(data);
-      res.render('ride', {
-        data: data
-      });
-    })
-    .catch(function(err) {
-      next(err);
-    });
-});
-
 router.get('/:username', function(req, res, next) {
   var username = req.params.username;
   if (!username) return res.redirect('/');
-
   var user;
   if (req.isAuthenticated()) {
     user = req.user;
@@ -46,7 +29,6 @@ router.get('/:username', function(req, res, next) {
       res.render('profile', {title: username, user: user});
     });
   }
-
 });
 
 module.exports = router;
