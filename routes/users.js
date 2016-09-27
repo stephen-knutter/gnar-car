@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/rides/:username', function(req, res, next) {
   if(!req.isAuthenticated()) return res.redirect('/');
   var user = req.user;
-  
+
   res.render('rides', {title: user.username + ' | Rides', user: user});
 });
 
@@ -29,6 +29,18 @@ router.get('/ride/:id', function(req, res, next) {
     .catch(function(err) {
       next(err);
     });
+});
+
+router.get('/:username', function(req, res, next) {
+  var username = req.params.username;
+  if (!username) return res.redirect('/');
+
+  var user;
+  users.findUser(username).then(function(data) {
+
+  });
+
+  res.render('profile', {title: username});
 });
 
 module.exports = router;
