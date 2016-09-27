@@ -12,7 +12,7 @@ h4,h5,h6 {
 }
 
 .navbar>.container-fluid .navbar-brand {
-  margin-left: 1px;
+  margin: 0 1px;
   padding-left: 25px;
   background: url('../images/gnarcar-nav.png') 0 45% no-repeat;
 }
