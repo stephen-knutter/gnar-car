@@ -7,7 +7,7 @@ h1,h2,h3 {
   font-family: 'Oswald', sans-serif;
 }
 
-h4,h5,h6 {
+h4,h5,h6,p {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -228,4 +228,8 @@ h4,h5,h6 {
 
 .mtnRideLink {
   margin-left: 20px;
+}
+.ridersImages > img {
+  height: 25%;
+  width: 25%;
 }
