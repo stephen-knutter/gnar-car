@@ -13,22 +13,25 @@ router.get('/', function(req, res, next) {
   var user = req.user;
   rides.getRideMountainDriverData()
   .then(function(rideData) {
-    // Need to add rideData to render function
     res.render('rides',
       {username: user.username, rideData: rideData, user: user});
   });
 });
 
-router.get('/mountain/:mountainId/rides', function(req, res, next) {
+router.get('/:rideID', function(req, res, next) {
+  console.log('Router reached');
+});
+
+router.get('/mountains/:mountainId', function(req, res, next) {
   if (!req.isAuthenticated()) {
     res.redirect('/signup');
     return;
   }
   var signedinUser = req.user.username;
-  rides.getRidesByMountainId(req.params.mountainId)
+  var user = req.user;
+  rides.getRideMountainDriverDataByMountainId(req.params.mountainId)
   .then(function(rideData) {
-    // Need to add rideData to render function
-    res.render('rides', {title: signedinUser});
+    res.render('rides', {username: signedinUser, rideData: rideData, user:user});
   });
 });
 

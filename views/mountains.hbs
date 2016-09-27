@@ -19,7 +19,7 @@
       <h5>Runs: {{runs}}</h5>
       <h5>
         <!-- Need to Update so it calls correct mountain id -->
-        <a class="mtnRideLink" href="/mountain/{{id}}/rides">
+        <a class="mtnRideLink" href="/rides/mountains/{{id}}">
           View rides going to this mountain
         </a>
       </h5>
@@ -27,28 +27,28 @@
     {{/each}}
   </div>
 
-    <div class="row">
-      <div class="col-lg-10">
-        <h3>Weather Conditions</h3>
-        {{#each conditions}}
-        <h5>Lower Snow Depth: {{lower_snow_depth}} ft.</h5>
-        <h5>Upper Snow Depth: {{upper_snow_depth}} ft.</h5>
-        <h4>Current Conditions: {{conditions}}</h4>
-        {{/each}}
-      </div>
-    </div>
-
-    <div class="row">
-      {{#each forecast}}
-      <div class="col-lg-2">
-        <h3>{{date}}</h3>
-        {{#each this.day}}
-          <h5>{{weather_text}}</h5>
-        {{/each}}
-        <img src="{{weatherIcon}}" alt="" />
-        <h6>{{night_min_temp}} &#8451</h6>
-        <h6>{{day_max_temp}} &#8451</h6>
-      </div>
+  <div class="row">
+    <div class="col-lg-10">
+      <h3>Weather Conditions</h3>
+      {{#each conditions}}
+      <h5>Lower Snow Depth: {{lower_snow_depth}} ft.</h5>
+      <h5>Upper Snow Depth: {{upper_snow_depth}} ft.</h5>
+      <h4>Current Conditions: {{conditions}}</h4>
       {{/each}}
     </div>
+  </div>
+
+  <div class="row">
+    {{#each forecast}}
+    <div class="col-lg-2">
+      <h3>{{date}}</h3>
+      {{#each this.day}}
+        <h5>{{weather_text}}</h5>
+      {{/each}}
+      <img src="{{weatherIcon}}" alt="" />
+      <h6>{{night_min_temp}} &#8451</h6>
+      <h6>{{day_max_temp}} &#8451</h6>
+    </div>
+    {{/each}}
+  </div>
 </div>
