@@ -16,6 +16,7 @@ router.get('/:mountainId', function(req, res, next) {
 
   mountain.findMountainsById(req.params.mountainId)
   .then(function(mountainInfo){
+    console.log(mountainInfo);
     api_url = mountainInfo[0].api_url;
     request(api_url, function(error, response, body){
       if(!error & response.statusCode == 200){
@@ -40,7 +41,7 @@ router.get('/:mountainId', function(req, res, next) {
             forecast[k].weatherIcon = weatherIcons[k];
           }
 
-          res.render('mountains', {weatherData: result, conditions: conditions, forecast: forecast});
+          res.render('mountains', {mountainInfo: mountainInfo, weatherData: result, conditions: conditions, forecast: forecast});
         });
       }
     });
