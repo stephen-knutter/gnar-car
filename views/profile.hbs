@@ -1,12 +1,31 @@
 {{> navbar}}
 
 <div class="containter">
-  <div class="col-md-7 col-md-offset-1">
-    <h1>Hi, {{user.username}}</h1>
-  </div>
+   <div class="col-md-7 col-md-offset-1">
+      <div class="media">
+         <div class="media-left">
+            <a href="#">
+            <img class="media-object" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg" alt="...">
+            </a>
+         </div>
+         <div class="media-body">
+            <h1 class="media-heading">Hi, {{title}}</h1>
+               <br>
+               <h4>Bio</h4>
+               <p>
+                  jdsfng kfjdgnvjksfnv kjs
+               </p>
+               <br>
+               <div class="button">
+                  <a class="btn btn-info" href="/users/{{user.username}}/edit" role="button">Edit</a>
+                  <a class="btn btn-info" href="/logout" role="button">Logout</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
-  <div class="col-md-3 col-md-offset-1">
-    <h1>Hi, {{user.email}}</h1>
-  </div>
-
+   <div class="col-md-3 col-md-offset-1">
+      <h1>Hi, {{title}}</h1>
+   </div>
 </div>
