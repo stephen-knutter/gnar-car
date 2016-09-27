@@ -11,11 +11,11 @@ router.get('/', function(req, res, next) {
     return;
   }
   var user = req.user;
-  rides.getRides()
+  rides.getRideMountainDriverData()
   .then(function(rideData) {
     // Need to add rideData to render function
-    console.log(rideData);
-    res.render('rides', {username: req.user.username, user: user});
+    res.render('rides',
+      {username: user.username, rideData: rideData, user: user});
   });
 });
 
