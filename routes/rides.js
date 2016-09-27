@@ -7,15 +7,15 @@ var passport = require('../passport.js');
 
 router.get('/', function(req, res, next) {
   if (!req.isAuthenticated()) {
-    res.redirect('../');
+    res.redirect('/');
     return;
   }
-  console.log(req.user.username);
+  var user = req.user;
   rides.getRides()
   .then(function(rideData) {
     // Need to add rideData to render function
     console.log(rideData);
-    res.render('rides', {username: req.user.username});
+    res.render('rides', {username: req.user.username, user: user});
   });
 });
 

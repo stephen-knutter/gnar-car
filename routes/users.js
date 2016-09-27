@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var queries = require('../database/user');
+var users = require('../database/user');
 var passport = require('../passport');
 
 /* GET users listing. */
@@ -36,11 +36,17 @@ router.get('/:username', function(req, res, next) {
   if (!username) return res.redirect('/');
 
   var user;
-  users.findUser(username).then(function(data) {
+  if (req.isAuthenticated()) {
+    user = req.user;
+    res.render('profile', {title: username, user: user});
+  } else {
+    var findUser = users.findUser(username).then(function(data) {
+      user = data[0];
+      console.log(user);
+      res.render('profile', {title: username, user: user});
+    });
+  }
 
-  });
-
-  res.render('profile', {title: username});
 });
 
 module.exports = router;
