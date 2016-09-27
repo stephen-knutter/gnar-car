@@ -80,7 +80,7 @@ router.post('/signup', function(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var user = req.user;
-  rides.getRideMountainDriverData()
+  rides.getRideDataLimitThree()
   .then(function(rideData) {
     res.render('index',
       {title: 'GnarCar', rideData: rideData, user: user});
