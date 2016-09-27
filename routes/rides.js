@@ -10,12 +10,10 @@ router.get('/', function(req, res, next) {
     res.redirect('../');
     return;
   }
-  console.log(req.user.username);
-  rides.getRides()
+  rides.getRideMountainDriverData()
   .then(function(rideData) {
     // Need to add rideData to render function
-    console.log(rideData);
-    res.render('rides', {username: req.user.username});
+    res.render('rides', {username: req.user.username, rideData: rideData});
   });
 });
 
