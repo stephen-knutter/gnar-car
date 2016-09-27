@@ -64,18 +64,6 @@ h4,h5,h6 {
   position:relative;
 }
 
-.logo {
-  position: absolute;
-  left: 45%;
-  top: 40%;
-  z-index: 1000;
-  background: rgba(0,0,0,0.005);
-}
-
-.logo img {
-
-}
-
 .signup-link a {
   text-align: left;
   color: #454545;
@@ -215,6 +203,12 @@ h4,h5,h6 {
   padding-left: 40px;
 }
 
+.currentDestinations {
+  margin-bottom: 20px;
+  width: 80%;
+  padding-left: 40px;
+}
+
 .currentRides {
   margin-bottom: 30px;
 }
@@ -226,10 +220,9 @@ h4,h5,h6 {
 }
 
 .mountainImage {
-  margin-top: 10px;
-  width: 250px;
-  height: auto;
-  max-width: 250px;
+  margin: 20px 0 20px 0;
+  height: 210px;
+  width: auto;
 }
 
 .materialCard {
@@ -238,6 +231,12 @@ h4,h5,h6 {
 
 .mtnRideLink {
   margin-left: 20px;
+}
+
+.reserveSeat{
+  margin-bottom: 10px;
+  width: 250px;
+  height: auto;
 }
 
 .head-link-wrap{
