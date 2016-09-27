@@ -7,24 +7,17 @@ var mountain = require('../database/mountain.js');
 
 /* GET mountain page page. */
 router.get('/:mountainId', function(req, res, next) {
+  var api_url;
   var conditions;
   var forecast;
   var forecastDescription;
   var weatherCodes = [];
   var weatherIcons = [];
 
-  // mountain.findMountainsById(req.params.mountainId)
-  // .then(function(mountainInfo){
-    // request(mountainInfo[api_url], function(error, response, body)
-    //   if(!error & response.statusCode == 200){
-    //     parser.parseString(body, function(err,result){
-    //       // res.json({weatherData: result});
-    //       res.render('mountains', {mountainInfo: mountainInfo, weatherData:result});
-    //     });
-    //   }
-    // });
-
-    request('http://www.myweather2.com/developer/weather.ashx?uac=lWSw6eGT9t&uref=ee1b280c-f69d-45a2-8373-6e19cd428117', function(error, response, body){
+  mountain.findMountainsById(req.params.mountainId)
+  .then(function(mountainInfo){
+    api_url = mountainInfo[0].api_url;
+    request(api_url, function(error, response, body){
       if(!error & response.statusCode == 200){
         parser.parseString(body, function(err,result){
           result = result.weather;
@@ -34,12 +27,13 @@ router.get('/:mountainId', function(req, res, next) {
             weatherCodes.push(Number(forecast[i].day[0].weather_code[0]));
           }
           // Need to make a mountain to get the associated weather Icon
-          // for (var j = 0; j < weatherCodes.length; j++) {
-          //   mountain.getWeatherIcon(weatherCodes[j])
-          //   .then(function(weatherIcon){
-          //     weatherIcons.push(weatherIcon);
-          //   });
-          // }
+          for (var j = 0; j < weatherCodes.length; j++) {
+            mountain.getWeatherIcon(weatherCodes[j])
+            .then(function(weatherIcon){
+              weatherIcons.push(weatherIcon);
+            });
+          }
+
           weatherIcons = ['/images/weather_icons/Sunny.gif','/images/weather_icons/Sunny.gif','/images/weather_icons/Sunny.gif','/images/weather_icons/Sunny.gif','/images/weather_icons/PartCloudRainThunderDay.gif','/images/weather_icons/Sunny.gif'];
 
           for (var k = 0; k < forecast.length; k++) {
@@ -49,9 +43,8 @@ router.get('/:mountainId', function(req, res, next) {
           res.render('mountains', {weatherData: result, conditions: conditions, forecast: forecast});
         });
       }
-    // });
+    });
   });
-
 });
 
 module.exports = router;
