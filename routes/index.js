@@ -2,16 +2,21 @@ var express = require('express');
 var router = express.Router();
 var validator = require('validator');
 var users = require('../database/user');
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {title: 'GnarCar'});
-});
+var passport = require('../passport');
 
 router.get('/signup', function(req, res, next) {
   var msg = false;
   if (req.flash()) msg = req.flash();
   res.render('signup', {title: 'Sign Up', msg: msg});
+});
+
+router.get('/logout', function(req, res, next) {
+  req.logout();
+  res.redirect('/');
+});
+
+router.post('/login', passport.authenticate('local'), function(req, res) {
+  res.redirect('/rides/' + req.user.username);
 });
 
 router.post('/signup', function(req, res, next) {
@@ -56,13 +61,10 @@ router.post('/signup', function(req, res, next) {
 
     users.addUser(username, email, password)
     .then(function(data) {
-      console.log(data);
-      res.redirect('/rides/' + username);
-      return;
+      passport.authenticate('local')(req, res, function() {
+        res.redirect('/rides/' + username);
+      });
     });
-  });
-  users.getUserByUsername(username).then(function(data) {
-    console.log(data);
   });
 });
 

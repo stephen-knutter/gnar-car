@@ -7,9 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var hbs = require('hbs');
+var flash = require('req-flash');
 var session = require('express-session');
 var passport = require('./passport');
-var flash = require('req-flash');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use(session({
   secret: process.env.SECRET,
   saveUninitialized: true,
-  resave: true
+  resave: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());

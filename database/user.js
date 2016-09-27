@@ -27,17 +27,11 @@ var query = {
       .where('user.username', username).first();
   },
 
-  authenticateUser: function(username, password) {
-    return this.findUser(username)
-    .then(function(userData) {
-      if (!userData) {
-        return false;
-      }
-      return this.findHashedPassword(username)
-      .then(function(hashedPassword) {
-        hashedPassword = hashedPassword.password;
-        return bcrypt.compareSync(password, hashedPassword);
-      });
+  authenticateUser: function(password, passwordDigest) {
+    return bcrypt.compareSync(password, passwordDigest, function(err, isMatch) {
+      if (err) return false;
+
+      return isMatch;
     });
   },
 
@@ -54,25 +48,6 @@ var query = {
        image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
        admin: false
      });
-    if (!username || !email || !password) {
-      return false;
-    }
-    return this.findUser(username)
-    .then(function(data) {
-      if (data) {
-        return false;
-      }
-      return knex('users')
-       .insert({username: username,
-         password: this.hashPassword(password),
-         city: 'Denver',
-         state: 'CO', zip: '80216',
-         image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
-         admin: false});
-    })
-    .catch(function(err) {
-      return err;
-    });
   }
 };
 

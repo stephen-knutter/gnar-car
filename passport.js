@@ -1,9 +1,9 @@
-var passport = require("passport");
-var Strategy = require("passport-local").Strategy;
+var passport = require('passport');
+var Strategy = require('passport-local').Strategy;
 var users = require("./database/user");
 
-passport.use(new Strategy(function(username, password, done) {
-  users.findByUsername(username).then(function(user) {
+passport.use('local', new Strategy(function(username, password, done) {
+  users.findUser(username).then(function(user) {
     user = user[0];
     if (!user) done(null, false);
 
@@ -19,7 +19,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(username, done) {
-  users.findByUsername(username).then(function(user) {
+  users.findUser(username).then(function(user) {
     user = user[0];
     if (!user) return false;
     done(null, user);
