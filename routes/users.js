@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var queries = require("../database/user")
+var queries = require('../database/user');
+var passport = require('../passport');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -8,9 +9,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/rides/:username', function(req, res, next) {
-  var username = req.params.username;
-
-  res.render('rides', {title: username});
+  if(!req.isAuthenticated()) return res.redirect('/');
+  var user = req.user;
+  
+  res.render('rides', {title: user.username + ' | Rides', user: user});
 });
 
 router.get('/ride/:id', function(req, res, next) {

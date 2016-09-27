@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
           city: 'Denver',
           state: 'CO',
           zip: '80216',
-          imageURL: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
+          image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
           admin: true
         }),
         knex('users').insert({
@@ -28,7 +28,7 @@ exports.seed = function(knex, Promise) {
           city: 'Denver',
           state: 'CO',
           zip: '80202',
-          imageURL: 'http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png',
+          image_url: 'http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png',
           admin: true
         }),
         knex('users').insert({
@@ -41,7 +41,7 @@ exports.seed = function(knex, Promise) {
           city: 'Denver',
           state: 'CO',
           zip: '80212',
-          imageURL: 'http://cliparts.co/cliparts/8cz/Kjx/8czKjxbqi.jpg',
+          image_url: 'http://cliparts.co/cliparts/8cz/Kjx/8czKjxbqi.jpg',
           admin: true
         }),
         knex('users').insert({
@@ -54,7 +54,7 @@ exports.seed = function(knex, Promise) {
           city: 'Denver',
           state: 'CO',
           zip: '80112',
-          imageURL: 'http://vignette2.wikia.nocookie.net/ghostbusters/images/1/11/Bill_Murray.jpeg',
+          image_url: 'http://vignette2.wikia.nocookie.net/ghostbusters/images/1/11/Bill_Murray.jpeg',
           admin: true
         })
       ]);

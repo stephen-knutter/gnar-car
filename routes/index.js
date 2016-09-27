@@ -9,6 +9,8 @@ var jwt = require('jsonwebtoken');
 var auth = expressJWT({secret: process.env.SECRET, userProperty: 'payload'});
 
 router.get('/signup', function(req, res, next) {
+  if (req.isAuthenticated()) return res.redirect('/');
+
   var msg = false;
   if (req.flash()) msg = req.flash();
   res.render('signup', {title: 'Sign Up', msg: msg});
@@ -70,6 +72,17 @@ router.post('/signup', function(req, res, next) {
       });
     });
   });
+});
+
+router.get('/:username', function(req, res, next) {
+  var username = req.params.username;
+  if (!username) return res.redirect('/');
+
+  users.findUser(username).then(function(data) {
+
+  });
+  
+  res.render('profile', {title: username});
 });
 
 /* GET home page. */

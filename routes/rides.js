@@ -7,14 +7,15 @@ var passport = require('../passport.js');
 
 router.get('/:username', function(req, res, next) {
   if (!req.isAuthenticated()) {
-    res.redirect('/signup');
+    res.redirect('/');
     return;
   }
-  var signedinUser = req.user.username;
+
+  var user = req.user;
   rides.getRides()
   .then(function(rideData) {
     // Need to add rideData to render function
-    res.render('rides', {title: signedinUser});
+    res.render('rides', {title: user.username, user: user});
   });
 });
 
@@ -27,7 +28,7 @@ router.get('/mountain/:mountainId/rides', function(req, res, next) {
   rides.getRidesByMountainId(req.params.mountainId)
   .then(function(rideData) {
     // Need to add rideData to render function
-    res.render('signedinUser', {title: signedinUser});
+    res.render('rides', {title: signedinUser});
   });
 });
 

@@ -4,9 +4,11 @@
   {{> signupNavbar}}
 {{/if}}
 <div class="splash">
-  <div class="signup-btn">
-    <a href="/signup" class="btn btn-success btn-lg">Sign up</a>
-  </div>
+  {{#unless user}}
+    <div class="signup-btn">
+      <a href="/signup" class="btn btn-success btn-lg">Sign up</a>
+    </div>
+  {{/unless}}
 </div>
 
 <div class="content-block-one row">
