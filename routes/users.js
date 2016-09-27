@@ -17,16 +17,16 @@ router.get('/ride/:id', function(req, res, next) {
   var id = req.params.id;
   var user1 = 'user1';
 
-  queries.getUserByUsername(user1)
+  queries.getAllUsers()
     .then(function(data) {
       console.log(data);
       res.render('ride', {
         data: data
       });
+    })
+    .catch(function(err) {
+      next(err);
     });
-    // .catch(function(err) {
-    //   next(err);
-    // });
 });
 
 module.exports = router;

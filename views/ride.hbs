@@ -2,12 +2,25 @@
 
 <div class="pageTitle">
   <h1>Destination Mountain {{title}}</h1>
-  <h1>Driver {{data.[0].username}}</h1>
+  <h4>Meetup Location</h2>
+  <h4>Departure date and time</h2>
+</div>
 
-  <!-- <img src="{{data.[0].image_url}}" alt="" /> -->
-  <!-- <h3>Driver rating {{}}</h3> -->
-  <h2>Departure date and time</h2>
-  <h2>Cost</h2>
-  <h2>Meetup Location</h2>
-  <h2>Smoking Y/N</h2>
+<div class="container">
+  <div class="driver col-md-4">
+    <h2>Driver {{data.[0].username}}</h2>
+    <img src="{{data.[0].imageURL}}" alt="" />
+    <h4>Rating </h4>
+    <h4>Cost</h2>
+    <h4>Smoking Y/N</h2>
+  </div>
+  <div class="riders col-md-8 text-center">
+    <h2>Riders </h2>
+    {{#each data}}
+    <h4>{{username}}</h3>
+      <div class="ridersImages">
+        <img class="ridersImages" src="{{imageURL}}" alt="" />
+      </div>
+    {{/each}}
+  </div>
 </div>
