@@ -19,6 +19,22 @@ h4,h5,h6 {
   padding-top: 59px;
 }
 
+.logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0,0,0,0.2);
+}
+
+.logo-img {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+
 .loginNav {
   margin-bottom: 0px;
   border-radius: 0px;

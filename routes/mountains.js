@@ -18,12 +18,14 @@ router.get('/:mountainId', function(req, res, next) {
   var weatherCodes = [];
   var allIcons;
   var weatherIcons = [];
+  var user = req.user;
+
   mountain.findMountainsById(req.params.mountainId)
   .then(function(mountainInfo){
     api_url = mountainInfo[0].api_url;
     request(api_url, function(error, response, body){
-      if(!error & response.statusCode == 200){
-        parser.parseString(body, function(err,result){
+      if (!error & response.statusCode == 200) {
+        parser.parseString(body, function(err, result){
           result = result.weather;
           conditions = result.snow_report;
           forecast = result.forecast;
@@ -41,11 +43,17 @@ router.get('/:mountainId', function(req, res, next) {
               }
             }
           })
-          .then(function(){
+          .then(function() {
             for (var k = 0; k < forecast.length; k++) {
               forecast[k].weatherIcon = weatherIcons[k];
             }
-            res.render('mountains', {mountainInfo: mountainInfo, weatherData: result, conditions: conditions, forecast: forecast});
+
+            res.render('mountains',
+            {mountainInfo: mountainInfo,
+            weatherData: result,
+            conditions: conditions,
+            forecast: forecast,
+            user: user});
           });
         });
       }
