@@ -12,11 +12,11 @@ router.get('/:mountainId', function(req, res, next) {
   var forecast;
   var forecastDescription;
   var weatherCodes = [];
+  var allIcons;
   var weatherIcons = [];
 
   mountain.findMountainsById(req.params.mountainId)
   .then(function(mountainInfo){
-    console.log(mountainInfo);
     api_url = mountainInfo[0].api_url;
     request(api_url, function(error, response, body){
       if(!error & response.statusCode == 200){
@@ -28,20 +28,22 @@ router.get('/:mountainId', function(req, res, next) {
             weatherCodes.push(Number(forecast[i].day[0].weather_code[0]));
           }
           // Need to make a mountain to get the associated weather Icon
-          for (var j = 0; j < weatherCodes.length; j++) {
-            mountain.getWeatherIcon(weatherCodes[j])
-            .then(function(weatherIcon){
-              weatherIcons.push(weatherIcon);
-            });
-          }
-
-          weatherIcons = ['/images/weather_icons/Sunny.gif','/images/weather_icons/Sunny.gif','/images/weather_icons/Sunny.gif','/images/weather_icons/Sunny.gif','/images/weather_icons/PartCloudRainThunderDay.gif','/images/weather_icons/Sunny.gif'];
-
-          for (var k = 0; k < forecast.length; k++) {
-            forecast[k].weatherIcon = weatherIcons[k];
-          }
-
-          res.render('mountains', {mountainInfo: mountainInfo, weatherData: result, conditions: conditions, forecast: forecast});
+          mountain.getAllIcons()
+          .then(function(data){
+            for (var j = 0; j < weatherCodes.length; j++) {
+              for (var k = 0; k < data.length; k++) {
+                if(data[k].id == weatherCodes[j]){
+                  weatherIcons.push(data[k].icon);
+                }
+              }
+            }
+          })
+          .then(function(){
+            for (var k = 0; k < forecast.length; k++) {
+              forecast[k].weatherIcon = weatherIcons[k];
+            }
+            res.render('mountains', {mountainInfo: mountainInfo, weatherData: result, conditions: conditions, forecast: forecast});
+          });
         });
       }
     });
