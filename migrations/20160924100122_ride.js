@@ -11,8 +11,8 @@ exports.up = function(knex, Promise) {
     table.float('meetupLoc_lat');
     table.float('meetupLoc_long');
     table.boolean('pickup');
-    table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
-    table.timestamp("updated_at").notNullable().defaultTo(knex.fn.now());
+    table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
+    table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now());
   });
 };
 

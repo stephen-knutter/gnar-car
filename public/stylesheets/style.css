@@ -1,7 +1,6 @@
 body {
   font-family: 'Roboto Condensed', sans-serif;
   background-color: white;
-  padding-top: 59px;
 }
 
 h1,h2,h3 {
@@ -10,6 +9,26 @@ h1,h2,h3 {
 
 h4,h5,h6 {
   font-family: 'Roboto Condensed', sans-serif;
+}
+
+.padd-top-59 {
+  padding-top: 59px;
+}
+
+.navPadding {
+  padding-top: 59px;
+}
+
+.loginNav {
+  margin-bottom: 0px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-color: transparent;
+  margin-bottom: 0px;
+  position: fixed;
+  width: 100%;
+  border-radius: 0;
+  z-index: 10007;
 }
 
 .navbar-form{
@@ -32,10 +51,26 @@ h4,h5,h6 {
   height: 10em;
 }
 
-.carousel-inner > .item > img {
-  margin: 0 auto;
-  width: auto;
-  max-height: 540px;
+.signin-form {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.splash {
+  height: 800px;
+  background: url('https://static.pexels.com/photos/30313/pexels-photo-30313-large.jpg') no-repeat center center fixed;
+  background-position: center;
+  background-size: cover;
+  position:relative;
+}
+
+.signup-link a {
+  text-align: left;
+  color: #454545;
+  padding-right: 23px;
+}
+.signup-link a:hover {
+  text-decoration: underline;
 }
 
 .mainItems {
@@ -45,6 +80,7 @@ h4,h5,h6 {
 .smallpic {
   max-width: 300px;
   height: 200px;
+  padding-bottom: 30px;
 }
 
 .loginNav {
@@ -144,7 +180,7 @@ h4,h5,h6 {
   /*padding: 0px;*/
   margin-bottom: 0px;
   color: inherit;
-  background: url(https://skimap.org/data/510/7/1209336166.jpg) repeat center center fixed;
+  background: url(https://skimap.org/data/510/7/1209336166.jpg) no-repeat center center fixed;
   background-size: cover;
   padding-top: 200px;
   padding-bottom: 100px;
@@ -160,7 +196,7 @@ h4,h5,h6 {
 /*signedInUser.hbs*/
 
 .pageTitle {
-  padding: 20px 0 20px 40px;
+  padding: 79px 0 20px 40px;
 }
 
 .destinationList {
@@ -180,18 +216,31 @@ h4,h5,h6 {
 /*Mountain.hbs*/
 
 .mountainInfo{
-  display: flex;
-  width: 75%;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 20px;
 }
 
 .mountainImage {
-  display: flex;
-  height: 200px;
-  width: auto;
+  margin-top: 10px;
+  width: 250px;
+  height: auto;
   max-width: 250px;
 }
+
 .materialCard {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.mtnRideLink {
+  margin-left: 20px;
+}
+
+.head-link-wrap{
+  position: relative;
+}
+
+.head-user-img{
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: -10px;
 }

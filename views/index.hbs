@@ -1,42 +1,9 @@
-<div id="startchange"></div>
-
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <p data-target="#carousel-example-generic" data-slide-to="0" class="active"></p>
-    <p data-target="#carousel-example-generic" data-slide-to="1"></p>
-    <p data-target="#carousel-example-generic" data-slide-to="2"></p>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner center-block">
-    <div class="item active">
-      <img src="images/gnar-car-van.png" alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-    <div class="item">
-      <img src="https://blog.ktm.com/wp-content/uploads/2014/03/Fuller-snow-1.jpg" alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-    <div class="item">
-      <img src="https://static.pexels.com/photos/30313/pexels-photo-30313-large.jpg" alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-  </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
+{{#if user}}
+  {{> navbar}}
+{{else}}
+  {{> signupNavbar}}
+{{/if}}
+<div class="splash">
 </div>
 
 <div class="content-block-one row">
@@ -44,17 +11,17 @@
     <div class="col-md-4 col-sm-12">
       <h2>Driver</h2>
       <img class="smallpic" src="https://3d-car-shows.com/wp-content/uploads/2014/02/Isabella_Labock.jpg" alt="" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <h4>On your way to the mountains? Get your travel costs covered by sharing your ride!</h4>
     </div>
     <div class="col-md-4 col-sm-12">
       <h2>Rider</h2>
       <img class="smallpic" src="http://www.ultimate-ski.com/media/671439/selfdrive.jpg" alt="" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <h4>Is your car too small to get into snowy raods? No problem! Fellow skiers can take you there.</h4>
     </div>
     <div class="col-md-4 col-sm-12">
       <h2>Group</h2>
       <img class="smallpic" src="http://www.insidesocal.com/snow/files/2015/07/2014-11-13_Openingday_026.jpg" alt="" />
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <h4>Go with your group to the mountains without the hazzle of driving. Just enjoy the powder!</h4>
     </div>
   </div>
 </div>
@@ -72,7 +39,7 @@
     <h2>Top Current Destinations</h2>
   </div>
 
-  <div class="currentDestinations media">
+  <div class="currentDestinations materialCard media">
     <div class="media-left media-center">
       <img class="mountainImage media-object" src="http://powderskiingcolorado.com/wp-content/uploads/2011/02/arapahoe-basin.jpg" alt="Powder Skiing Colorado" />
     </div>
@@ -87,7 +54,7 @@
     </div>
   </div>
 
-  <div class="currentDestinations media">
+  <div class="currentDestinations materialCard media">
     <div class="media-left media-center">
         <img src="http://powderskiingcolorado.com/wp-content/uploads/2011/02/arapahoe-basin.jpg" class="mountainImage" alt="Powder Skiing Colorado" />
     </div>
@@ -102,7 +69,7 @@
     </div>
   </div>
 
-  <div class="currentDestinations media">
+  <div class="currentDestinations materialCard media">
     <div class="media-left media-center">
       <img src="http://powderskiingcolorado.com/wp-content/uploads/2011/02/arapahoe-basin.jpg" class="mountainImage" alt="Powder Skiing Colorado" />
     </div>

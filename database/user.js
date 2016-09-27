@@ -1,9 +1,53 @@
 var knex = require('./config');
 var bcrypt = require('bcrypt');
 
+// User Queries
 var query = {
-  getAllUsers: function(){
-    return knex('users').orderBy('created_at', 'DESC');
+  getAllUsers: function() {
+    return knex('users');
+  },
+
+  findUser: function(username) {
+    return knex('users').where('username', username);
+  },
+
+  hashPassword: function(password) {
+    return bcrypt.hashSync(password, 10);
+  },
+
+  findUserInformation: function(username) {
+    return knex('users')
+      .select('id', 'username', 'fullName')
+      .where('username', username).first();
+  },
+
+  findHashedPassword: function(username) {
+    return knex('users')
+      .select('user.password')
+      .where('user.username', username).first();
+  },
+
+  authenticateUser: function(password, passwordDigest) {
+    return bcrypt.compareSync(password, passwordDigest, function(err, isMatch) {
+      if (err) return false;
+
+      return isMatch;
+    });
+  },
+
+  addUser: function(username, email, password) {
+    return knex('users')
+     .insert({
+       username: username,
+       password: this.hashPassword(password),
+       phone: null,
+       email: null,
+       city: 'Denver',
+       state: 'CO',
+       zip: '80216',
+       image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
+       admin: false
+     });
   }
 };
 

@@ -12,3 +12,21 @@
   margin: 0 auto;
   max-width: 100%;
 }
+
+.error-list {
+  padding: 0 0 0 12px;
+  list-style: none;
+}
+
+.error-list li {
+  padding: 0;
+  margin: 5px 0;
+  color: #e74c3c;
+  background-color: transparent;
+  border: 0;
+  list-style: disc;
+}
+
+.error-outline {
+  border: 2px solid #e74c3c;
+}
