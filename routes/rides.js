@@ -5,17 +5,17 @@ var rides = require('../database/ride.js');
 var users = require('../database/user.js');
 var passport = require('../passport.js');
 
-router.get('/:username', function(req, res, next) {
+router.get('/', function(req, res, next) {
   if (!req.isAuthenticated()) {
-    res.redirect('/');
+    res.redirect('../');
     return;
   }
-
-  var user = req.user;
+  console.log(req.user.username);
   rides.getRides()
   .then(function(rideData) {
     // Need to add rideData to render function
-    res.render('rides', {title: user.username, user: user});
+    console.log(rideData);
+    res.render('rides', {username: req.user.username});
   });
 });
 
