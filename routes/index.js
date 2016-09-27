@@ -22,9 +22,11 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/');
 });
 
-router.post('/login', passport.authenticate('local'), function(req, res) {
-  res.redirect('/rides');
-});
+router.post('/login', passport.authenticate('local', {
+  // res.redirect('/rides');
+  failureRedirect: '/signup',
+  successRedirect: '/rides'
+}));
 
 router.post('/signup', function(req, res, next) {
   var formVars = req.body;
@@ -69,26 +71,10 @@ router.post('/signup', function(req, res, next) {
     users.addUser(username, email, password)
     .then(function(data) {
       passport.authenticate('local')(req, res, function() {
-        res.redirect('/rides/' + username);
+        res.redirect('/rides');
       });
     });
   });
-});
-
-router.get('/:username', function(req, res, next) {
-  var username = req.params.username;
-  if (!username) return res.redirect('/');
-
-  var user;
-  if(req.isAuthenticated()) {
-    user = req.user;
-  } else {
-    users.findUser(username).then(function(data) {
-      user = data;
-    });
-  }
-
-  res.render('profile', {title: username, user: user});
 });
 
 /* GET home page. */
