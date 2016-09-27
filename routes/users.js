@@ -25,10 +25,13 @@ router.get('/:username', function(req, res, next) {
   } else {
     var findUser = users.findUser(username).then(function(data) {
       user = data[0];
-      console.log(user);
       res.render('profile', {title: username, user: user});
     });
   }
+});
+
+router.get('/:username/edit', function(req, res, next) {
+  res.send('hi');
 });
 
 module.exports = router;
