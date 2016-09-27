@@ -22,7 +22,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-  res.redirect('/rides/' + req.user.username);
+  res.redirect('/rides');
 });
 
 router.post('/signup', function(req, res, next) {
@@ -72,22 +72,6 @@ router.post('/signup', function(req, res, next) {
       });
     });
   });
-});
-
-router.get('/:username', function(req, res, next) {
-  var username = req.params.username;
-  if (!username) return res.redirect('/');
-
-  var user;
-  if (req.isAuthenticated()) {
-    user = req.user;
-  } else {
-    users.findUser(username).then(function(data) {
-      user = data;
-    });
-  }
-
-  res.render('profile', {title: username, user: user});
 });
 
 /* GET home page. */

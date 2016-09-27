@@ -31,4 +31,16 @@ router.get('/ride/:id', function(req, res, next) {
     });
 });
 
+router.get('/:username', function(req, res, next) {
+  var username = req.params.username;
+  if (!username) return res.redirect('/');
+
+  var user;
+  users.findUser(username).then(function(data) {
+
+  });
+
+  res.render('profile', {title: username});
+});
+
 module.exports = router;
