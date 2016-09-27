@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/rides/:username', function(req, res, next) {
   if(!req.isAuthenticated()) return res.redirect('/');
   var user = req.user;
-  
+
   res.render('rides', {title: user.username + ' | Rides', user: user});
 });
 

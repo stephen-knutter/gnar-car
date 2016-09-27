@@ -79,11 +79,15 @@ router.get('/:username', function(req, res, next) {
   if (!username) return res.redirect('/');
 
   var user;
-  users.findUser(username).then(function(data) {
-    
-  });
+  if (req.isAuthenticated()) {
+    user = req.user;
+  } else {
+    users.findUser(username).then(function(data) {
+      user = data;
+    });
+  }
 
-  res.render('profile', {title: username});
+  res.render('profile', {title: username, user: user});
 });
 
 /* GET home page. */
