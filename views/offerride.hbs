@@ -1,0 +1,31 @@
+{{> navbar}}
+
+<div class="pageTitle">
+  <h1>Offer a Ride {{title}}</h1>
+  <h4>Destination</h4>
+  <h4>Departure date and time</h4>
+  <h4>Meetup Location</h4>
+  <h5>Car Details</h5>
+  <ul>
+    <li>Car make</li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="driver col-md-4">
+    <h2>Driver {{data.[0].username}}</h2>
+    <img src="{{data.[0].image_url}}" alt="" />
+    <h4>Rating </h4>
+    <h4>Cost</h2>
+    <h4>Smoking Y/N</h2>
+  </div>
+  <div class="riders col-md-8 text-center">
+    <h2>Riders </h2>
+    {{#each data}}
+    <h4>{{username}}</h3>
+      <div class="ridersImages">
+        <img class="ridersImages" src="{{image_url}}" alt="" />
+      </div>
+    {{/each}}
+  </div>
+</div>
