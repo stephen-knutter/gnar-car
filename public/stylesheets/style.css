@@ -225,3 +225,7 @@ h4,h5,h6 {
 .materialCard {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
+.mtnRideLink {
+  margin-left: 20px;
+}
