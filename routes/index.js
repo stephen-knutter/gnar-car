@@ -22,7 +22,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-  res.redirect('/rides/' + req.user.username);
+  res.redirect('/rides');
 });
 
 router.post('/signup', function(req, res, next) {

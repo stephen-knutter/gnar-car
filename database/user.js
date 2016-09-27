@@ -40,8 +40,8 @@ var query = {
      .insert({
        username: username,
        password: this.hashPassword(password),
-       phone: null,
-       email: null,
+       phone: 555-555-5555,
+       email: email,
        city: 'Denver',
        state: 'CO',
        zip: '80216',

@@ -17,13 +17,13 @@
       <ul class="nav navbar-nav">
         {{#if user}}
           <li>
-            <a href="/{{user.username}}" class="head-link-wrap">
+            <a href="/users/{{user.username}}" class="head-link-wrap">
               <img class="head-user-img" src="http://vignette2.wikia.nocookie.net/ghostbusters/images/1/11/Bill_Murray.jpeg" />
               {{user.username}}
             </a>
           </li>
-          <li><a href="/{{user.username}}/messages">Messages</a></li>
-          <li><a href="/{{user.username}}/rides">Ride Updates</a></li>
+          <li><a href="users/{{user.username}}/messages">Messages</a></li>
+          <li><a href="users/{{user.username}}/rides">Ride Updates</a></li>
         {{else}}
           <li><a href="/signup">Sign Up!</a></li>
           <li><a href="/login">Log In</a></li>

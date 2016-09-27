@@ -1,34 +1,27 @@
 {{> navbar}}
 
 <div class="pageTitle">
-  <h1>Welcome back {{title}}</h1>
+  <h1>Welcome back {{username}}</h1>
   <h2>Current Rides</h2>
 </div>
 
 <div class="destinationList">
-  <div class="currentDestinations materialCard row fluid-container col-lg-10 col-lg-offset-2">
-      <div class="col-lg-4">
-        <img src="http://powderskiingcolorado.com/wp-content/uploads/2011/02/arapahoe-basin.jpg" class="mountainImage" alt="" />
-      </div>
-      <div>
-        <h1>Arapahoe Basin</h1>
-        <h4>Date: 10-31-2016</h4>
-        <h4>Seats available: 2</h4>
-        <h4>Driver: You</h4>
-        <a href="#">Reserve a seat!</a>
-    </div>
-  </div>
-
-  <div class="currentDestinations materialCard row fluid-container col-lg-10 col-lg-offset-2">
-    <div class=" col-lg-4">
-      <img src="http://www.thelifeofluxury.com/images/vail_colorado.jpg" class="mountainImage" alt="" />
+  {{#each rideData}}
+  <div class="mountainInfo materialCard row fluid-container col-lg-8 col-lg-offset-2">
+    <div class="col-lg-4">
+      <img src="{{image_url}}" class="mountainImage" alt="" />
     </div>
     <div>
-      <h1>Vail</h1>
-      <h4>Date: 11-05-2016</h4>
-      <h4>Seats available: 1</h4>
-      <h4>Driver: Gary Lightbody</h4>
-      <a href="#">Reserve a seat!</a>
+      <h1>{{name}}</h1>
+      <a href="/mountains/{{mountainID}}">
+        <h5>Mountain Information</h5>
+      </a>
+      <h4>Date: {{home_depTime}}</h4>
+      <h4>Seats available: {{seats_avail}}</h4>
+      <h4>Price/Seat: ${{cost_seat}}</h4>
+      <h4>Driver: {{username}}</h4>
+      <a href="/rides/{{rideID}}">Reserve a seat!</a>
     </div>
   </div>
+  {{/each}}
 </div>
