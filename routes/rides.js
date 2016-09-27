@@ -6,7 +6,6 @@ var users = require('../database/user.js');
 var passport = require('../passport.js');
 
 router.get('/:username', function(req, res, next) {
-  console.log(req.user);
   if (!req.isAuthenticated()) {
     res.redirect('/signup');
     return;
