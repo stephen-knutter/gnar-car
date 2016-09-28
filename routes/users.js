@@ -33,7 +33,14 @@ router.get('/:username', function(req, res, next) {
 });
 
 router.get('/:username/edit', function(req, res, next) {
-  res.send('hi');
+  var username = req.params.username;
+  if (!req.isAuthenticated()) return res.redirect('/');
+  if (req.user.username !== username) return res.redirect('/');
+
+  var user = req.user;
+  var isLoggedIn = true
+  res.render('edit',
+    {title: username + 'edit', user: user, loggedIn: isLoggedIn});
 });
 
 module.exports = router;
