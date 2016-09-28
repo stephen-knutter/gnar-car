@@ -31,6 +31,7 @@ router.get('/offer', function(req, res, next) {
     .then( function(mountains) {
       console.log("user here: ", user.username);
       console.log(mountains);
+      console.log(mountains[0].car_id);
       console.log(mountains[1].car_id);
       res.render('offerride', {
         user: user,
