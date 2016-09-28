@@ -2,10 +2,14 @@
 {{> navbar}}
 
 <div class="row">
-  <div class="col-lg-2 col-lg-offset-1 text-center">
+  <div class="col-lg-3 col-lg-offset-1 text-center">
     <h2 class="sectionTitle">User Profile</h2>
     {{#each userData}}
       <h3>{{username}}</h3>
+      <div id="rating">
+        <h4>User Rating:</h4>
+        <span>★</span><span>★</span> <span>★</span><span>★</span><span>★</span>
+       </div>
       <img class="userImage" src="{{image_url}}" alt="" />
       <h5>{{email}}</h5>
     {{/each}}
@@ -17,7 +21,7 @@
       </div>
     {{/if}}
   </div>
-  <div class="riders col-lg-2 col-lg-offset-5 text-center">
+  <div class="riders col-lg-3 col-lg-offset-4 text-center">
     <h2 class="sectionTitle">Upcoming Rides</h2>
     {{#each rideData}}
     <a href="/rides/{{rideID}}">
