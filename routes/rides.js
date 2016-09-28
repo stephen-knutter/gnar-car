@@ -27,15 +27,17 @@ router.get('/offer', function(req, res, next) {
   var destination = req.body.destination
   var user = req.user;
 
-  mountains.findMountains()
+  mountains.findOptionsForRideOffer()
     .then( function(mountains) {
-      console.log("user here: ", user.username)
-      console.log(mountains.name)
+      console.log("user here: ", user.username);
+      console.log(mountains);
+      console.log(mountains[1].car_id);
       res.render('offerride', {
         user: user,
         mountains: mountains
-      })
+      });
     })
+    return users
 })
 
 router.get('/offer', function(req, res, next) {

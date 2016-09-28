@@ -2,7 +2,10 @@
 
 <div class="pageTitle">
   <h1>Offer a Ride {{user.username}}</h1>
+  <h1>Car ID {{mountains.[0].car_id}}</h1>
 </div>
+
+{{#if mountains.[0].car_id}}
 
 <div class="container">
   <div class="col-md-6 row">
@@ -38,6 +41,12 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="costPerSeat" class="col-lg-2 control-label">Cost per seat</label>
+          <div class="col-lg-10">
+            <input id="seatsAvailable" type="text" class="form-control" placeholder="Cost per seat" name="costPerSeat">
+          </div>
+        </div>
+        <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
             <button type="submit" class="btn btn-primary">Register offer</button>
           </div>
@@ -50,3 +59,7 @@
     <img src="{{user.image_url}}" alt="" />
   </div>
 </div>
+
+{{else}}
+  <h1>We don't have your car in our database! Please enter a car in the user page.</h1>
+{{/if}}

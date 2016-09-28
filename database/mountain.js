@@ -6,6 +6,10 @@ function findMountains(){
   return knex('mountain');
 }
 
+function findOptionsForRideOffer(){
+  return knex('mountain').leftJoin('ride', 'ride.id', 'mountain.id')
+}
+
 function findMountainsById(id){
   return findMountains().where('id',id);
 }
@@ -22,6 +26,7 @@ function getWeatherIcon(id){
 
 module.exports = {
   findMountains: findMountains,
+  findOptionsForRideOffer: findOptionsForRideOffer,
   findMountainsById: findMountainsById,
   getAllIcons: getAllIcons,
   getWeatherIcon: getWeatherIcon
