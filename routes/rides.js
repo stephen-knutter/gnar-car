@@ -1,18 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var validator = require('validator');
-<<<<<<< HEAD
-var rides = require('../database/ride');
-var users = require('../database/user');
-var mountains = require('../database/mountain');
-var passport = require('../passport');
-=======
 var rides = require('../database/ride.js');
 var users = require('../database/user.js');
 var mountains = require('../database/mountain.js');
 var riders = require('../database/rider.js');
 var passport = require('../passport.js');
->>>>>>> 42d3c6f5c7ca7adb4276fb10b0725604b42f1e31
 
 router.get('/', function(req, res, next) {
   if (!req.isAuthenticated()) {
