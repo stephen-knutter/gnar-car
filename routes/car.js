@@ -13,8 +13,6 @@ router.post('/new', function(req, res, next) {
   var skiracks = car.skiracks;
   var transmission = car.transmission;
   var smoking = car.smoking;
-
-
 });
 
 module.exports = router;
