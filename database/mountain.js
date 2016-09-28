@@ -1,13 +1,12 @@
 var knex = require('./config');
 
 // Mountains Queries
-
 function findMountains(){
   return knex('mountain');
 }
 
 function findOptionsForRideOffer(){
-  return knex('mountain').leftJoin('ride', 'ride.id', 'mountain.id')
+  return knex('mountain').leftJoin('ride', 'ride.id', 'mountain.id');
 }
 
 function findMountainsById(id){
@@ -20,14 +19,9 @@ function getAllIcons(){
   return knex('icons');
 }
 
-function getWeatherIcon(id){
-  return knex('icons').select('icon').where('id',id);
-}
-
 module.exports = {
   findMountains: findMountains,
   findOptionsForRideOffer: findOptionsForRideOffer,
   findMountainsById: findMountainsById,
-  getAllIcons: getAllIcons,
-  getWeatherIcon: getWeatherIcon
+  getAllIcons: getAllIcons
 };
