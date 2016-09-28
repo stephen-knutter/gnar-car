@@ -10,7 +10,7 @@
     <h4>Date: {{home_depTime}}</h4>
     <h5>Seats Available: {{seats_avail}}</h5>
     <h5>Price/Seat: ${{cost_seat}}</h5>
-    <h5>Meet At: {{meetupLoc}}</h5>
+    <h5>Meet At: {{meetup_loc}}</h5>
     <form action="/rides/{{rideID}}" method="post">
       <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
     </form>
@@ -37,13 +37,12 @@
   <div class="riders col-lg-2 col-lg-offset-4 text-center">
     <h2>Other Riders</h2>
     {{#each riderData}}
-      <h4>{{username}}</h4>
-      <h5>
-        <a href="users/{{username}}">View User Profile</a>
-      </h5>
-      <div class="ridersImages">
-        <img class="ridersImages" src="{{image_url}}" alt="" />
-      </div>
+      <a href="users/{{username}}">
+        <h4>{{username}}</h4>
+        <div class="ridersImages">
+          <img class="ridersImages" src="{{image_url}}" alt="" />
+        </div>
+      </a>
     {{/each}}
   </div>
 </div>

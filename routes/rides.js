@@ -31,14 +31,10 @@ router.get('/offer', function(req, res, next) {
   }
   var isLoggedIn = true;
   var user = req.user;
-
   mountains.findMountains()
   .then(function(mountains) {
     users.findCarByUser(user.id)
     .then(function(data) {
-      console.log("user: ", user.username);
-      console.log("user ID: ", user.id);
-      console.log(data)
       res.render('offerride', {
         user: user,
         mountains: mountains,
@@ -59,35 +55,9 @@ router.post('/offer', function(req, res, next) {
   var seatsAvailable = req.body.seatsAvailable;
   var costPerSeat = req.body.costPerSeat;
   var meetupLocation = req.body.meetupLocation;
-
-  console.log(carID);
-  console.log(mountainID);
-  console.log(departureDate);
-  console.log(departureTime);
-  console.log(returnDate);
-  console.log(returnTime);
-  console.log(seatsAvailable);
-  console.log(costPerSeat);
-  console.log(meetupLocation);
-
   rides.addRide(carID, mountainID, departureDate, departureTime, returnDate, returnTime, seatsAvailable, costPerSeat, meetupLocation)
   .then(function() {
-    res.redirect('/');
-  })
-})
-
-
-router.get('/offer', function(req, res, next) {
-  if (!req.isAuthenticated()) {
-    res.redirect('/');
-    return;
-  }
-  var destination = req.body.destination;
-  var user = req.user;
-  console.log("user here: ", user.username);
-
-  res.render('offerride', {
-    user: user
+    res.redirect('/rides');
   });
 });
 
