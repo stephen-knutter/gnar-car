@@ -101,6 +101,25 @@ router.get('/:rideID', function(req, res, next){
   });
 });
 
+router.post('/:rideID', function(req, res, next){
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+  var user = req.user;
+  var rideID = req.params.rideID;
+  var url = '/rides/' + rideID;
+  users.findUser(user.username)
+  .then(function(userData){
+    var userID = userData[0].id;
+    console.log(userID);
+    riders.addRiderToRide(rideID, userID)
+    .then(function(){
+      res.redirect(url);
+    });
+  });
+});
+
 router.get('/mountains/:mountainId', function(req, res, next) {
   if (!req.isAuthenticated()) {
     res.redirect('/signup');
