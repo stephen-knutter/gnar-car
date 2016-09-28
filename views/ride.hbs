@@ -7,6 +7,9 @@
   <h4>Date: {{home_depTime}}</h4>
   <h4>Available Seats: {{seats_avail}}</h4>
   <h4>Cost Per Seat: ${{cost_seat}}</h4>
+  <form action="/rides/{{rideID}}" method="post">
+    <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
+  </form>
 </div>
 
 <div class="container">

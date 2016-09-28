@@ -12,12 +12,40 @@ router.get('/', function(req, res, next) {
     res.redirect('/');
     return;
   }
+  var isLoggedIn = true;
   var user = req.user;
   rides.getRideData()
   .then(function(rideData) {
     res.render('rides',
-      {username: user.username, rideData: rideData, user: user});
+      {username: user.username,
+      rideData: rideData,
+      user: user,
+      loggedIn: isLoggedIn});
   });
+});
+
+router.get('/new', function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+  var isLoggedIn = true;
+  var destination = req.body.destination;
+  var user = req.user;
+
+  mountains.findOptionsForRideOffer()
+    .then(function(mountains) {
+      console.log("user here: ", user.username);
+      console.log(mountains);
+      console.log(mountains[0].car_id);
+      console.log(mountains[1].car_id);
+      res.render('offerride', {
+        user: user,
+        mountains: mountains,
+        loggedIn: isLoggedIn
+      });
+    });
+  return users;
 });
 
 router.get('/offer', function(req, res, next) {
@@ -25,58 +53,14 @@ router.get('/offer', function(req, res, next) {
     res.redirect('/');
     return;
   }
-  var destination = req.body.destination
+  var destination = req.body.destination;
   var user = req.user;
-
-  mountains.findOptionsForRideOffer()
-    .then( function(mountains) {
-      console.log("user here: ", user.username);
-      console.log(mountains);
-      console.log(mountains[0].car_id);
-      console.log(mountains[1].car_id);
-      res.render('offerride', {
-        user: user,
-        mountains: mountains
-      });
-    })
-    return users
-})
-
-router.get('/offer', function(req, res, next) {
-  if (!req.isAuthenticated()) {
-    res.redirect('/');
-    return;
-  }
-  var destination = req.body.destination
-  var user = req.user;
-  console.log("user here: ", user.username)
-
+  console.log("user here: ", user.username);
 
   res.render('offerride', {
     user: user
-  })
-})
-
-
-
-// queries.Rides({
-//       title: postTitle,
-//       post_body: postEntry,
-//       author_id: data[0].uid,
-//       postDate: postDate
-//     })
-//   })
-//   .then(function(data) {
-//       res.redirect('/users/posts')
-//       console.log("Hello")
-//   })
-//   .catch(function(err) {
-//       next(err)
-//   })
-
-
-////
-
+  });
+});
 
 router.get('/:rideID', function(req, res, next){
   if (!req.isAuthenticated()) {
@@ -101,6 +85,24 @@ router.get('/:rideID', function(req, res, next){
   });
 });
 
+router.post('/:rideID', function(req, res, next){
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+  var user = req.user;
+  var rideID = req.params.rideID;
+  var url = '/rides/' + rideID;
+  users.findUser(user.username)
+  .then(function(userData){
+    var userID = userData[0].id;
+    riders.addRiderToRide(rideID, userID)
+    .then(function(){
+      res.redirect(url);
+    });
+  });
+});
+
 router.get('/mountains/:mountainId', function(req, res, next) {
   if (!req.isAuthenticated()) {
     res.redirect('/signup');
@@ -110,7 +112,8 @@ router.get('/mountains/:mountainId', function(req, res, next) {
   var user = req.user;
   rides.getRideDataByMountainId(req.params.mountainId)
   .then(function(rideData) {
-    res.render('rides', {username: signedinUser, rideData: rideData, user:user});
+    res.render('rides',
+      {username: signedinUser, rideData: rideData, user: user});
   });
 });
 

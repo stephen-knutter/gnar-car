@@ -1,78 +1,78 @@
 
 {{> navbar}}
 
-<div class="containter">
+<div class="containter profile-wrap">
    <div class="col-md-7 col-md-offset-1">
       <div class="media">
          <div class="media-left">
             <a href="#">
-            <img class="media-object" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg" alt="...">
+            <img class="media-object" src="https://www.gravatar.com/avatar/sdfsdfsdf?s=180" alt="...">
             </a>
          </div>
          <div class="media-body">
-            <h1 class="media-heading">Hi, {{user.username}}</h1>
-               <br>
+            <h1 class="media-heading">{{user.username}}</h1>
                <h4>Bio</h4>
                <p>
                   jdsfng kfjdgnvjksfnv kjs
                </p>
-               <br>
-               <div class="button">
-                  <a class="btn btn-info" href="/users/{{user.username}}/edit" role="button">Edit</a>
-                  <a class="btn btn-info" href="/logout" role="button">Logout</a>
-               </div>
+               {{#if loggedIn}}
+                 <div class="button">
+                    <a class="btn btn-info" href="/users/{{user.username}}/edit" role="button">Edit</a>
+                    <a class="btn btn-info" href="/logout" role="button">Logout</a>
+                 </div>
+               {{/if}}
             </div>
          </div>
       </div>
-   </div>
 
-   <div class="col-md-4">
-     <h3>Car Details</h3>
+      <div class="col-md-4">
+        <h3>Car Details</h3>
 
-     <div class="form-group">
-      <label for="carMake" class="control-label">Car Make</label>
-      <input type="text" class="form-control" placeholder="carMake" name="carMake">
+        <div class="form-group">
+         <label for="carMake" class="control-label">Car Make</label>
+         <input type="text" class="form-control" placeholder="carMake" name="carMake">
+        </div>
+
+        <div class="form-group">
+         <label for="carModel" class="control-label">Car Model</label>
+         <input type="text" class="form-control" placeholder="carModel" name="carModel">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Transmission</label>
+          <div class="col-lg-10">
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">AWD
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">4WD
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">FWD
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Smoking</label>
+          <div class="col-lg-10">
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">No
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Yes
+              </label>
+            </div>
+          </div>
+        </div>
      </div>
-
-     <div class="form-group">
-      <label for="carModel" class="control-label">Car Model</label>
-      <input type="text" class="form-control" placeholder="carModel" name="carModel">
-     </div>
-
-     <div class="form-group">
-       <label class="control-label">Transmission</label>
-       <div class="col-lg-10">
-         <div class="radio">
-           <label>
-             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">AWD
-           </label>
-         </div>
-         <div class="radio">
-           <label>
-             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">4WD
-           </label>
-         </div>
-         <div class="radio">
-           <label>
-             <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">FWD
-           </label>
-         </div>
-       </div>
-     </div>
-
-     <div class="form-group">
-       <label class="control-label">Smoking</label>
-       <div class="col-lg-10">
-         <div class="radio">
-           <label>
-             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">No
-           </label>
-         </div>
-         <div class="radio">
-           <label>
-             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Yes
-           </label>
-         </div>
-       </div>
-     </div>
-  </div>
+</div>

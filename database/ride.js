@@ -29,7 +29,6 @@ function getDriverRatingByRideID(rideID){
   return knex('ride').avg('rating').innerJoin('car_user','car_user.user_id','ride.car_id').innerJoin('users','car_user.user_id','users.id').innerJoin('rating_driver','rating_driver.user_id','users.id').where('ride.id',rideID).first();
 }
 
-
 module.exports = {
   getRides: getRides,
   getRideData: getRideData,
