@@ -148,6 +148,19 @@ h4,h5,h6 {
   padding-top: 20px;
 }
 
+.radio {
+  display: inline-block;
+}
+
+.radio-label {
+  display: inline-block;
+  width: 90px;
+}
+
+.radio-text {
+  margin: 0 8px 0 0;
+}
+
 @media (max-width: 991px) {
     form {
       display: block;
