@@ -226,7 +226,6 @@ h4,h5,h6 {
   }
 }
 .content-space-one {
-  /*padding: 0px;*/
   margin-bottom: 0px;
   color: inherit;
   background: url(https://skimap.org/data/510/7/1209336166.jpg) no-repeat center center fixed;
@@ -300,6 +299,7 @@ h4,h5,h6 {
   left: -10px;
 }
 
+<<<<<<< HEAD
 /*profile.hbs*/
 
 .userImage {
@@ -313,4 +313,12 @@ h4,h5,h6 {
 
 .sectionTitle {
   margin: 50px 0 50px 0;
+=======
+/*offerride.hbs*/
+.noCarsGo {
+  padding: 40px;
+}
+.addCar {
+  padding-top: 20px;
+>>>>>>> 2843c1bc08f5ce138535f2b2357f342f96ec4b5c
 }
