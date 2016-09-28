@@ -11,12 +11,6 @@ h4,h5,h6 {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-/*.navbar>.container-fluid .navbar-brand {
-  margin: 0 1px;
-  padding-left: 25px;
-  background: url('../images/gnarcar-nav.png') 0 45% no-repeat;
-}*/
-
 .navbar-brand {
   height: 65px;
   position: relative;
