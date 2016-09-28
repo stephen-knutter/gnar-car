@@ -52,6 +52,18 @@ var query = {
        image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
        admin: false
      });
+  },
+
+  updateUser: function(userId, username, phone, email,address, city, state, zip) {
+    return knex('users').where('id', userId).update({
+      username: username,
+      phone: phone,
+      email: email,
+      address: address,
+      city: city,
+      state: state,
+      zip: zip
+    });
   }
 };
 

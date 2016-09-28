@@ -4,41 +4,45 @@
   <!-- LEFT COLUMN -->
   <div class="col-md-5 col-md-offset-1">
     <h3>Update Profile</h3>
-    <br>
-    <div class="form-group username-group">
-      <label for="username">Username:</label>
-      <input type="text" class="form-control {{#if msg.email}}error-outline{{/if}}" name="username" placeholder="Enter username..." />
-    </div>
-    <div class="form-group">
-      <label for="phone">Phone:</label>
-      <input type="tel" name="phone" class="form-control" placeholder="303-222-1234" />
-    </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" name="email" class="form-control {{#if msg.email}}error-outline{{/if}}" placeholder="me@example.com" />
-    </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" name="password" class="form-control" placeholder="Change password..." />
-    </div>
-    <div class="form-group">
-      <label for="confirm">Confirm Password:</label>
-      <input type="password" name="confirm" class="form-control" placeholder="Confirm password..." />
-    </div>
-    <div class="form-group username-group">
-      <label for="address">Address:</label>
-      <input type="text" class="form-control" name="username" placeholder="Enter address..." />
-    </div>
+    {{#if msg}}
+      <ul class="error-list">
+        {{#each msg}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+    <form id="update-profile" action="/users/{{user.username}}/edit" method="post">
+      <input type="hidden" name="user_id" value="{{user.id}}" />
       <div class="form-group username-group">
-        <label for="username">City:</label>
-        <input type="text" class="form-control" name="username" placeholder="Enter city..." />
-        <label for="username">State:</label>
-        <input type="text" class="form-control" name="username" placeholder="Enter state..." />
-        <label for="username">Zipcode:</label>
-        <input type="text" class="form-control" name="username" placeholder="Enter zipcode..." />
-    </div>
-    <input type="submit" class="btn btn-info btn-lg btn-block" name="submit" value="Update" />
-  </form>
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" value="{{user.username}}" name="username" placeholder="Enter username..." />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" name="phone" value="{{user.phone}}" class="form-control" placeholder="303-222-1234" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{user.email}}" class="form-control" placeholder="me@example.com" />
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" class="form-control" value="{{user.address}}" name="address" placeholder="Enter address..." />
+      </div>
+        <div class="form-group">
+          <label for="username">City:</label>
+          <input type="text" class="form-control" value="{{user.city}}" name="city" placeholder="Enter city..." />
+        </div>
+        <div class="form-group">
+          <label for="username">State:</label>
+          <input type="text" class="form-control" value="{{user.state}}" name="state" placeholder="Enter state..." />
+        </div>
+        <div class="form-group">
+          <label for="username">Zipcode:</label>
+          <input type="text" class="form-control" value="{{user.zip}}" name="zipcode" placeholder="Enter zipcode..." />
+        </div>
+      <input type="submit" class="btn btn-info btn-block" name="submit" value="Update" />
+    </form>
   </div>
 
   <!-- RIGHT COLUMN -->
@@ -100,7 +104,7 @@
       </div>
 
       <div class="form-group">
-      <label for="transmission" class="radio-label">Transmission</label>
+      <label for="drive" class="radio-label">Transmission</label>
         <div class="radio">
           <label>
             <input type="radio" name="drive" value="1" class="radio-btn" checked />

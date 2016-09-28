@@ -46,4 +46,30 @@ router.get('/:username/edit', function(req, res, next) {
     {title: username + 'edit', user: user, loggedIn: isLoggedIn, msg: msg});
 });
 
+router.post('/:username/edit', function(req, res, next) {
+  var usernameParam = req.params.username;
+  var update = req.body;
+
+  var userId = update.user_id;
+  var username = update.username;
+  var phone = update.phone;
+  var email = update.email;
+  var address = update.address;
+  var city = update.city;
+  var state = update.state;
+  var zip = update.zipcode;
+
+  if (!userId || !username || !phone || !email ||
+      !address || !city || !state || !zip) {
+    req.flash('update', 'One or more fields blank');
+    return res.redirect('/users/' + usernameParam + '/edit');
+  }
+
+  users.updateUser(userId, username, phone, email, address, city, state, zip)
+    .then(function(data) {
+      var redirectUrl = '/users/' + username + '/edit';
+      req.user.username = username;
+      res.redirect(redirectUrl);
+    });
+});
 module.exports = router;
