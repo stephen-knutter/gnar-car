@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/offer', function(req, res, next) {
+router.get('/new', function(req, res, next) {
   if (!req.isAuthenticated()) {
     res.redirect('/');
     return;
