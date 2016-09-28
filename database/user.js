@@ -52,6 +52,9 @@ var query = {
        image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
        admin: false
      });
+  },
+  isUserInRideID: function(userID) {
+    return knex('ride').innerJoin('car', 'car.id', 'ride.car_id').innerJoin('car_user', 'car_user.car_id', 'car.id').innerJoin('users', 'users.id', 'car_user.user_id').where('users.id', userID);
   }
 };
 
