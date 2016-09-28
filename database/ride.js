@@ -17,6 +17,7 @@ function getRideMountainDriverDataByMountainId(id){
   return getRideMountainDriverData().where('mountain_id',id);
 }
 
+
 module.exports = {
   getRides: getRides,
   getRideMountainDriverData: getRideMountainDriverData,

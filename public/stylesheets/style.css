@@ -11,10 +11,20 @@ h4,h5,h6 {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-.navbar>.container-fluid .navbar-brand {
-  margin: 0 1px;
-  padding-left: 25px;
-  background: url('../images/gnarcar-nav.png') 0 45% no-repeat;
+.navbar-brand {
+  height: 65px;
+  position: relative;
+  top: -11px;
+}
+
+.main-img {
+  width: 233px;
+  margin: 0 auto;
+}
+
+.logo-img {
+  width: 116px;
+  margin: 20px auto 10px auto;
 }
 
 .padd-top-59 {
@@ -37,7 +47,7 @@ h4,h5,h6 {
 
 .logo-img {
   position: absolute;
-  top: 45%;
+  top: 35%;
   left: 45%;
 }
 
@@ -61,7 +71,7 @@ h4,h5,h6 {
 }
 
 .nav.navbar-nav{
-  padding-left: 0;
+  padding-left: 25px;
 }
 
 .container, .signin-form {
