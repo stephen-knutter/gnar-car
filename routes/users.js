@@ -37,10 +37,13 @@ router.get('/:username/edit', function(req, res, next) {
   if (!req.isAuthenticated()) return res.redirect('/');
   if (req.user.username !== username) return res.redirect('/');
 
+  var msg = false;
+  if (req.flash()) msg = req.flash();
+
   var user = req.user;
-  var isLoggedIn = true
+  var isLoggedIn = true;
   res.render('edit',
-    {title: username + 'edit', user: user, loggedIn: isLoggedIn});
+    {title: username + 'edit', user: user, loggedIn: isLoggedIn, msg: msg});
 });
 
 module.exports = router;
