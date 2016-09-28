@@ -1,0 +1,67 @@
+{{> navbar}}
+
+<div class="pageTitle">
+  <h1>Offer a Ride {{user.username}}</h1>
+  <h1>Car ID {{mountains.[0].car_id}}</h1>
+</div>
+
+{{#if mountains.[0].car_id}}
+
+<div class="container">
+  <div class="col-md-6 row">
+    <form action="/rides/offer" method="post" class="form-horizontal">
+      <fieldset>
+        <div class="form-group">
+          <label for="select" class="col-lg-2 control-label">Destination</label>
+          <div class="col-lg-10">
+            <select class="form-control" id="select">
+               <option value="" disabled selected>Select your option</option>
+              {{#each mountains}}
+                <option value={{id}}>{{name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="departureDate" class="col-lg-2 control-label">Departure date</label>
+          <div class="col-lg-10">
+            <input id="departureDate" type="text" class="form-control" placeholder="Departure Date" name="departureDate">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="meetupLocation" class="col-lg-2 control-label">Meetup location</label>
+          <div class="col-lg-10">
+            <input id="meetupLocation" type="text" class="form-control" placeholder="Meetup Location" name="meetupLocation">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="seatsAvailable" class="col-lg-2 control-label">Seats available</label>
+          <div class="col-lg-10">
+            <input id="seatsAvailable" type="text" class="form-control" placeholder="Seats available" name="seatsAvailable">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="costPerSeat" class="col-lg-2 control-label">Cost per seat</label>
+          <div class="col-lg-10">
+            <input id="seatsAvailable" type="text" class="form-control" placeholder="Cost per seat" name="costPerSeat">
+          </div>
+        </div>
+        <!-- Hidden attributes for database -->
+        <input value="{{mountains.[0].car_id}}" type="hidden" name="car_id"></input>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="submit" class="btn btn-primary">Register offer</button>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+  <div class="col-md-6 text-center row">
+    <h2>Driver {{user.username}}</h2>
+    <img src="{{user.image_url}}" alt="" />
+  </div>
+</div>
+
+{{else}}
+  <h1>We don't have your car in our database! Please enter a car in the user page.</h1>
+{{/if}}
