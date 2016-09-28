@@ -299,3 +299,18 @@ h4,h5,h6 {
   position: absolute;
   left: -10px;
 }
+
+/*profile.hbs*/
+
+.userImage {
+  height: 200px;
+}
+
+.rideImage {
+  height: 140px;
+  width: 210px;
+}
+
+.sectionTitle {
+  margin: 50px 0 50px 0;
+}

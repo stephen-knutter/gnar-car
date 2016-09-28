@@ -1,31 +1,33 @@
 
 {{> navbar}}
 
-<div class="containter profile-wrap">
-   <div class="col-md-7 col-md-offset-1">
-      <div class="media">
-         <div class="media-left">
-            <a href="#">
-            <img class="media-object" src="https://www.gravatar.com/avatar/sdfsdfsdf?s=180" alt="...">
-            </a>
-         </div>
-         <div class="media-body">
-            <h1 class="media-heading">{{user.username}}</h1>
-               <h4>Bio</h4>
-               <p>
-                  jdsfng kfjdgnvjksfnv kjs
-               </p>
-               {{#if loggedIn}}
-                 <div class="button">
-                    <a class="btn btn-info" href="/users/{{user.username}}/edit" role="button">Edit</a>
-                    <a class="btn btn-info" href="/logout" role="button">Logout</a>
-                 </div>
-               {{/if}}
-            </div>
-         </div>
+<div class="row">
+  <div class="col-lg-2 col-lg-offset-1 text-center">
+    <h2 class="sectionTitle">User Profile</h2>
+    {{#each userData}}
+      <h3>{{username}}</h3>
+      <img class="userImage" src="{{image_url}}" alt="" />
+      <h5>{{email}}</h5>
+    {{/each}}
+    {{#if loggedIn}}
+      <div class="button">
+         <a class="btn btn-info" href="/users/{{username}}/edit" role="button">Edit</a>
+         <a class="btn btn-info" href="/logout" role="button">Logout</a>
       </div>
-
-      <div class="col-md-4">
-  
-     </div>
+    {{/if}}
+  </div>
+  <div class="riders col-lg-2 col-lg-offset-5 text-center">
+    <h2 class="sectionTitle">Upcoming Rides</h2>
+    {{#each rideData}}
+    <a href="/rides/{{rideID}}">
+      <h4>{{name}}</h4>
+    </a>
+    <h6>{{home_depTime}}</h6>
+    <a href="/rides/{{rideID}}">
+      <div class="ridersImages">
+        <img class="rideImage" src="{{mountain_image}}" alt="" />
+      </div>
+    </a>
+    {{/each}}
+  </div>
 </div>
