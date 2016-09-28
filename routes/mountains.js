@@ -62,4 +62,18 @@ router.get('/:mountainId', function(req, res, next) {
   });
 });
 
+router.get('/:mountainId/rides', function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    res.redirect('/signup');
+    return;
+  }
+  var signedinUser = req.user.username;
+  var user = req.user;
+  rides.getRideDataByMountainId(req.params.mountainId)
+  .then(function(rideData) {
+    res.render('rides',
+      {username: signedinUser, rideData: rideData, user: user});
+  });
+});
+
 module.exports = router;
