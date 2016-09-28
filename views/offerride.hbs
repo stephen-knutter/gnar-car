@@ -2,93 +2,94 @@
 
 <div class="pageTitle">
   <h1>Offer a Ride {{user.username}}</h1>
-  <h1>Car ID {{data.[0].car_id}}</h1>
 </div>
 
 {{#if data.[0].car_id}}
 
-<div class="container">
-  <div class="col-md-6 row">
-    <form action="/rides/offer" method="post" class="form-horizontal">
-      <fieldset>
-        <div class="form-group">
-          <label for="select" class="col-lg-2 control-label">Destination</label>
-          <div class="col-lg-10">
-            <select class="form-control" id="select" name="mountainID">
-               <option value="" disabled selected>Select your destination</option>
-              {{#each mountains}}
-                <option value={{id}}>{{name}}</option>
-              {{/each}}
-            </select>
+  <div class="container">
+    <div class="col-md-6 row">
+      <form action="/rides/offer" method="post" class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Destination</label>
+            <div class="col-lg-10">
+              <select class="form-control" id="select" name="mountainID">
+                 <option value="" disabled selected>Select your destination</option>
+                {{#each mountains}}
+                  <option value={{id}}>{{name}}</option>
+                {{/each}}
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="departureDate" class="col-lg-2 control-label">Departure date</label>
-          <div class="col-lg-10">
-            <input id="departureDate" type="date" class="form-control" placeholder="Departure Date" name="departureDate">
+          <div class="form-group">
+            <label for="departureDate" class="col-lg-2 control-label">Departure date</label>
+            <div class="col-lg-10">
+              <input id="departureDate" type="date" class="form-control" placeholder="Departure Date" name="departureDate">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="departureTime" class="col-lg-2 control-label">Departure time</label>
-          <div class="col-lg-10">
-            <input id="departureTime" type="time" class="form-control" placeholder="Departure Time" name="departureTime">
+          <div class="form-group">
+            <label for="departureTime" class="col-lg-2 control-label">Departure time</label>
+            <div class="col-lg-10">
+              <input id="departureTime" type="time" class="form-control" placeholder="Departure Time" name="departureTime">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="returnDate" class="col-lg-2 control-label">Return date</label>
-          <div class="col-lg-10">
-            <input id="returnDate" type="date" class="form-control" placeholder="Return Date" name="returnDate">
+          <div class="form-group">
+            <label for="returnDate" class="col-lg-2 control-label">Return date</label>
+            <div class="col-lg-10">
+              <input id="returnDate" type="date" class="form-control" placeholder="Return Date" name="returnDate">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="returnTime" class="col-lg-2 control-label">Return time</label>
-          <div class="col-lg-10">
-            <input id="returnTime" type="time" class="form-control" placeholder="Return Time" name="returnTime">
+          <div class="form-group">
+            <label for="returnTime" class="col-lg-2 control-label">Return time</label>
+            <div class="col-lg-10">
+              <input id="returnTime" type="time" class="form-control" placeholder="Return Time" name="returnTime">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="meetupLocation" class="col-lg-2 control-label">Meetup location</label>
-          <div class="col-lg-10">
-            <input id="meetupLocation" type="text" class="form-control" placeholder="Meetup Location" name="meetupLocation">
+          <div class="form-group">
+            <label for="meetupLocation" class="col-lg-2 control-label">Meetup location</label>
+            <div class="col-lg-10">
+              <input id="meetupLocation" type="text" class="form-control" placeholder="Meetup Location" name="meetupLocation">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="seatsAvailable" class="col-lg-2 control-label">Seats available</label>
-          <div class="col-lg-10">
-            <select class="form-control" id="seatsAvailable" name="seatsAvailable">
-               <option value="" disabled selected>Select the number of seats</option>
-               <option>1</option>
-               <option>2</option>
-               <option>3</option>
-               <option>4</option>
-               <option>5</option>
-               <option>6</option>
-            </select>
+          <div class="form-group">
+            <label for="seatsAvailable" class="col-lg-2 control-label">Seats available</label>
+            <div class="col-lg-10">
+              <select class="form-control" id="seatsAvailable" name="seatsAvailable">
+                 <option value="" disabled selected>Select the number of seats</option>
+                 <option>1</option>
+                 <option>2</option>
+                 <option>3</option>
+                 <option>4</option>
+                 <option>5</option>
+                 <option>6</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="costPerSeat" class="col-lg-2 control-label">Cost per seat</label>
-          <div class="col-lg-10">
-            <input id="costPerSeat" type="text" class="form-control" placeholder="Cost per seat" name="costPerSeat">
+          <div class="form-group">
+            <label for="costPerSeat" class="col-lg-2 control-label">Cost per seat</label>
+            <div class="col-lg-10">
+              <input id="costPerSeat" type="text" class="form-control" placeholder="Cost per seat" name="costPerSeat">
+            </div>
           </div>
-        </div>
-        <!-- Hidden attributes for database -->
-        <input value="{{data.[0].car_id}}" type="hidden" name="carID"></input>
+          <!-- Hidden attributes for database -->
+          <input value="{{data.[0].car_id}}" type="hidden" name="carID"></input>
 
-        <div class="form-group">
-          <div class="col-lg-10 col-lg-offset-2">
-            <button type="submit" class="btn btn-primary">Add Ride</button>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary">Add Ride</button>
+            </div>
           </div>
-        </div>
-      </form>
-    </fieldset>
+        </form>
+      </fieldset>
+    </div>
+    <div class="col-md-6 text-center row">
+      <h2>Driver {{user.username}}</h2>
+      <img src="{{user.image_url}}" alt="" />
+    </div>
   </div>
-  <div class="col-md-6 text-center row">
-    <h2>Driver {{user.username}}</h2>
-    <img src="{{user.image_url}}" alt="" />
-  </div>
-</div>
-
 {{else}}
-  <h1>No car in db. Link to user info page.</h1>
+  <div class="noCarsGo">
+    <h2>Add a car to your profile</h2>
+    <p class="addCar"><a href="/users/{{user.username}}/edit" class="btn btn-primary btn-lg">Edit profile</a></p>
+  </div>
 {{/if}}

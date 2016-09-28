@@ -299,3 +299,11 @@ h4,h5,h6 {
   position: absolute;
   left: -10px;
 }
+
+/*offerride.hbs*/
+.noCarsGo {
+  padding: 40px;
+}
+.addCar {
+  padding-top: 20px;
+}
