@@ -33,6 +33,87 @@
       </div>
       <input type="submit" class="btn btn-info btn-lg btn-block" name="submit" value="Sign Up" />
       <a href="/login">Log In?</a>
+<div class="container profile-wrap well">
+  <!-- LEFT COLUMN -->
+  <div class="col-md-5 col-md-offset-1">
+    <h3>Update Profile</h3>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="col-md-5 col-md-offset-1">
+    <h3>Add a Car</h3>
+
+    <form id="add-car" action="/car/new" method="post">
+      <div class="form-group">
+       <label for="make" class="control-label">Car Make</label>
+       <input type="text" class="form-control" placeholder="Make" name="make" />
+      </div>
+
+      <div class="form-group">
+       <label for="model" class="control-label">Car Model</label>
+       <input type="text" class="form-control" placeholder="Model" name="model" />
+      </div>
+
+      <div class="form-group">
+        <label for="seats" class="radio-label"># of Seats</label>
+        <input type="number" name="seats" value="1" min="1" />
+      </div>
+
+      <div class="form-group">
+        <label for="skiracks" class="radio-label">Ski Racks</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="skiracks" value="0" class="radio-btn" checked />
+            <span class="radio-text">No</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="skiracks" value="1" class="radio-btn" />
+            <span class="radio-text">Yes</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+      <label for="transmission" class="radio-label">Transmission</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="transmission" value="1" class="radio-btn" checked />
+            <span class="radio-text">AWD</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="transmission" value="2" class="radio-btn" />
+            <span class="radio-text">4WD</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="transmission" value="3" class="radio-btn" />
+            <span class="radio-text">FWD</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="smoking" class="radio-label">Smoking</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="smoking" value="0" class="radio-btn" checked>
+            <span class="radio-text">No</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="smoking" value="1" class="radio-btn">
+            <span class="radio-text">Yes</span>
+          </label>
+        </div>
+      </div>
+
+      <input type="submit" class="btn btn-info btn-block" name="submit" value="Add Car" />
     </form>
   </div>
 </div>
