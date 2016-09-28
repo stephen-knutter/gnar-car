@@ -16,11 +16,17 @@ router.get('/', function(req, res, next) {
   var user = req.user;
   rides.getRideData()
   .then(function(rideData) {
-    res.render('rides',
+    return users.isUserInRideID(user.id)
+    .then(function(userInRideYN){
+      console.log(userInRideYN);
+      res.render('rides',
       {username: user.username,
-      rideData: rideData,
-      user: user,
-      loggedIn: isLoggedIn});
+        rideData: rideData,
+        user: user,
+        loggedIn: isLoggedIn,
+        userInRideYN: userInRideYN
+      });
+    })
   });
 });
 
