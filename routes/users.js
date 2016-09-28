@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var users = require('../database/user');
+var rides = require('../database/ride');
 var passport = require('../passport');
 
 /* GET users listing. */
@@ -16,20 +17,32 @@ router.get('/:username/rides', function(req, res, next) {
 });
 
 router.get('/:username', function(req, res, next) {
+  var loggedInUser;
   var username = req.params.username;
-  if (!username) return res.redirect('/');
-  var user;
-  var isLoggedIn;
-  if (req.isAuthenticated()) {
-    isLoggedIn = true;
-    user = req.user;
-    res.render('profile', {title: username, user: user, loggedIn: isLoggedIn});
-  } else {
-    users.findUser(username).then(function(data) {
-      user = data[0];
-      res.render('profile', {title: username, user: user});
-    });
+  var rating;
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
   }
+  var user = req.user;
+  if(username === user.username){
+    loggedInUser = true;
+  }
+  else {
+    loggedInUser = false;
+  }
+  users.findUser(username)
+  .then(function(userData){
+    var userID = userData[0].id;
+    rides.getRideDataByUserID(userID)
+    .then(function(rideData){
+      users.getUserRating(userID)
+      .then(function(rating){
+        rating = Math.floor(rating.avg);
+        res.render('profile', {rideData: rideData, userData: userData, loggedIn: loggedInUser, username: username, rating: rating});
+      });
+    });
+  });
 });
 
 router.get('/:username/edit', function(req, res, next) {

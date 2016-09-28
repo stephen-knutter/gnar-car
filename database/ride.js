@@ -23,6 +23,10 @@ function getRideDataByRideID(rideID){
   return getRideData().where('ride.id',rideID);
 }
 
+function getRideDataByUserID(userID){
+  return getRideData().where('users.id',userID);
+}
+
 function getRideDataLimitThree(){
   return getRideData().limit(3);
 }
@@ -41,6 +45,7 @@ module.exports = {
   getRideData: getRideData,
   getCarDataByRideID: getCarDataByRideID,
   getRideDataByRideID: getRideDataByRideID,
+  getRideDataByUserID: getRideDataByUserID,
   getRideDataLimitThree: getRideDataLimitThree,
   getRideDataByMountainId: getRideDataByMountainId,
   getDriverRatingByRideID: getDriverRatingByRideID
