@@ -30,7 +30,6 @@ router.get('/offer', function(req, res, next) {
     return;
   }
   var isLoggedIn = true;
-  var destination = req.body.destination;
   var user = req.user;
 
   mountains.findMountains()
@@ -49,6 +48,13 @@ router.get('/offer', function(req, res, next) {
     });
   });
 });
+
+router.post('/offer', function(req, res, next) {
+  var destination = req.body.mountainName;
+  var meetupLocation = req.body.meetupLocation;
+  console.log(destination)
+  console.log(meetupLocation)
+})
 
 
 router.get('/offer', function(req, res, next) {

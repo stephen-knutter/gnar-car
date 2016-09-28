@@ -14,7 +14,7 @@
         <div class="form-group">
           <label for="select" class="col-lg-2 control-label">Destination</label>
           <div class="col-lg-10">
-            <select class="form-control" id="select">
+            <select class="form-control" id="select" name="mountainName">
                <option value="" disabled selected>Select your destination</option>
               {{#each mountains}}
                 <option value={{id}}>{{name}}</option>
@@ -73,7 +73,8 @@
           </div>
         </div>
         <!-- Hidden attributes for database -->
-        <input value="{{mountains.[0].car_id}}" type="hidden" name="car_id"></input>
+        <input value="{{data.[0].car_id}}" type="hidden" name="car_id"></input>
+
         <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
             <button type="submit" class="btn btn-primary">Register offer</button>
