@@ -1,0 +1,23 @@
+/*nn to make readonly and allow db to set value, possibly add drop shadow for stars*/
+
+#rating {
+  perspective: 250px;
+}
+
+#rating span {
+  cursor: pointer;
+  font-size: 25px;
+  padding: 0 10px;
+  color: #00000;
+  opacity: .5;
+  transition: all 150ms;
+  display: inline-block;
+  transform: rotateX(45deg);
+}
+
+#rating span.hover {
+  color: #50A2FF;
+  opacity: 1;
+  transform: rotateX(0deg);
+  text-shadow: 0 0 30px #ffc;
+}
