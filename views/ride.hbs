@@ -37,13 +37,12 @@
   <div class="riders col-lg-2 col-lg-offset-4 text-center">
     <h2>Other Riders</h2>
     {{#each riderData}}
-      <h4>{{username}}</h4>
-      <h5>
-        <a href="users/{{username}}">View User Profile</a>
-      </h5>
-      <div class="ridersImages">
-        <img class="ridersImages" src="{{image_url}}" alt="" />
-      </div>
+      <a href="users/{{username}}">
+        <h4>{{username}}</h4>
+        <div class="ridersImages">
+          <img class="ridersImages" src="{{image_url}}" alt="" />
+        </div>
+      </a>
     {{/each}}
   </div>
 </div>
