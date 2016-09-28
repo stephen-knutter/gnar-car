@@ -71,6 +71,9 @@ router.post('/offer', function(req, res, next) {
   console.log(meetupLocation);
 
   rides.addRide(carID, mountainID, departureDate, departureTime, returnDate, returnTime, seatsAvailable, costPerSeat, meetupLocation)
+  .then(function() {
+    res.redirect('/');
+  })
 })
 
 
