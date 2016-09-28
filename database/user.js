@@ -62,7 +62,7 @@ var query = {
       city: city,
       state: state,
       zip: zip
-    });
+    })
   },
   getUserRating: function(userID) {
     return knex('users').avg('rating').innerJoin('rating_driver','rating_driver.user_id','users.id').where('users.id',userID).first();

@@ -65,6 +65,7 @@ router.post('/:username/edit', function(req, res, next) {
 
   var userId = update.user_id;
   var username = update.username;
+  var password = update.password;
   var phone = update.phone;
   var email = update.email;
   var address = update.address;
@@ -80,9 +81,21 @@ router.post('/:username/edit', function(req, res, next) {
 
   users.updateUser(userId, username, phone, email, address, city, state, zip)
     .then(function(data) {
-      var redirectUrl = '/users/' + username + '/edit';
-      req.user.username = username;
-      res.redirect(redirectUrl);
+      passport.authenticate('local', function(error, user, info) {
+        if (error) return next(error);
+
+        console.log(user);
+        if (!user) {
+          console.log('No user...');
+          return res.redirect('/users/' + usernameParam + '/edit');
+        }
+
+        req.logIn(user, function(error) {
+          console.log('Logging in');
+          if (error) return next(error);
+          return res.redirect('/users/' + user.username + '/edit');
+        });
+      })(req, res, next);
     });
 });
 module.exports = router;

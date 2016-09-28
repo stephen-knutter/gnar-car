@@ -13,6 +13,7 @@
     {{/if}}
     <form id="update-profile" action="/users/{{user.username}}/edit" method="post">
       <input type="hidden" name="user_id" value="{{user.id}}" />
+      <input type="hidden" name="password" value="{{user.password}}" />
       <div class="form-group username-group">
         <label for="username">Username:</label>
         <input type="text" class="form-control" value="{{user.username}}" name="username" placeholder="Enter username..." />
