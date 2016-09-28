@@ -1,10 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var validator = require('validator');
+<<<<<<< HEAD
 var rides = require('../database/ride');
 var users = require('../database/user');
 var mountains = require('../database/mountain');
 var passport = require('../passport');
+=======
+var rides = require('../database/ride.js');
+var users = require('../database/user.js');
+var mountains = require('../database/mountain.js');
+var riders = require('../database/rider.js');
+var passport = require('../passport.js');
+>>>>>>> 42d3c6f5c7ca7adb4276fb10b0725604b42f1e31
 
 router.get('/', function(req, res, next) {
   if (!req.isAuthenticated()) {
@@ -13,7 +21,7 @@ router.get('/', function(req, res, next) {
   }
   var isLoggedIn = true;
   var user = req.user;
-  rides.getRideMountainDriverData()
+  rides.getRideData()
   .then(function(rideData) {
     res.render('rides',
       {username: user.username,
@@ -61,38 +69,45 @@ router.get('/offer', function(req, res, next) {
   });
 });
 
-
-
-// queries.Rides({
-//       title: postTitle,
-//       post_body: postEntry,
-//       author_id: data[0].uid,
-//       postDate: postDate
-//     })
-//   })
-//   .then(function(data) {
-//       res.redirect('/users/posts')
-//       console.log("Hello")
-//   })
-//   .catch(function(err) {
-//       next(err)
-//   })
-
-router.get('/:rideID', function(req, res, next) {
-  console.log('Router reached');
-// Added this lines just for reference
-// Will have to correct functionality
+router.get('/:rideID', function(req, res, next){
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+  var user = req.user;
   var rideID = req.params.rideID;
-  users.getAllUsers()
-    .then(function(data) {
-      console.log(data);
-      res.render('ride', {
-        data: data
+  rides.getRideDataByRideID(rideID)
+  .then(function(rideData){
+    rides.getCarDataByRideID(rideID)
+    .then(function(carData){
+      riders.findRidersByRideID(rideID)
+      .then(function(riderData){
+        rides.getDriverRatingByRideID(rideID)
+        .then(function(rating){
+          var userRating = Math.round(rating.avg);
+          res.render('ride', {rideData: rideData, carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user});
+        });
       });
-    })
-    .catch(function(err) {
-      next(err);
     });
+  });
+});
+
+router.post('/:rideID', function(req, res, next){
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+  var user = req.user;
+  var rideID = req.params.rideID;
+  var url = '/rides/' + rideID;
+  users.findUser(user.username)
+  .then(function(userData){
+    var userID = userData[0].id;
+    riders.addRiderToRide(rideID, userID)
+    .then(function(){
+      res.redirect(url);
+    });
+  });
 });
 
 router.get('/mountains/:mountainId', function(req, res, next) {
@@ -102,7 +117,7 @@ router.get('/mountains/:mountainId', function(req, res, next) {
   }
   var signedinUser = req.user.username;
   var user = req.user;
-  rides.getRideMountainDriverDataByMountainId(req.params.mountainId)
+  rides.getRideDataByMountainId(req.params.mountainId)
   .then(function(rideData) {
     res.render('rides',
       {username: signedinUser, rideData: rideData, user: user});
