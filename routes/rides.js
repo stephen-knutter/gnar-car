@@ -50,10 +50,27 @@ router.get('/offer', function(req, res, next) {
 });
 
 router.post('/offer', function(req, res, next) {
-  var destination = req.body.mountainName;
+  var carID = req.body.carID;
+  var mountainID = req.body.mountainID;
+  var departureDate = req.body.departureDate;
+  var departureTime = req.body.departureTime;
+  var returnDate = req.body.returnDate;
+  var returnTime = req.body.returnTime;
+  var seatsAvailable = req.body.seatsAvailable;
+  var costPerSeat = req.body.costPerSeat;
   var meetupLocation = req.body.meetupLocation;
-  console.log(destination)
-  console.log(meetupLocation)
+
+  console.log(carID);
+  console.log(mountainID);
+  console.log(departureDate);
+  console.log(departureTime);
+  console.log(returnDate);
+  console.log(returnTime);
+  console.log(seatsAvailable);
+  console.log(costPerSeat);
+  console.log(meetupLocation);
+
+  rides.addRide(carID, mountainID, departureDate, departureTime, returnDate, returnTime, seatsAvailable, costPerSeat, meetupLocation)
 })
 
 
