@@ -19,6 +19,7 @@ router.get('/:username/rides', function(req, res, next) {
 router.get('/:username', function(req, res, next) {
   var loggedInUser;
   var username = req.params.username;
+  var rating;
   if (!req.isAuthenticated()) {
     res.redirect('/');
     return;
@@ -35,7 +36,11 @@ router.get('/:username', function(req, res, next) {
     var userID = userData[0].id;
     rides.getRideDataByUserID(userID)
     .then(function(rideData){
-      res.render('profile', {rideData: rideData, userData: userData, loggedIn: loggedInUser, username: username});
+      users.getUserRating(userID)
+      .then(function(rating){
+        rating = Math.floor(rating.avg);
+        res.render('profile', {rideData: rideData, userData: userData, loggedIn: loggedInUser, username: username, rating: rating});
+      });
     });
   });
 });

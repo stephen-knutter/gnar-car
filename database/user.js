@@ -52,7 +52,12 @@ var query = {
        image_url: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Blank_woman_placeholder.svg',
        admin: false
      });
+  },
+
+  getUserRating: function(userID){
+    return knex('users').avg('rating').innerJoin('rating_driver','rating_driver.user_id','users.id').where('users.id',userID).first();
   }
+
 };
 
 module.exports = query;

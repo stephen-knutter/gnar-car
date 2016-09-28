@@ -9,6 +9,7 @@
       <img class="userImage" src="{{image_url}}" alt="" />
       <h5>{{email}}</h5>
     {{/each}}
+    <h5>Average Rating: {{rating}}</h5>
     {{#if loggedIn}}
       <div class="button">
          <a class="btn btn-info" href="/users/{{username}}/edit" role="button">Edit</a>
