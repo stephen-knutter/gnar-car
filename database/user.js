@@ -11,6 +11,10 @@ var query = {
     return knex('users').where('username', username);
   },
 
+  findCarByUser: function(userID) {
+    return knex('car').innerJoin('car_user', 'car_user.car_id', 'car.id').innerJoin('users', 'users.id', 'car_user.user_id').where('users.id', userID);
+  },
+
   hashPassword: function(password) {
     return bcrypt.hashSync(password, 10);
   },

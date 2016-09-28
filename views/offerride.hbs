@@ -2,10 +2,10 @@
 
 <div class="pageTitle">
   <h1>Offer a Ride {{user.username}}</h1>
-  <h1>Car ID {{mountains.[0].car_id}}</h1>
+  <h1>Car ID {{data.[0].car_id}}</h1>
 </div>
 
-{{#if mountains.[0].car_id}}
+{{#if data.[0].car_id}}
 
 <div class="container">
   <div class="col-md-6 row">
@@ -14,8 +14,8 @@
         <div class="form-group">
           <label for="select" class="col-lg-2 control-label">Destination</label>
           <div class="col-lg-10">
-            <select class="form-control" id="select">
-               <option value="" disabled selected>Select your option</option>
+            <select class="form-control" id="select" name="mountainID">
+               <option value="" disabled selected>Select your destination</option>
               {{#each mountains}}
                 <option value={{id}}>{{name}}</option>
               {{/each}}
@@ -25,7 +25,25 @@
         <div class="form-group">
           <label for="departureDate" class="col-lg-2 control-label">Departure date</label>
           <div class="col-lg-10">
-            <input id="departureDate" type="text" class="form-control" placeholder="Departure Date" name="departureDate">
+            <input id="departureDate" type="date" class="form-control" placeholder="Departure Date" name="departureDate">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="departureTime" class="col-lg-2 control-label">Departure time</label>
+          <div class="col-lg-10">
+            <input id="departureTime" type="time" class="form-control" placeholder="Departure Time" name="departureTime">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="returnDate" class="col-lg-2 control-label">Return date</label>
+          <div class="col-lg-10">
+            <input id="returnDate" type="date" class="form-control" placeholder="Return Date" name="returnDate">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="returnTime" class="col-lg-2 control-label">Return time</label>
+          <div class="col-lg-10">
+            <input id="returnTime" type="time" class="form-control" placeholder="Return Time" name="returnTime">
           </div>
         </div>
         <div class="form-group">
@@ -37,17 +55,26 @@
         <div class="form-group">
           <label for="seatsAvailable" class="col-lg-2 control-label">Seats available</label>
           <div class="col-lg-10">
-            <input id="seatsAvailable" type="text" class="form-control" placeholder="Seats available" name="seatsAvailable">
+            <select class="form-control" id="seatsAvailable" name="seatsAvailable">
+               <option value="" disabled selected>Select the number of seats</option>
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+               <option>5</option>
+               <option>6</option>
+            </select>
           </div>
         </div>
         <div class="form-group">
           <label for="costPerSeat" class="col-lg-2 control-label">Cost per seat</label>
           <div class="col-lg-10">
-            <input id="seatsAvailable" type="text" class="form-control" placeholder="Cost per seat" name="costPerSeat">
+            <input id="costPerSeat" type="text" class="form-control" placeholder="Cost per seat" name="costPerSeat">
           </div>
         </div>
         <!-- Hidden attributes for database -->
-        <input value="{{mountains.[0].car_id}}" type="hidden" name="car_id"></input>
+        <input value="{{data.[0].car_id}}" type="hidden" name="carID"></input>
+
         <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
             <button type="submit" class="btn btn-primary">Register offer</button>
@@ -63,5 +90,5 @@
 </div>
 
 {{else}}
-  <h1>We don't have your car in our database! Please enter a car in the user page.</h1>
+  <h1>No car in db. Link to user info page.</h1>
 {{/if}}
