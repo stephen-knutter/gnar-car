@@ -18,7 +18,7 @@
         {{#if loggedIn}}
           <li>
             <a href="/users/{{user.username}}" class="head-link-wrap">
-              <img class="head-user-img" src="http://vignette2.wikia.nocookie.net/ghostbusters/images/1/11/Bill_Murray.jpeg" />
+              <img class="head-user-img" src="{{user.image_url}}" />
               {{user.username}}
             </a>
           </li>

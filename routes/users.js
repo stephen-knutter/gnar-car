@@ -32,14 +32,14 @@ router.get('/:username', function(req, res, next) {
     loggedInUser = false;
   }
   users.findUser(username)
-  .then(function(userData){
+  .then(function(userData) {
     var userID = userData[0].id;
     rides.getRideDataByUserID(userID)
     .then(function(rideData){
       users.getUserRating(userID)
       .then(function(rating){
         rating = Math.floor(rating.avg);
-        res.render('profile', {rideData: rideData, userData: userData, loggedIn: loggedInUser, username: username, rating: rating});
+        res.render('profile', {rideData: rideData, userData: userData, loggedIn: loggedInUser, user: user, rating: rating});
       });
     });
   });
