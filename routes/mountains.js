@@ -31,8 +31,9 @@ router.get('/:mountainId', function(req, res, next) {
           forecast = result.forecast;
           for (var i = 0; i < forecast.length; i++) {
             weatherCodes.push(Number(forecast[i].day[0].weather_code[0]));
+            forecast[i].day_max_temp[0] = Math.floor(forecast[i].day_max_temp[0] * (9/5)) + 32;
+            forecast[i].night_min_temp[0] = Math.floor(forecast[i].night_min_temp[0] * (9/5) + 32);
           }
-          // Need to make a mountain to get the associated weather Icon
           mountain.getAllIcons()
           .then(function(data){
             for (var j = 0; j < weatherCodes.length; j++) {
