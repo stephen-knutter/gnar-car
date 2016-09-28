@@ -19,11 +19,13 @@ router.get('/:username', function(req, res, next) {
   var username = req.params.username;
   if (!username) return res.redirect('/');
   var user;
+  var isLoggedIn;
   if (req.isAuthenticated()) {
+    isLoggedIn = true;
     user = req.user;
-    res.render('profile', {title: username, user: user});
+    res.render('profile', {title: username, user: user, loggedIn: isLoggedIn});
   } else {
-    var findUser = users.findUser(username).then(function(data) {
+    users.findUser(username).then(function(data) {
       user = data[0];
       res.render('profile', {title: username, user: user});
     });

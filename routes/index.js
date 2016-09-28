@@ -2,12 +2,28 @@ var express = require('express');
 var router = express.Router();
 var validator = require('validator');
 var users = require('../database/user');
+var rides = require('../database/ride');
 var passport = require('../passport');
-var expressJWT = require('express-jwt');
-var jwt = require('jsonwebtoken');
-var rides = require('../database/ride.js');
 
-var auth = expressJWT({secret: process.env.SECRET, userProperty: 'payload'});
+router.get('/logout', function(req, res, next) {
+  req.logout();
+  res.redirect('/');
+});
+
+router.get('/login', function(req, res, next) {
+  if (req.isAuthenticated()) return res.redirect('/');
+
+  var msg = false;
+  if (req.flash()) msg = req.flash();
+
+  res.render('login', {title: 'GnarCar | Log In', msg: msg});
+});
+
+router.post('/login', passport.authenticate('local', {
+  failureRedirect: '/login',
+  successRedirect: '/rides',
+  failureFlash: 'Invalid username or password'
+}));
 
 router.get('/signup', function(req, res, next) {
   if (req.isAuthenticated()) return res.redirect('/');
@@ -16,17 +32,6 @@ router.get('/signup', function(req, res, next) {
   if (req.flash()) msg = req.flash();
   res.render('signup', {title: 'Sign Up', msg: msg});
 });
-
-router.get('/logout', function(req, res, next) {
-  req.logout();
-  res.redirect('/');
-});
-
-router.post('/login', passport.authenticate('local', {
-  // res.redirect('/rides');
-  failureRedirect: '/signup',
-  successRedirect: '/rides'
-}));
 
 router.post('/signup', function(req, res, next) {
   var formVars = req.body;
@@ -79,11 +84,14 @@ router.post('/signup', function(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var isLoggedIn = false;
+  if (req.isAuthenticated()) isLoggedIn = true;
+
   var user = req.user;
   rides.getRideDataLimitThree()
   .then(function(rideData) {
     res.render('index',
-      {title: 'GnarCar', rideData: rideData, user: user});
+      {title: 'GnarCar', rideData: rideData, user: user, loggedIn: isLoggedIn});
   });
 });
 
