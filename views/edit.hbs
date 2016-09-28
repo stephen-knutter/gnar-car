@@ -4,6 +4,41 @@
   <!-- LEFT COLUMN -->
   <div class="col-md-5 col-md-offset-1">
     <h3>Update Profile</h3>
+    <br>
+    <div class="form-group username-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control {{#if msg.email}}error-outline{{/if}}" name="username" placeholder="Enter username..." />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input type="tel" name="phone" class="form-control" placeholder="303-222-1234" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" name="email" class="form-control {{#if msg.email}}error-outline{{/if}}" placeholder="me@example.com" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" name="password" class="form-control" placeholder="Change password..." />
+    </div>
+    <div class="form-group">
+      <label for="confirm">Confirm Password:</label>
+      <input type="password" name="confirm" class="form-control" placeholder="Confirm password..." />
+    </div>
+    <div class="form-group username-group">
+      <label for="address">Address:</label>
+      <input type="text" class="form-control" name="username" placeholder="Enter address..." />
+    </div>
+      <div class="form-group username-group">
+        <label for="username">City:</label>
+        <input type="text" class="form-control" name="username" placeholder="Enter city..." />
+        <label for="username">State:</label>
+        <input type="text" class="form-control" name="username" placeholder="Enter state..." />
+        <label for="username">Zipcode:</label>
+        <input type="text" class="form-control" name="username" placeholder="Enter zipcode..." />
+    </div>
+    <input type="submit" class="btn btn-info btn-lg btn-block" name="submit" value="Update" />
+  </form>
   </div>
 
   <!-- RIGHT COLUMN -->
