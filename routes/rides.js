@@ -112,7 +112,6 @@ router.post('/:rideID', function(req, res, next){
   users.findUser(user.username)
   .then(function(userData){
     var userID = userData[0].id;
-    console.log(userID);
     riders.addRiderToRide(rideID, userID)
     .then(function(){
       res.redirect(url);
