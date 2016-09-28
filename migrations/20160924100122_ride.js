@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
     table.timestamp('mtn_depTime');
     table.integer('seats_avail');
     table.float('cost_seat');
-    table.string('meetupLoc');
+    table.string('meetup_loc');
     table.boolean('pickup');
     table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
     table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now());
