@@ -225,7 +225,7 @@ h4,h5,h6 {
     margin: 0 auto;
 }
 
-/*signedInUser.hbs*/
+/*rides.hbs*/
 
 .pageTitle {
   padding: 79px 0 20px 40px;
@@ -243,6 +243,11 @@ h4,h5,h6 {
 
 .currentRides {
   margin-bottom: 30px;
+}
+
+/*ride.hbs*/
+.ridersImages {
+  height: 150px;
 }
 
 /*Mountain.hbs*/
