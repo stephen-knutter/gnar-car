@@ -21,31 +21,20 @@
       {{#if signedInUserInRideOverview}}
         <h6>You are already signed up for this ride!</h6>
       {{else}}
-        <form action="/rides/{{rideData.rideID}}" method="post">
-          <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
-        </form>
+        {{#if signedInUsersRide}}
+          {{else}}
+          <form action="/rides/{{rideData.rideID}}" method="post">
+            <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
+          </form>
+        {{/if}}
       {{/if}}
       {{#if signedInUsersRide}}
         <form class="" action="/rides/{{rideData.rideID}}/delete" method="post">
           <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Cancel Ride</button>
         </form>
-      {{/if}}
-    </div>
-    <div class="col-lg-3 col-lg-offset-2">
-      <img src="{{rideData.mountain_image}}" class="mountainImage" alt="" />
-    </div>
-    <div class="col-lg-4">
-      <h1>{{rideData.name}}</h1>
-      <h4>Date: {{rideData.home_depTime}}</h4>
-      <h5>Seats Available: {{rideData.seats_avail}}</h5>
-      <h5>Price/Seat: ${{rideData.cost_seat}}</h5>
-      <h5>Meet At: {{rideData.meetup_loc}}</h5>
-      {{#if isUserInRide}}
-        <h4>You are in this ride!</h4>
-      {{else}}
-        <form action="/rides/{{rideData.rideID}}" method="post">
-          <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
-        </form>
+        <a href="/rides/{{rideData.rideID}}/edit">
+            <button type="button" name="button" class="btn btn-default btn-sm reserveSeat">Edit Ride</button>
+        </a>
       {{/if}}
     </div>
   </div>
