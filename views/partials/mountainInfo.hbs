@@ -20,6 +20,18 @@
         {{/if}}
       </div>
     </div>
+    <div class="col-lg-4">
+      <img src="{{mountain_image}}" class="mountainImage" alt="" />
+    </div>
+    <div class="col-lg-8">
+      <h1>{{name}}</h1>
+      <a href="/mountains/{{mountainID}}">
+        <h5>Mountain Information</h5>
+      </a>
+      <h4>Date: {{home_depTime}}</h4>
+      <h5>Seats Available: {{seats_avail}}</h5>
+      <h5>Price/Seat: ${{cost_seat}}</h5>
+      <a href="/rides/{{rideID}}" class="btn btn-default btn-sm reserveSeat">Check out this ride</a>
     </div>
     {{/each}}
 </div>
