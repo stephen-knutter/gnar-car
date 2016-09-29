@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
   rides.getRideData()
   .then(function(rideData) {
     return users.isUserInRideID(user.id)
-    .then(function(userInRideYN) {
+    .then(function(userInRideYN){
       res.render('rides',
       {username: user.username,
         rideData: rideData,
@@ -26,11 +26,6 @@ router.get('/', function(req, res, next) {
         userInRideYN: userInRideYN
       });
     });
-    res.render('rides',
-      {username: user.username,
-      rideData: rideData,
-      user: user,
-      loggedIn: isLoggedIn});
   });
 });
 
@@ -71,52 +66,56 @@ router.post('/offer', function(req, res, next) {
   });
 });
 
-router.get('/:rideID', function(req, res, next) {
+router.get('/:rideID', function(req, res, next){
   if (!req.isAuthenticated()) {
     res.redirect('/');
     return;
   }
-  var userID = req.user.id;
-  var rideID = req.params.rideID;
   var user = req.user;
-  var isLoggedIn = true;
-
+  var rideID = req.params.rideID;
   var signedInUsersRide;
+  var userID;
+  var signedInUserInRide = false;
+  var signedInUserInRideOverview = false;
   rides.getRideDataByRideID(rideID)
-  .then(function(rideData) {
-    if (rideData[0].username === user.username) {
+  .then(function(rideData){
+    rideData = rideData[0];
+    if(rideData.username === user.username){
       signedInUsersRide = true;
     }
     rides.getCarDataByRideID(rideID)
-    .then(function(carData) {
+    .then(function(carData){
+      carData = carData[0];
       riders.findRidersByRideID(rideID)
-      .then(function(riderData) {
+      .then(function(riderData){
         rides.getDriverRatingByRideID(rideID)
-        .then(function(rating) {
+        .then(function(rating){
           var userRating = Math.round(rating.avg);
-          res.render('ride',
-          {title: 'Ride Details',
-          rideData: rideData,
-          carData: carData,
-          riderData: riderData,
-          rating: userRating,
-          user: user,
-          loggedIn: isLoggedIn});
-          res.render('ride',
-            {rideData: rideData,
-            rideID: rideID,
-            carData: carData,
-            riderData: riderData,
-            rating: userRating,
-            user: user,
-            signedInUsersRide: signedInUsersRide});
+          users.findUser(user.username)
+          .then(function(userInfo){
+            userID = userInfo[0].id;
+            rides.getRideDataByUserRideID(userID, rideID)
+            .then(function(userRideData){
+              if(userRideData.length > 0){
+                signedInUserInRideOverview = true;
+              }
+              for (var i = 0; i < userRideData.length; i++) {
+                for (var j = 0; j < riderData.length; j++) {
+                  if (userRideData[i].user_id == riderData[j].user_id){
+                    riderData[j].signedInUserInRide = true;
+                  }
+                }
+              }
+              res.render('ride', {rideData: rideData, rideID: rideID, carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user, signedInUsersRide: signedInUsersRide, signedInUserInRideOverview: signedInUserInRideOverview});
+            });
+          });
         });
       });
     });
   });
 });
 
-router.post('/:rideID', function(req, res, next) {
+router.post('/:rideID', function(req, res, next){
   if (!req.isAuthenticated()) {
     res.redirect('/');
     return;
@@ -125,18 +124,18 @@ router.post('/:rideID', function(req, res, next) {
   var rideID = req.params.rideID;
   var url = '/rides/' + rideID;
   users.findUser(user.username)
-  .then(function(userData) {
+  .then(function(userData){
     var userID = userData[0].id;
     riders.addRiderToRide(rideID, userID)
-    .then(function() {
+    .then(function(){
       res.redirect(url);
     });
   });
 });
 
-router.post('/:rideID/delete', function(req, res, next) {
+router.post('/:rideID/delete',function(req, res, next){
   rides.deleteRide(req.params.rideID)
-  .then(function() {
+  .then(function(){
     res.redirect('/rides');
   });
 });

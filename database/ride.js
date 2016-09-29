@@ -27,6 +27,14 @@ function getRideDataByUserID(userID){
   return getRideData().where('users.id',userID);
 }
 
+// function getRideDataByUserRideID(userID, rideID){
+//   return getRideData().select('users.id AS userID').where({'users.id': userID, 'ride.id': rideID});
+// }
+
+function getRideDataByUserRideID(userID, rideID){
+  return knex('rider').innerJoin('ride','ride.id','rider.ride_id').where({'rider.user_id': userID, 'rider.ride_id': rideID});
+}
+
 function getRideDataLimitThree(){
   return getRideData().limit(3);
 }
@@ -43,6 +51,10 @@ function deleteRide(rideID){
   return knex('ride').where('ride.id',rideID).del();
 }
 
+function deleteRiderInRide(rideID,userID){
+  return knex('rider').where({'ride_id': rideID, 'user_id': userID}).del();
+}
+
 module.exports = {
   getRides: getRides,
   addRide: addRide,
@@ -50,8 +62,10 @@ module.exports = {
   getCarDataByRideID: getCarDataByRideID,
   getRideDataByRideID: getRideDataByRideID,
   getRideDataByUserID: getRideDataByUserID,
+  getRideDataByUserRideID: getRideDataByUserRideID,
   getRideDataLimitThree: getRideDataLimitThree,
   getRideDataByMountainId: getRideDataByMountainId,
   getDriverRatingByRideID: getDriverRatingByRideID,
-  deleteRide: deleteRide
+  deleteRide: deleteRide,
+  deleteRiderInRide: deleteRiderInRide
 };
