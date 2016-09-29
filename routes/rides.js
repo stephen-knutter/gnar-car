@@ -66,6 +66,24 @@ router.post('/offer', function(req, res, next) {
   });
 });
 
+router.get('/mountains/:mountainID', function(req, res, next){
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+  var isLoggedIn = true;
+  var user = req.user;
+  var mountainID = req.params.mountainID;
+  rides.getRideDataByMountainId(mountainID)
+  .then(function(rideData){
+    res.render('rides', {rideData: rideData,
+      username: user.username,
+      user: user,
+      loggedIn: isLoggedIn
+    });
+  });
+});
+
 router.get('/:rideID', function(req, res, next){
   if (!req.isAuthenticated()) {
     res.redirect('/');

@@ -6,9 +6,7 @@ function getRides(){
 }
 
 function addRide(car_id, mountain_id, departureDate, departureTime, returnDate, returnTime, seats_avail, cost_seat, meetup_loc){
-  var home_depTime = departureDate + ' ' + departureTime;
-  var mtn_depTime = returnDate + ' ' + returnTime;
-  return knex('ride').insert({car_id: car_id, mountain_id: mountain_id, home_depTime: home_depTime, mtn_depTime: mtn_depTime, seats_avail: seats_avail, cost_seat: cost_seat, meetup_loc: meetup_loc, pickup: false});
+  return knex('ride').insert({car_id: car_id, mountain_id: mountain_id, departureDate: departureDate, departureTime: departureTime, returnDate: returnDate, returnTime: returnTime, seats_avail: seats_avail, cost_seat: cost_seat, meetup_loc: meetup_loc, pickup: false});
 }
 
 function getRideData(){
