@@ -6,7 +6,7 @@
 
 <div class="container">
   <div class="col-md-6 row">
-    <form action="/rides/offer" method="post" class="form-horizontal">
+    <form action="/rides/{{rideData.rideID}}/edit" method="post" class="form-horizontal">
       <fieldset>
         <div class="form-group">
           <label for="select" class="col-lg-2 control-label">Destination</label>
@@ -53,8 +53,8 @@
           <label for="seatsAvailable" class="col-lg-2 control-label">Seats available</label>
           <div class="col-lg-10">
             <select class="form-control" id="seatsAvailable" name="seatsAvailable" value="">
-              <option value=""selected>{{rideData.seats_avail}}</option>
-               <option>1</option>
+              <option value={{rideData.seats_avail}} selected>{{rideData.seats_avail}}</option>
+               <option >1</option>
                <option>2</option>
                <option>3</option>
                <option>4</option>
