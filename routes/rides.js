@@ -165,11 +165,32 @@ router.get('/:rideID/edit', function(req, res, next){
     rides.getRideDataByRideID(rideID)
     .then(function(rideData){
       rideData = rideData[0];
-      console.log(rideData.departure_date)
-      console.log((rideData.departure_date).toString())
       res.render('editride', {loggedIn: isLoggedIn, user: user, rideData: rideData, mountains: mountains});
     });
   })
+});
+
+router.post('/:rideID/edit', function(req, res, next){
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+
+  var rideID = req.params.rideID;
+  var carID = req.body.carID;
+  var mountainID = req.body.mountainID;
+  var departureDate = req.body.departureDate;
+  var departureTime = req.body.departureTime;
+  var returnDate = req.body.returnDate;
+  var returnTime = req.body.returnTime;
+  var seatsAvailable = req.body.seatsAvailable;
+  var costPerSeat = req.body.costPerSeat;
+  var meetupLocation = req.body.meetupLocation;
+
+  rides.updateRide(rideID, carID, mountainID, departureDate, departureTime, returnDate, returnTime, seatsAvailable, costPerSeat, meetupLocation)
+  .then(function(){
+    res.redirect('/rides/' + rideID);
+  });
 });
 
 
