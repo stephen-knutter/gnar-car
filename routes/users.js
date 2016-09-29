@@ -5,11 +5,7 @@ var rides = require('../database/ride');
 var cars = require('../database/car');
 var passport = require('../passport');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
+// Get user's rides
 router.get('/:username/rides', function(req, res, next) {
   if (!req.isAuthenticated()) return res.redirect('/');
   var user = req.user;
@@ -19,6 +15,7 @@ router.get('/:username/rides', function(req, res, next) {
     {title: user.username + ' | Rides', user: user, loggedIn: isLoggedIn});
 });
 
+// Remove a user from a ride
 router.post('/:username/rides/:rideID/delete', function(req, res, next){
   if (!req.isAuthenticated()) return res.redirect('/');
   var username = req.user.username;
@@ -34,6 +31,7 @@ router.post('/:username/rides/:rideID/delete', function(req, res, next){
   });
 });
 
+// Get user profile
 router.get('/:username', function(req, res, next) {
   var username = req.params.username;
   var rating;
@@ -66,6 +64,8 @@ router.get('/:username', function(req, res, next) {
     });
   });
 });
+
+// Edit user profile
 
 router.get('/:username/edit', function(req, res, next) {
   var username = req.params.username;
@@ -105,7 +105,6 @@ router.get('/:username/edit', function(req, res, next) {
     res.render('edit',
       {title: username + 'edit', user: user, car: car, drives: drives, loggedIn: isLoggedIn, msg: msg});
   });
-
 });
 
 router.post('/:username/edit', function(req, res, next) {
@@ -127,7 +126,7 @@ router.post('/:username/edit', function(req, res, next) {
     req.flash('usererror', 'One or more fields blank');
     return res.redirect('/users/' + usernameParam + '/edit');
   }
-
+  
   users.updateUser(userId, username, phone, email, address, city, state, zip)
     .then(function(data) {
       req.flash('usersuccess', 'Profile successfully updated');
@@ -137,4 +136,5 @@ router.post('/:username/edit', function(req, res, next) {
       });
     });
 });
+
 module.exports = router;
