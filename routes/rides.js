@@ -157,7 +157,7 @@ router.get('/:rideID/edit', function(req, res, next){
 
 router.post('/:rideID/delete',function(req, res, next){
   rides.deleteRide(req.params.rideID)
-  .then(function(){
+  .then(function() {
     res.redirect('/rides');
   });
 });
