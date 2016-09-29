@@ -59,8 +59,12 @@
         <h5>{{username}}</h5>
         {{#if signedInUserInRide}}
           <form class="reserveSeat" action="/users/{{username}}/rides/{{ride_id}}/delete" method="post">
-            <button type="submit" name="button" class="btn btn-default btn-sm">Cancel Seat in Ride</button>
-          </form>
+            <div class="col-lg-2 col-lg-offset-1">
+
+              <button type="submit" name="button" class="btn btn-default btn-sm">Cancel Seat in Ride</button>
+              </div>
+
+            </form>
         {{/if}}
         <div class="ridersImages">
           <img class="ridersImages" src="{{image_url}}" alt="" />
