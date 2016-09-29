@@ -5,11 +5,20 @@
   <div class="col-md-5 col-md-offset-1">
     <h3>Update Profile</h3>
     {{#if msg}}
+      {{#if msg.success}}
+      <ul class="success-list">
+        {{#each msg}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+      {{#if msg.error}}
       <ul class="error-list">
         {{#each msg}}
           <li>{{this}}</li>
         {{/each}}
       </ul>
+      {{/if}}
     {{/if}}
     <form id="update-profile" action="/users/{{user.username}}/edit" method="post">
       <input type="hidden" name="id" value="{{user.id}}" />

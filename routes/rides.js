@@ -76,7 +76,6 @@ router.get('/:rideID', function(req, res, next) {
     res.redirect('/');
     return;
   }
-  var user = req.user;
   var userID = req.user.id;
   var rideID = req.params.rideID;
   var user = req.user;
@@ -109,13 +108,8 @@ router.get('/:rideID', function(req, res, next) {
             carData: carData,
             riderData: riderData,
             rating: userRating,
-            user: user, signedInUsersRide: signedInUsersRide});
-        .then(function(rating) {
-          users.isUserInRideID(userID)
-          .then(function(isUserInRide){
-            var userRating = Math.round(rating.avg);
-            res.render('ride', {rideData: rideData[0], carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user, isUserInRide: isUserInRide});
-          })
+            user: user,
+            signedInUsersRide: signedInUsersRide});
         });
       });
     });

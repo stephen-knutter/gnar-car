@@ -13,18 +13,22 @@
   max-width: 100%;
 }
 
-.error-list {
+.error-list, .success-list {
   padding: 0 0 0 12px;
   list-style: none;
 }
 
-.error-list li {
+.error-list li, .success-list li {
   padding: 0;
   margin: 5px 0;
   color: #e74c3c;
   background-color: transparent;
   border: 0;
   list-style: disc;
+}
+
+.success-list li {
+  color: #299a0b;
 }
 
 .error-outline {
