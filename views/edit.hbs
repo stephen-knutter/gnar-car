@@ -12,7 +12,7 @@
       </ul>
     {{/if}}
     <form id="update-profile" action="/users/{{user.username}}/edit" method="post">
-      <input type="hidden" name="user_id" value="{{user.id}}" />
+      <input type="hidden" name="id" value="{{user.id}}" />
       <input type="hidden" name="password" value="{{user.password}}" />
       <div class="form-group username-group">
         <label for="username">Username:</label>
@@ -42,7 +42,7 @@
           <label for="username">Zipcode:</label>
           <input type="text" class="form-control" value="{{user.zip}}" name="zipcode" placeholder="Enter zipcode..." />
         </div>
-      <input type="submit" class="btn btn-info btn-block" name="submit" value="Update" />
+      <input type="submit" class="btn btn-info btn-block" name="update" value="Update" />
     </form>
   </div>
 
