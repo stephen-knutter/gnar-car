@@ -72,6 +72,7 @@ router.get('/:rideID', function(req, res, next){
     return;
   }
   var user = req.user;
+  var isLoggedIn = true;
   var rideID = req.params.rideID;
   var signedInUsersRide;
   var userID;
@@ -106,7 +107,7 @@ router.get('/:rideID', function(req, res, next){
                   }
                 }
               }
-              res.render('ride', {rideData: rideData, rideID: rideID, carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user, signedInUsersRide: signedInUsersRide, signedInUserInRideOverview: signedInUserInRideOverview});
+              res.render('ride', {loggedIn: isLoggedIn, rideData: rideData, rideID: rideID, carData: carData, riderData: riderData, rating: userRating, user: user, signedInUsersRide: signedInUsersRide, signedInUserInRideOverview: signedInUserInRideOverview});
             });
           });
         });
