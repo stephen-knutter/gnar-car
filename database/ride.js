@@ -10,7 +10,7 @@ function addRide(car_id, mountain_id, departure_date, departure_time, return_dat
 }
 
 function updateRide(rideID, car_id, mountain_id, departure_date, departure_time, return_date, return_time, seats_avail, cost_seat, meetup_loc){
-  return knex('ride').update({car_id: car_id, mountain_id: mountain_id, departure_date: departure_date, departure_time: departure_time, return_date: return_date, return_time: return_time, seats_avail: seats_avail, cost_seat: cost_seat, meetup_loc: meetup_loc, pickup: false}).where('id', rideID);
+  return knex('ride').where('id', rideID).update({car_id: car_id, mountain_id: mountain_id, departure_date: departure_date, departure_time: departure_time, return_date: return_date, return_time: return_time, seats_avail: seats_avail, cost_seat: cost_seat, meetup_loc: meetup_loc, pickup: false});
 }
 
 function getRideData(){
@@ -60,6 +60,7 @@ function deleteRiderInRide(rideID,userID){
 module.exports = {
   getRides: getRides,
   addRide: addRide,
+  updateRide: updateRide,
   getRideData: getRideData,
   getCarDataByRideID: getCarDataByRideID,
   getRideDataByRideID: getRideDataByRideID,

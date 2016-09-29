@@ -187,6 +187,8 @@ router.post('/:rideID/edit', function(req, res, next){
   var costPerSeat = req.body.costPerSeat;
   var meetupLocation = req.body.meetupLocation;
 
+  console.log(seatsAvailable)
+
   rides.updateRide(rideID, carID, mountainID, departureDate, departureTime, returnDate, returnTime, seatsAvailable, costPerSeat, meetupLocation)
   .then(function(){
     res.redirect('/rides/' + rideID);
