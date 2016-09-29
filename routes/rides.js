@@ -74,11 +74,14 @@ router.get('/:rideID', function(req, res, next) {
   }
   var rideID = req.params.rideID;
   var user = req.user;
-  var user = req.user;
   var isLoggedIn = true;
 
+  var signedInUsersRide;
   rides.getRideDataByRideID(rideID)
   .then(function(rideData) {
+    if (rideData[0].username === user.username) {
+      signedInUsersRide = true;
+    }
     rides.getCarDataByRideID(rideID)
     .then(function(carData) {
       riders.findRidersByRideID(rideID)
@@ -94,6 +97,13 @@ router.get('/:rideID', function(req, res, next) {
           rating: userRating,
           user: user,
           loggedIn: isLoggedIn});
+          res.render('ride',
+            {rideData: rideData,
+            rideID: rideID,
+            carData: carData,
+            riderData: riderData,
+            rating: userRating,
+            user: user, signedInUsersRide: signedInUsersRide});
         });
       });
     });
@@ -115,6 +125,13 @@ router.post('/:rideID', function(req, res, next) {
     .then(function() {
       res.redirect(url);
     });
+  });
+});
+
+router.post('/:rideID/delete', function(req, res, next) {
+  rides.deleteRide(req.params.rideID)
+  .then(function() {
+    res.redirect('/rides');
   });
 });
 
