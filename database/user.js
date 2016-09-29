@@ -55,11 +55,13 @@ var query = {
       city: city,
       state: state,
       zip: zip
-    })
+    });
   },
+
   getUserRating: function(userID) {
     return knex('users').avg('rating').innerJoin('rating_driver','rating_driver.user_id','users.id').where('users.id',userID).first();
   },
+
   isUserInRideID: function(userID) {
     return knex('ride').innerJoin('car', 'car.id', 'ride.car_id').innerJoin('car_user', 'car_user.car_id', 'car.id').innerJoin('users', 'users.id', 'car_user.user_id').where('users.id', userID);
   }

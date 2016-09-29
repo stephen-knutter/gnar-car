@@ -18,7 +18,6 @@ router.get('/', function(req, res, next) {
   .then(function(rideData) {
     return users.isUserInRideID(user.id)
     .then(function(userInRideYN){
-      console.log(userInRideYN);
       res.render('rides',
       {username: user.username,
         rideData: rideData,
@@ -26,7 +25,7 @@ router.get('/', function(req, res, next) {
         loggedIn: isLoggedIn,
         userInRideYN: userInRideYN
       });
-    })
+    });
   });
 });
 
@@ -75,19 +74,41 @@ router.get('/:rideID', function(req, res, next){
   var user = req.user;
   var rideID = req.params.rideID;
   var signedInUsersRide;
+  var userID;
+  var signedInUserInRide = false;
+  var signedInUserInRideOverview = false;
   rides.getRideDataByRideID(rideID)
   .then(function(rideData){
-    if(rideData[0].username === user.username){
+    rideData = rideData[0];
+    if(rideData.username === user.username){
       signedInUsersRide = true;
     }
     rides.getCarDataByRideID(rideID)
     .then(function(carData){
+      carData = carData[0];
       riders.findRidersByRideID(rideID)
       .then(function(riderData){
         rides.getDriverRatingByRideID(rideID)
         .then(function(rating){
           var userRating = Math.round(rating.avg);
-          res.render('ride', {rideData: rideData, rideID: rideID, carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user, signedInUsersRide: signedInUsersRide});
+          users.findUser(user.username)
+          .then(function(userInfo){
+            userID = userInfo[0].id;
+            rides.getRideDataByUserRideID(userID, rideID)
+            .then(function(userRideData){
+              if(userRideData.length > 0){
+                signedInUserInRideOverview = true;
+              }
+              for (var i = 0; i < userRideData.length; i++) {
+                for (var j = 0; j < riderData.length; j++) {
+                  if (userRideData[i].user_id == riderData[j].user_id){
+                    riderData[j].signedInUserInRide = true;
+                  }
+                }
+              }
+              res.render('ride', {rideData: rideData, rideID: rideID, carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user, signedInUsersRide: signedInUsersRide, signedInUserInRideOverview: signedInUserInRideOverview});
+            });
+          });
         });
       });
     });
