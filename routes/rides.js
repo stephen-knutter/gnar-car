@@ -60,7 +60,7 @@ router.post('/offer', function(req, res, next) {
   var seatsAvailable = req.body.seatsAvailable;
   var costPerSeat = req.body.costPerSeat;
   var meetupLocation = req.body.meetupLocation;
-  rides.addRide(carID, mountainID, departureDate, departureTime, returnDate, returnTime, seatsAvailable, costPerSeat, meetupLocation)
+  rides.addRide(carID, mountainID, departure_date, departure_time, return_date, return_time, seatsAvailable, costPerSeat, meetupLocation)
   .then(function() {
     res.redirect('/rides');
   });
