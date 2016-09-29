@@ -10,7 +10,7 @@ function addRide(car_id, mountain_id, departure_date, departure_time, return_dat
 }
 
 function getRideData(){
-  return knex('ride').select('ride.id AS rideID','ride.seats_avail', 'ride.cost_seat', 'ride.departure_time', 'ride.meetup_loc', 'mountain.name','mountain.id AS mountainID','mountain.image_url AS mountain_image','users.username','users.image_url', 'ride.car_id').innerJoin('mountain','mountain.id','ride.mountain_id').innerJoin('car_user','car_user.car_id','ride.car_id').innerJoin('users','users.id','car_user.user_id').orderBy('ride.departure_time','asc');
+  return knex('ride').select('ride.id AS rideID','ride.seats_avail', 'ride.cost_seat', 'ride.departure_time','ride.departure_date', 'ride.return_time','ride.return_date', 'ride.meetup_loc', 'mountain.name','mountain.id AS mountainID','mountain.image_url AS mountain_image','users.username','users.image_url', 'ride.car_id').innerJoin('mountain','mountain.id','ride.mountain_id').innerJoin('car_user','car_user.car_id','ride.car_id').innerJoin('users','users.id','car_user.user_id').orderBy('ride.departure_time','asc');
 }
 
 function getCarDataByRideID(rideID){
