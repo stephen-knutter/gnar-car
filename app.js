@@ -15,7 +15,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var mountains = require('./routes/mountains');
 var rides = require('./routes/rides');
-var cars = require('./routes/car');
+var cars = require('./routes/cars');
 
 var app = express();
 

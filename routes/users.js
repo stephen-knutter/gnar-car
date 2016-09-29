@@ -75,13 +75,31 @@ router.get('/:username/edit', function(req, res, next) {
   var msg = false;
   if (req.flash()) msg = req.flash();
 
-  var car;
   users.findCarByUser(req.user.id).then(function(data) {
-    car = data[0];
+    var car = data[0];
+    var drives = {};
+    drives._awd = drives._fwd = drives._rwd = drives._4wd = false;
+    var driveId = car.drive_id;
+
+    switch(driveId) {
+      case 1:
+        drives._awd = true;
+      break;
+      case 2:
+        drives._fwd = true;
+      break;
+      case 3:
+        drives._rwd = true;
+      break;
+      case 4:
+        drives._4wd = true;
+      break;
+    }
+    console.log(drives);
     var user = req.user;
     var isLoggedIn = true;
     res.render('edit',
-      {title: username + 'edit', user: user, car: car, loggedIn: isLoggedIn, msg: msg});
+      {title: username + 'edit', user: user, car: car, drives: drives, loggedIn: isLoggedIn, msg: msg});
   });
 
 });
