@@ -7,23 +7,26 @@
 <div class="pageTitle row">
   <div class="col-lg-8 col-lg-offset-2">
     <div class="col-lg-4">
-      <img src="{{mountain_image}}" class="mountainImage" alt="" />
+      <img src="{{rideData.mountain_image}}" class="mountainImage" alt="" />
     </div>
     <div class="col-lg-7 col-lg-offset-1">
-      <h1>{{name}}</h1>
-      <a href="/mountains/{{mountainID}}">
+      <h1>{{rideData.name}}</h1>
+      <a href="/mountains/{{rideData.mountainID}}">
         <h5>Mountain Information</h5>
       </a>
-      <h4>Date: {{home_depTime}}</h4>
-      <h5>Seats Available: {{seats_avail}}</h5>
-      <h5>Price/Seat: ${{cost_seat}}</h5>
-      <h5>Meet At: {{meetup_loc}}</h5>
-      <form action="/rides/{{rideID}}" method="post">
-        <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
-      </form>
-      {{/each}}
+      <h4>Date: {{rideData.home_depTime}}</h4>
+      <h5>Seats Available: {{rideData.seats_avail}}</h5>
+      <h5>Price/Seat: ${{rideData.cost_seat}}</h5>
+      <h5>Meet At: {{rideData.meetup_loc}}</h5>
+      {{#if signedInUserInRideOverview}}
+        <h6>You are already signed up for this ride!</h6>
+      {{else}}
+        <form action="/rides/{{rideData.rideID}}" method="post">
+          <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
+        </form>
+      {{/if}}
       {{#if signedInUsersRide}}
-        <form class="" action="/rides/{{rideID}}/delete" method="post">
+        <form class="" action="/rides/{{rideData.rideID}}/delete" method="post">
           <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Cancel Ride</button>
         </form>
       {{/if}}
@@ -48,35 +51,32 @@
   </div>
 
   <div class="driver col-lg-3 col-lg-offset-3 text-center">
-    {{#each rideData}}
-      <h2>Driver</h2>
-      <h3>{{username}}</h3>
-      <img src="{{image_url}}" alt="" />
-    {{/each}}
-    <div class="driver col-lg-3 col-lg-offset-3">
       <h2>Driver</h2>
       <h3>{{rideData.username}}</h3>
       <img src="{{rideData.image_url}}" alt="" />
-      <h4>Rating: {{rating}}</h4>
-      {{#each carData}}
-        <h3>Car Details</h3>
-        <h4>Smoking: {{smoking}}</h4>
-        <h4>Make: {{make}}</h4>
-        <h4>Model: {{model}}</h4>
-        <h4>Drive Type: {{type}}</h4>
-        <h4>Ski Rack: {{ski_rack}}</h4>
-        <h4>Dog Friendly: {{dog}}</h4>
-      {{/each}}
-    </div>
-    <div class="riders col-lg-2 col-lg-offset-4 text-center">
-      <h2>Other Riders</h2>
-      {{#each riderData}}
-        <a href="/users/{{username}}">
-          <h4>{{username}}</h4>
-          <div class="ridersImages">
-            <img class="ridersImages" src="{{image_url}}" alt="" />
-          </div>
-        </a>
-      {{/each}}
-    </div>
+    <h4>Rating: {{rating}}</h4>
+      <h3>Car Details</h3>
+      <h4>Smoking: {{carData.smoking}}</h4>
+      <h4>Make: {{carData.make}}</h4>
+      <h4>Model: {{carData.model}}</h4>
+      <h4>Drive Type: {{carData.type}}</h4>
+      <h4>Ski Rack: {{carData.ski_rack}}</h4>
+      <h4>Dog Friendly: {{carData.dog}}</h4>
   </div>
+  <div class="riders col-lg-2 col-lg-offset-4 text-center">
+    <h2>Other Riders</h2>
+    {{#each riderData}}
+      <a href="/users/{{username}}">
+        <h5>{{username}}</h5>
+        {{#if signedInUserInRide}}
+          <form class="reserveSeat" action="/users/{{username}}/rides/{{ride_id}}/delete" method="post">
+            <button type="submit" name="button" class="btn btn-default btn-sm">Cancel Seat in Ride</button>
+          </form>
+        {{/if}}
+        <div class="ridersImages">
+          <img class="ridersImages" src="{{image_url}}" alt="" />
+        </div>
+      </a>
+    {{/each}}
+  </div>
+</div>

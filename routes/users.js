@@ -19,6 +19,21 @@ router.get('/:username/rides', function(req, res, next) {
     {title: user.username + ' | Rides', user: user, loggedIn: isLoggedIn});
 });
 
+router.post('/:username/rides/:rideID/delete', function(req, res, next){
+  if (!req.isAuthenticated()) return res.redirect('/');
+  var username = req.user.username;
+  var rideID = req.params.rideID;
+  var userID;
+  users.findUser(username)
+  .then(function(userData){
+    userID = userData[0].id;
+    rides.deleteRiderInRide(userID,rideID)
+    .then(function(){
+      res.redirect('/rides');
+    });
+  });
+});
+
 router.get('/:username', function(req, res, next) {
   var username = req.params.username;
   var rating;
