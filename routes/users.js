@@ -5,11 +5,7 @@ var rides = require('../database/ride');
 var cars = require('../database/car');
 var passport = require('../passport');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
+// Get user's rides
 router.get('/:username/rides', function(req, res, next) {
   if (!req.isAuthenticated()) return res.redirect('/');
   var user = req.user;
@@ -19,6 +15,7 @@ router.get('/:username/rides', function(req, res, next) {
     {title: user.username + ' | Rides', user: user, loggedIn: isLoggedIn});
 });
 
+// Remove a user from a ride
 router.post('/:username/rides/:rideID/delete', function(req, res, next){
   if (!req.isAuthenticated()) return res.redirect('/');
   var username = req.user.username;
@@ -34,6 +31,7 @@ router.post('/:username/rides/:rideID/delete', function(req, res, next){
   });
 });
 
+// Get user profile
 router.get('/:username', function(req, res, next) {
   var username = req.params.username;
   var rating;
@@ -67,6 +65,8 @@ router.get('/:username', function(req, res, next) {
   });
 });
 
+// Edit user profile
+
 router.get('/:username/edit', function(req, res, next) {
   var username = req.params.username;
   if (!req.isAuthenticated()) return res.redirect('/');
@@ -75,33 +75,36 @@ router.get('/:username/edit', function(req, res, next) {
   var msg = false;
   if (req.flash()) msg = req.flash();
 
-  users.findCarByUser(req.user.id).then(function(data) {
+  users.findCarByUser(req.user.id)
+  .then(function(data) {
+
     var car = data[0];
     var drives = {};
     drives._awd = drives._fwd = drives._rwd = drives._4wd = false;
-    var driveId = car.drive_id;
 
-    switch(driveId) {
-      case 1:
+    if(car){
+      var driveId = car.drive_id;
+      switch(driveId) {
+        case 1:
         drives._awd = true;
-      break;
-      case 2:
+        break;
+        case 2:
         drives._fwd = true;
-      break;
-      case 3:
+        break;
+        case 3:
         drives._rwd = true;
-      break;
-      case 4:
+        break;
+        case 4:
         drives._4wd = true;
-      break;
+        break;
+      }
     }
-    console.log(drives);
+
     var user = req.user;
     var isLoggedIn = true;
     res.render('edit',
       {title: username + 'edit', user: user, car: car, drives: drives, loggedIn: isLoggedIn, msg: msg});
   });
-
 });
 
 router.post('/:username/edit', function(req, res, next) {
@@ -123,14 +126,15 @@ router.post('/:username/edit', function(req, res, next) {
     req.flash('usererror', 'One or more fields blank');
     return res.redirect('/users/' + usernameParam + '/edit');
   }
-
+  
   users.updateUser(userId, username, phone, email, address, city, state, zip)
     .then(function(data) {
       req.flash('usersuccess', 'Profile successfully updated');
       req.login(update, function(err) {
         if (err) return next(err);
         return res.redirect('/users/' + req.user.username + '/edit');
-      })
+      });
     });
 });
+
 module.exports = router;
