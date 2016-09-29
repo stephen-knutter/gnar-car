@@ -21,14 +21,20 @@
       {{#if signedInUserInRideOverview}}
         <h6>You are already signed up for this ride!</h6>
       {{else}}
-        <form action="/rides/{{rideData.rideID}}" method="post">
-          <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
-        </form>
+        {{#if signedInUsersRide}}
+          {{else}}
+          <form action="/rides/{{rideData.rideID}}" method="post">
+            <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
+          </form>
+        {{/if}}
       {{/if}}
       {{#if signedInUsersRide}}
         <form class="" action="/rides/{{rideData.rideID}}/delete" method="post">
           <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Cancel Ride</button>
         </form>
+        <a href="/rides/{{rideData.rideID}}/edit">
+            <button type="button" name="button" class="btn btn-default btn-sm reserveSeat">Edit Ride</button>
+        </a>
       {{/if}}
     </div>
   </div>
