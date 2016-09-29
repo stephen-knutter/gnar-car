@@ -134,7 +134,7 @@ router.post('/:username/edit', function(req, res, next) {
       req.login(update, function(err) {
         if (err) return next(err);
         return res.redirect('/users/' + req.user.username + '/edit');
-      })
+      });
     });
 });
 module.exports = router;
