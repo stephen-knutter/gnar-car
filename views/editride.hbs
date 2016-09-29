@@ -1,0 +1,87 @@
+{{> navbar}}
+
+<div class="pageTitle">
+  <h1>{{rideData.username}} editing ride info</h1>
+</div>
+
+<div class="container">
+  <div class="col-md-6 row">
+    <form action="/rides/offer" method="post" class="form-horizontal">
+      <fieldset>
+        <div class="form-group">
+          <label for="select" class="col-lg-2 control-label">Destination</label>
+          <div class="col-lg-10">
+            <select class="form-control" id="select" name="mountainID" value="">
+              <option value="{{rideData.name}}" selected>{{rideData.name}}</option>
+              {{#each mountains}}
+                <option value="{{id}}">{{name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="departureDate" class="col-lg-2 control-label">Departure date</label>
+          <div class="col-lg-10">
+            <input id="departureDate" type="date" class="form-control" name="departureDate" value="{{rideData.departureDate}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="departureTime" class="col-lg-2 control-label">Departure time</label>
+          <div class="col-lg-10">
+            <input id="departureTime" type="time" class="form-control" name="departureTime" value="{{rideData.home_depTime}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="returnDate" class="col-lg-2 control-label">Return date</label>
+          <div class="col-lg-10">
+            <input id="returnDate" type="date" class="form-control" name="returnDate" value="{{rideData.returnDate}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="returnTime" class="col-lg-2 control-label">Return time</label>
+          <div class="col-lg-10">
+            <input id="returnTime" type="time" class="form-control" name="returnTime" value="{{rideData.returnTime}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="meetupLocation" class="col-lg-2 control-label">Meetup location</label>
+          <div class="col-lg-10">
+            <input id="meetupLocation" type="text" class="form-control" name="meetupLocation" value="{{rideData.meetup_loc}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="seatsAvailable" class="col-lg-2 control-label">Seats available</label>
+          <div class="col-lg-10">
+            <select class="form-control" id="seatsAvailable" name="seatsAvailable" value="">
+              <option value=""selected>{{rideData.seats_avail}}</option>
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+               <option>5</option>
+               <option>6</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="costPerSeat" class="col-lg-2 control-label">Cost per seat</label>
+          <div class="col-lg-10">
+            <input id="costPerSeat" type="text" class="form-control" name="costPerSeat" value="{{rideData.cost_seat}}">
+          </div>
+        </div>
+        <!-- Hidden attributes for database -->
+        <input value="{{rideData.ride.car_id}}" type="text" name="carID"></input>
+
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="submit" class="btn btn-primary">Edit Ride Info</button>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+  <div class="col-md-6 text-center row">
+    <h2>Driver {{user.username}}</h2>
+    <img src="{{user.image_url}}" alt="" />
+  </div>
+</div>

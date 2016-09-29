@@ -134,6 +134,27 @@ router.post('/:rideID', function(req, res, next){
   });
 });
 
+router.get('/:rideID/edit', function(req, res, next){
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+    return;
+  }
+  var user = req.user;
+  var isLoggedIn = true;
+  var rideID = req.params.rideID;
+  mountains.findMountains()
+  .then(function(mountains) {
+    rides.getRideDataByRideID(rideID)
+    .then(function(rideData){
+      rideData = rideData[0];
+      console.log(rideData)
+      console.log(mountains)
+      res.render('editride', {loggedIn: isLoggedIn, rideData: rideData, mountains: mountains});
+    });
+  })
+});
+
+
 router.post('/:rideID/delete',function(req, res, next){
   rides.deleteRide(req.params.rideID)
   .then(function(){
