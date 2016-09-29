@@ -16,17 +16,11 @@ router.get('/', function(req, res, next) {
   var user = req.user;
   rides.getRideData()
   .then(function(rideData) {
-    return users.isUserInRideID(user.id)
-    .then(function(userInRideYN){
-      console.log(userInRideYN);
-      res.render('rides',
+    res.render('rides',
       {username: user.username,
-        rideData: rideData,
-        user: user,
-        loggedIn: isLoggedIn,
-        userInRideYN: userInRideYN
-      });
-    })
+      rideData: rideData,
+      user: user,
+      loggedIn: isLoggedIn});
   });
 });
 
@@ -73,6 +67,7 @@ router.get('/:rideID', function(req, res, next){
     return;
   }
   var user = req.user;
+  var userID = req.user.id;
   var rideID = req.params.rideID;
   rides.getRideDataByRideID(rideID)
   .then(function(rideData){
@@ -82,8 +77,11 @@ router.get('/:rideID', function(req, res, next){
       .then(function(riderData){
         rides.getDriverRatingByRideID(rideID)
         .then(function(rating){
-          var userRating = Math.round(rating.avg);
-          res.render('ride', {rideData: rideData, carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user});
+          users.isUserInRideID(userID)
+          .then(function(isUserInRide){
+            var userRating = Math.round(rating.avg);
+            res.render('ride', {rideData: rideData[0], carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user, isUserInRide: isUserInRide});
+          })
         });
       });
     });

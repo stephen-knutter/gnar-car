@@ -61,7 +61,7 @@ var query = {
     return knex('users').avg('rating').innerJoin('rating_driver','rating_driver.user_id','users.id').where('users.id',userID).first();
   },
   isUserInRideID: function(userID) {
-    return knex('ride').innerJoin('car', 'car.id', 'ride.car_id').innerJoin('car_user', 'car_user.car_id', 'car.id').innerJoin('users', 'users.id', 'car_user.user_id').where('users.id', userID);
+    return knex('ride').innerJoin('rider', 'rider.user_id', 'ride.id').innerJoin('users', 'users.id', 'rider.user_id').where('users.id', userID);
   }
 };
 

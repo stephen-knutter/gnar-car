@@ -12,11 +12,7 @@
       <h4>Date: {{home_depTime}}</h4>
       <h5>Seats Available: {{seats_avail}}</h5>
       <h5>Price/Seat: ${{cost_seat}}</h5>
-      {{#if isUserInRideYN}}
-        <a href="/rides/{{rideID}}" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</a>
-      {{else}}
-        <h4>You are in this ride!</h4>
-      {{/if}}
+      <a href="/rides/{{rideID}}" class="btn btn-default btn-sm reserveSeat">Check out this ride</a>
     </div>
   </div>
   {{/each}}

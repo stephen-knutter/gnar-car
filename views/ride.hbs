@@ -4,29 +4,33 @@
   <h2>Ride Details</h2>
 </div>
 
-{{#each rideData}}
 <div class="pageTitle row">
   <div class="col-lg-3 col-lg-offset-2">
-    <img src="{{mountain_image}}" class="mountainImage" alt="" />
+    <img src="{{rideData.mountain_image}}" class="mountainImage" alt="" />
   </div>
   <div class="col-lg-4">
-    <h1>{{name}}</h1>
-    <h4>Date: {{home_depTime}}</h4>
-    <h5>Seats Available: {{seats_avail}}</h5>
-    <h5>Price/Seat: ${{cost_seat}}</h5>
-    <h5>Meet At: {{meetup_loc}}</h5>
-    <form action="/rides/{{rideID}}" method="post">
-      <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
-    </form>
+    <h1>{{rideData.name}}</h1>
+    <h4>Date: {{rideData.home_depTime}}</h4>
+    <h5>Seats Available: {{rideData.seats_avail}}</h5>
+    <h5>Price/Seat: ${{rideData.cost_seat}}</h5>
+    <h5>Meet At: {{rideData.meetup_loc}}</h5>
+    {{#if isUserInRide}}
+      <h4>You are in this ride!</h4>
+    {{else}}
+      <form action="/rides/{{rideData.rideID}}" method="post">
+        <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
+      </form>
+    {{/if}}
   </div>
 </div>
+
 
 <div class="container row">
   <div class="driver col-lg-3 col-lg-offset-3">
     <h2>Driver</h2>
-    <h3>{{username}}</h3>
-    <img src="{{image_url}}" alt="" />
-    {{/each}}
+    <h3>{{rideData.username}}</h3>
+    <img src="{{rideData.image_url}}" alt="" />
+
     <h4>Rating: {{rating}}</h4>
     {{#each carData}}
       <h2>Car Details</h2>
