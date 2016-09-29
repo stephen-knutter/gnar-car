@@ -18,7 +18,6 @@ router.get('/', function(req, res, next) {
   .then(function(rideData) {
     return users.isUserInRideID(user.id)
     .then(function(userInRideYN) {
-      console.log(userInRideYN);
       res.render('rides',
       {username: user.username,
         rideData: rideData,
@@ -27,6 +26,11 @@ router.get('/', function(req, res, next) {
         userInRideYN: userInRideYN
       });
     });
+    res.render('rides',
+      {username: user.username,
+      rideData: rideData,
+      user: user,
+      loggedIn: isLoggedIn});
   });
 });
 
@@ -72,6 +76,8 @@ router.get('/:rideID', function(req, res, next) {
     res.redirect('/');
     return;
   }
+  var user = req.user;
+  var userID = req.user.id;
   var rideID = req.params.rideID;
   var user = req.user;
   var isLoggedIn = true;
@@ -104,6 +110,12 @@ router.get('/:rideID', function(req, res, next) {
             riderData: riderData,
             rating: userRating,
             user: user, signedInUsersRide: signedInUsersRide});
+        .then(function(rating) {
+          users.isUserInRideID(userID)
+          .then(function(isUserInRide){
+            var userRating = Math.round(rating.avg);
+            res.render('ride', {rideData: rideData[0], carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user, isUserInRide: isUserInRide});
+          })
         });
       });
     });
