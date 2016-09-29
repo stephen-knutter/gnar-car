@@ -3,11 +3,19 @@ var router = express.Router();
 var request = require('request');
 var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
+var passport = ('../passport');
 var mountain = require('../database/mountain.js');
 
 /* GET mountain page page. */
 router.get('/', function(req, res, next) {
-  res.render('mountains', {title: 'Ski Mountains | GnarCar'});
+  var isLoggedIn = false;
+
+  if (req.isAuthenticated()) isLoggedIn = true;
+
+  var user = req.user;
+
+  res.render('mountains',
+    {title: 'Ski Mountains | GnarCar', user: user, loggeIn: isLoggedIn});
 });
 
 router.get('/:mountainId', function(req, res, next) {
@@ -19,13 +27,16 @@ router.get('/:mountainId', function(req, res, next) {
   var allIcons;
   var weatherIcons = [];
   var user = req.user;
+  var isLoggedIn = false;
+
+  if (req.isAuthenticated()) isLoggedIn = true;
 
   mountain.findMountainsById(req.params.mountainId)
-  .then(function(mountainInfo){
+  .then(function(mountainInfo) {
     api_url = mountainInfo[0].api_url;
-    request(api_url, function(error, response, body){
+    request(api_url, function(error, response, body) {
       if (!error & response.statusCode == 200) {
-        parser.parseString(body, function(err, result){
+        parser.parseString(body, function(err, result) {
           result = result.weather;
           conditions = result.snow_report;
           forecast = result.forecast;
@@ -35,10 +46,10 @@ router.get('/:mountainId', function(req, res, next) {
             forecast[i].night_min_temp[0] = Math.floor(forecast[i].night_min_temp[0] * (9/5) + 32);
           }
           mountain.getAllIcons()
-          .then(function(data){
+          .then(function(data) {
             for (var j = 0; j < weatherCodes.length; j++) {
               for (var k = 0; k < data.length; k++) {
-                if(data[k].id == weatherCodes[j]){
+                if (data[k].id === weatherCodes[j]) {
                   weatherIcons.push(data[k].icon);
                 }
               }
@@ -54,7 +65,8 @@ router.get('/:mountainId', function(req, res, next) {
             weatherData: result,
             conditions: conditions,
             forecast: forecast,
-            user: user});
+            user: user,
+            loggedIn: isLoggedIn});
           });
         });
       }

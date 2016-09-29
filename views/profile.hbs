@@ -14,7 +14,7 @@
       <h5>{{email}}</h5>
     {{/each}}
     <h5>Average Rating: {{rating}}</h5>
-    {{#if loggedIn}}
+    {{#if loggedInUser}}
       <div class="button">
          <a class="btn btn-info" href="/users/{{user.username}}/edit" role="button">Edit</a>
          <a class="btn btn-info" href="/logout" role="button">Logout</a>

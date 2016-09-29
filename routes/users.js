@@ -12,12 +12,13 @@ router.get('/', function(req, res, next) {
 router.get('/:username/rides', function(req, res, next) {
   if (!req.isAuthenticated()) return res.redirect('/');
   var user = req.user;
+  var isLoggedIn = true;
 
-  res.render('rides', {title: user.username + ' | Rides', user: user});
+  res.render('rides',
+    {title: user.username + ' | Rides', user: user, loggedIn: isLoggedIn});
 });
 
 router.get('/:username', function(req, res, next) {
-  var loggedInUser;
   var username = req.params.username;
   var rating;
   if (!req.isAuthenticated()) {
@@ -25,21 +26,26 @@ router.get('/:username', function(req, res, next) {
     return;
   }
   var user = req.user;
-  if(username === user.username){
+  var isLoggedIn = true;
+  var loggedInUser = false;
+  if (username === user.username) {
     loggedInUser = true;
-  }
-  else {
-    loggedInUser = false;
   }
   users.findUser(username)
   .then(function(userData) {
     var userID = userData[0].id;
     rides.getRideDataByUserID(userID)
-    .then(function(rideData){
+    .then(function(rideData) {
       users.getUserRating(userID)
-      .then(function(rating){
+      .then(function(rating) {
         rating = Math.floor(rating.avg);
-        res.render('profile', {rideData: rideData, userData: userData, loggedIn: loggedInUser, user: user, rating: rating});
+        res.render('profile',
+          {rideData: rideData,
+            userData: userData,
+            loggedInUser: loggedInUser,
+            loggedIn: isLoggedIn,
+            user: user,
+            rating: rating});
       });
     });
   });

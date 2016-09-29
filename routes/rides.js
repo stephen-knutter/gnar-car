@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
   rides.getRideData()
   .then(function(rideData) {
     return users.isUserInRideID(user.id)
-    .then(function(userInRideYN){
+    .then(function(userInRideYN) {
       console.log(userInRideYN);
       res.render('rides',
       {username: user.username,
@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
         loggedIn: isLoggedIn,
         userInRideYN: userInRideYN
       });
-    })
+    });
   });
 });
 
@@ -67,30 +67,40 @@ router.post('/offer', function(req, res, next) {
   });
 });
 
-router.get('/:rideID', function(req, res, next){
+router.get('/:rideID', function(req, res, next) {
   if (!req.isAuthenticated()) {
     res.redirect('/');
     return;
   }
-  var user = req.user;
   var rideID = req.params.rideID;
+  var user = req.user;
+  var user = req.user;
+  var isLoggedIn = true;
+
   rides.getRideDataByRideID(rideID)
-  .then(function(rideData){
+  .then(function(rideData) {
     rides.getCarDataByRideID(rideID)
-    .then(function(carData){
+    .then(function(carData) {
       riders.findRidersByRideID(rideID)
-      .then(function(riderData){
+      .then(function(riderData) {
         rides.getDriverRatingByRideID(rideID)
-        .then(function(rating){
+        .then(function(rating) {
           var userRating = Math.round(rating.avg);
-          res.render('ride', {rideData: rideData, carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user});
+          res.render('ride',
+          {title: 'Ride Details',
+          rideData: rideData,
+          carData: carData,
+          riderData: riderData,
+          rating: userRating,
+          user: user,
+          loggedIn: isLoggedIn});
         });
       });
     });
   });
 });
 
-router.post('/:rideID', function(req, res, next){
+router.post('/:rideID', function(req, res, next) {
   if (!req.isAuthenticated()) {
     res.redirect('/');
     return;
@@ -99,10 +109,10 @@ router.post('/:rideID', function(req, res, next){
   var rideID = req.params.rideID;
   var url = '/rides/' + rideID;
   users.findUser(user.username)
-  .then(function(userData){
+  .then(function(userData) {
     var userID = userData[0].id;
     riders.addRiderToRide(rideID, userID)
-    .then(function(){
+    .then(function() {
       res.redirect(url);
     });
   });
