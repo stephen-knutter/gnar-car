@@ -4,8 +4,10 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer('car_id').references('id').inTable('car').onDelete('CASCADE');
     table.integer('mountain_id').references('id').inTable('mountain').onDelete('CASCADE');
-    table.timestamp('home_depTime');
-    table.timestamp('mtn_depTime');
+    table.date('departureDate');
+    table.time('departureTime');
+    table.date('returnDate');
+    table.time('returnTime');
     table.integer('seats_avail');
     table.float('cost_seat');
     table.string('meetup_loc');
