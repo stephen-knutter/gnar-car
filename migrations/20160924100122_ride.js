@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('ride', function(table){
+  return knex.schema.createTable('ride', function(table) {
     table.increments();
     table.integer('car_id').references('id').inTable('car').onDelete('CASCADE');
     table.integer('mountain_id').references('id').inTable('mountain').onDelete('CASCADE');

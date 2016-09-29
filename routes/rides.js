@@ -149,7 +149,7 @@ router.get('/:rideID/edit', function(req, res, next){
       rideData = rideData[0];
       console.log(rideData)
       console.log(mountains)
-      res.render('editride', {loggedIn: isLoggedIn, rideData: rideData, mountains: mountains});
+      res.render('editride', {loggedIn: isLoggedIn, user: user, rideData: rideData, mountains: mountains});
     });
   })
 });
