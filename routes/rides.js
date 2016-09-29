@@ -74,8 +74,12 @@ router.get('/:rideID', function(req, res, next){
   }
   var user = req.user;
   var rideID = req.params.rideID;
+  var signedInUsersRide;
   rides.getRideDataByRideID(rideID)
   .then(function(rideData){
+    if(rideData[0].username === user.username){
+      signedInUsersRide = true;
+    }
     rides.getCarDataByRideID(rideID)
     .then(function(carData){
       riders.findRidersByRideID(rideID)
@@ -83,7 +87,7 @@ router.get('/:rideID', function(req, res, next){
         rides.getDriverRatingByRideID(rideID)
         .then(function(rating){
           var userRating = Math.round(rating.avg);
-          res.render('ride', {rideData: rideData, carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user});
+          res.render('ride', {rideData: rideData, rideID: rideID, carData: carData, riderData: riderData, rating: userRating, username: user.username, user: user, signedInUsersRide: signedInUsersRide});
         });
       });
     });
@@ -105,6 +109,13 @@ router.post('/:rideID', function(req, res, next){
     .then(function(){
       res.redirect(url);
     });
+  });
+});
+
+router.post('/:rideID/delete',function(req, res, next){
+  rides.deleteRide(req.params.rideID)
+  .then(function(){
+    res.redirect('/rides');
   });
 });
 

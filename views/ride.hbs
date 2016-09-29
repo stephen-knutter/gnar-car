@@ -6,30 +6,42 @@
 
 {{#each rideData}}
 <div class="pageTitle row">
-  <div class="col-lg-3 col-lg-offset-2">
-    <img src="{{mountain_image}}" class="mountainImage" alt="" />
-  </div>
-  <div class="col-lg-4">
-    <h1>{{name}}</h1>
-    <h4>Date: {{home_depTime}}</h4>
-    <h5>Seats Available: {{seats_avail}}</h5>
-    <h5>Price/Seat: ${{cost_seat}}</h5>
-    <h5>Meet At: {{meetup_loc}}</h5>
-    <form action="/rides/{{rideID}}" method="post">
-      <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
-    </form>
+  <div class="col-lg-8 col-lg-offset-2">
+    <div class="col-lg-4">
+      <img src="{{mountain_image}}" class="mountainImage" alt="" />
+    </div>
+    <div class="col-lg-7 col-lg-offset-1">
+      <h1>{{name}}</h1>
+      <a href="/mountains/{{mountainID}}">
+        <h5>Mountain Information</h5>
+      </a>
+      <h4>Date: {{home_depTime}}</h4>
+      <h5>Seats Available: {{seats_avail}}</h5>
+      <h5>Price/Seat: ${{cost_seat}}</h5>
+      <h5>Meet At: {{meetup_loc}}</h5>
+      <form action="/rides/{{rideID}}" method="post">
+        <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</button>
+      </form>
+      {{/each}}
+      {{#if signedInUsersRide}}
+        <form class="" action="/rides/{{rideID}}/delete" method="post">
+          <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">Cancel Ride</button>
+        </form>
+      {{/if}}
+    </div>
   </div>
 </div>
 
 <div class="container row">
-  <div class="driver col-lg-3 col-lg-offset-3">
-    <h2>Driver</h2>
-    <h3>{{username}}</h3>
-    <img src="{{image_url}}" alt="" />
+  <div class="driver col-lg-3 col-lg-offset-3 text-center">
+    {{#each rideData}}
+      <h2>Driver</h2>
+      <h3>{{username}}</h3>
+      <img src="{{image_url}}" alt="" />
     {{/each}}
     <h4>Rating: {{rating}}</h4>
     {{#each carData}}
-      <h2>Car Details</h2>
+      <h3>Car Details</h3>
       <h4>Smoking: {{smoking}}</h4>
       <h4>Make: {{make}}</h4>
       <h4>Model: {{model}}</h4>
