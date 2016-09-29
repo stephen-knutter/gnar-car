@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var users = require('../database/user');
 var rides = require('../database/ride');
+var cars = require('../database/car');
 var passport = require('../passport');
 
 /* GET users listing. */
@@ -59,10 +60,15 @@ router.get('/:username/edit', function(req, res, next) {
   var msg = false;
   if (req.flash()) msg = req.flash();
 
-  var user = req.user;
-  var isLoggedIn = true;
-  res.render('edit',
-    {title: username + 'edit', user: user, loggedIn: isLoggedIn, msg: msg});
+  var car;
+  users.findCarByUser(req.user.id).then(function(data) {
+    car = data[0];
+    var user = req.user;
+    var isLoggedIn = true;
+    res.render('edit',
+      {title: username + 'edit', user: user, car: car, loggedIn: isLoggedIn, msg: msg});
+  });
+
 });
 
 router.post('/:username/edit', function(req, res, next) {
@@ -81,13 +87,13 @@ router.post('/:username/edit', function(req, res, next) {
 
   if (!userId || !username || !phone || !email ||
       !address || !city || !state || !zip) {
-    req.flash('update', 'One or more fields blank');
+    req.flash('usererror', 'One or more fields blank');
     return res.redirect('/users/' + usernameParam + '/edit');
   }
 
   users.updateUser(userId, username, phone, email, address, city, state, zip)
     .then(function(data) {
-      req.flash('success', 'Profile successfully updated');
+      req.flash('usersuccess', 'Profile successfully updated');
       req.login(update, function(err) {
         if (err) return next(err);
         return res.redirect('/users/' + req.user.username + '/edit');

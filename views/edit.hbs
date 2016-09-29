@@ -5,14 +5,14 @@
   <div class="col-md-5 col-md-offset-1">
     <h3>Update Profile</h3>
     {{#if msg}}
-      {{#if msg.success}}
+      {{#if msg.usersuccess}}
       <ul class="success-list">
         {{#each msg}}
           <li>{{this}}</li>
         {{/each}}
       </ul>
       {{/if}}
-      {{#if msg.error}}
+      {{#if msg.usererror}}
       <ul class="error-list">
         {{#each msg}}
           <li>{{this}}</li>
@@ -59,104 +59,129 @@
   <div class="col-md-5 col-md-offset-1">
     <h3>Add a Car</h3>
     {{#if msg}}
+      {{#if msg.carsuccess}}
+      <ul class="success-list">
+        {{#each msg}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+      {{#if msg.carerror}}
       <ul class="error-list">
         {{#each msg}}
           <li>{{this}}</li>
         {{/each}}
       </ul>
+      {{/if}}
     {{/if}}
-    <form id="add-car" action="/cars/new" method="post">
-      <div class="form-group">
-       <label for="make" class="control-label">Car Make</label>
-       <input type="text" class="form-control" placeholder="Make" name="make" />
-      </div>
 
-      <div class="form-group">
-       <label for="model" class="control-label">Car Model</label>
-       <input type="text" class="form-control" placeholder="Model" name="model" />
-      </div>
+    {{#unless car}}
+      <form id="add-car" action="/cars/new" method="post">
+        <div class="form-group">
+         <label for="make" class="control-label">Car Make</label>
+         <input type="text" class="form-control" placeholder="Make" name="make" />
+        </div>
 
-      <div class="form-group">
-        <label for="seats" class="radio-label"># of Seats</label>
-        <input type="number" name="seats" value="1" min="1" />
-      </div>
+        <div class="form-group">
+         <label for="model" class="control-label">Car Model</label>
+         <input type="text" class="form-control" placeholder="Model" name="model" />
+        </div>
 
-      <div class="form-group">
-        <label for="skiracks" class="radio-label">Ski Racks</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="skiracks" value="0" class="radio-btn" checked />
-            <span class="radio-text">No</span>
-          </label>
+        <div class="form-group">
+          <label for="seats" class="radio-label"># of Seats</label>
+          <input type="number" name="seats" value="1" min="1" />
         </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="skiracks" value="1" class="radio-btn" />
-            <span class="radio-text">Yes</span>
-          </label>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <label for="dogs" class="radio-label">Dogs allowed?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="dogs" value="0" class="radio-btn" checked />
-            <span class="radio-text">No</span>
-          </label>
+        <div class="form-group">
+          <label for="skiracks" class="radio-label">Ski Racks</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="skiracks" value="0" class="radio-btn" checked />
+              <span class="radio-text">No</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="skiracks" value="1" class="radio-btn" />
+              <span class="radio-text">Yes</span>
+            </label>
+          </div>
         </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="dogs" value="1" class="radio-btn" />
-            <span class="radio-text">Yes</span>
-          </label>
-        </div>
-      </div>
 
-      <div class="form-group">
-      <label for="drive" class="radio-label">Transmission</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="drive" value="1" class="radio-btn" checked />
-            <span class="radio-text">AWD</span>
-          </label>
+        <div class="form-group">
+          <label for="dogs" class="radio-label">Dogs allowed?</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="dogs" value="0" class="radio-btn" checked />
+              <span class="radio-text">No</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="dogs" value="1" class="radio-btn" />
+              <span class="radio-text">Yes</span>
+            </label>
+          </div>
         </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="drive" value="2" class="radio-btn" />
-            <span class="radio-text">FWD</span>
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="drive" value="3" class="radio-btn" />
-            <span class="radio-text">RWD</span>
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="drive" value="4" class="radio-btn" />
-            <span class="radio-text">4WD</span>
-          </label>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <label for="smoking" class="radio-label">Smoking</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="smoking" value="0" class="radio-btn" checked>
-            <span class="radio-text">No</span>
-          </label>
+        <div class="form-group">
+        <label for="drive" class="radio-label">Transmission</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="drive" value="1" class="radio-btn" checked />
+              <span class="radio-text">AWD</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="drive" value="2" class="radio-btn" />
+              <span class="radio-text">FWD</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="drive" value="3" class="radio-btn" />
+              <span class="radio-text">RWD</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="drive" value="4" class="radio-btn" />
+              <span class="radio-text">4WD</span>
+            </label>
+          </div>
         </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="smoking" value="1" class="radio-btn">
-            <span class="radio-text">Yes</span>
-          </label>
+
+        <div class="form-group">
+          <label for="smoking" class="radio-label">Smoking</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="smoking" value="0" class="radio-btn" checked>
+              <span class="radio-text">No</span>
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="smoking" value="1" class="radio-btn">
+              <span class="radio-text">Yes</span>
+            </label>
+          </div>
+        </div>
+        <input type="submit" class="btn btn-info btn-block" name="submit" value="Add Car" />
+      </form>
+    {{/unless}}
+
+    {{#if car}}
+      <div class="row">
+        <div class="col-md-12">
+          {{car.make}}
+          {{car.model}}
+          {{car.max_seats}}
+          {{car.ski_rack}}
+          {{car.smoking}}
+          {{car.dog}}
         </div>
       </div>
-      <input type="submit" class="btn btn-info btn-block" name="submit" value="Add Car" />
-    </form>
+    {{/if}}
   </div>
 </div>
