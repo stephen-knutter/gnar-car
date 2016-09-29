@@ -1,37 +1,25 @@
 <div class="destinationList row">
-  {{#each rideData}}
-  <div class="mountainInfo materialCard fluid-container col-lg-8 col-lg-offset-2">
-    <div class="row">
-      <div class="col-lg-4">
-        <img src="{{mountain_image}}" class="mountainImage" alt="" />
-      </div>
-      <div class="col-lg-7 col-lg-offset-1">
-        <h1>{{name}}</h1>
-        <a href="/mountains/{{mountainID}}">
-          <h5>Mountain Information</h5>
-        </a>
-        <h4>Date: {{home_depTime}}</h4>
-        <h5>Seats Available: {{seats_avail}}</h5>
-        <h5>Price/Seat: ${{cost_seat}}</h5>
-        {{#if isUserInRideYN}}
-        <a href="/rides/{{rideID}}" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</a>
-        {{else}}
-        <h4>You are in this ride!</h4>
-        {{/if}}
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <img src="{{mountain_image}}" class="mountainImage" alt="" />
-    </div>
-    <div class="col-lg-8">
-      <h1>{{name}}</h1>
-      <a href="/mountains/{{mountainID}}">
-        <h5>Mountain Information</h5>
-      </a>
-      <h4>Date: {{home_depTime}}</h4>
-      <h5>Seats Available: {{seats_avail}}</h5>
-      <h5>Price/Seat: ${{cost_seat}}</h5>
-      <a href="/rides/{{rideID}}" class="btn btn-default btn-sm reserveSeat">Check out this ride</a>
-    </div>
-    {{/each}}
+ {{#each rideData}}
+ <div class="mountainInfo materialCard fluid-container col-lg-8 col-lg-offset-2">
+   <div class="row">
+     <div class="col-lg-4">
+       <img src="{{mountain_image}}" class="mountainImage" alt="" />
+     </div>
+     <div class="col-lg-7 col-lg-offset-1">
+       <h1>{{name}}</h1>
+       <a href="/mountains/{{mountainID}}">
+         <h5>Mountain Information</h5>
+       </a>
+       <h4>Date: {{home_depTime}}</h4>
+       <h5>Seats Available: {{seats_avail}}</h5>
+       <h5>Price/Seat: ${{cost_seat}}</h5>
+       {{#if isUserInRideYN}}
+       <a href="/rides/{{rideID}}" class="btn btn-default btn-sm reserveSeat">Reserve A Seat!</a>
+       {{else}}
+       <h4>You are in this ride!</h4>
+       {{/if}}
+     </div>
+   </div>
+   </div>
+ {{/each}}
 </div>
