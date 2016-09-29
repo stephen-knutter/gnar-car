@@ -60,7 +60,7 @@ router.post('/offer', function(req, res, next) {
   var seatsAvailable = req.body.seatsAvailable;
   var costPerSeat = req.body.costPerSeat;
   var meetupLocation = req.body.meetupLocation;
-  rides.addRide(carID, mountainID, departure_date, departure_time, return_date, return_time, seatsAvailable, costPerSeat, meetupLocation)
+  rides.addRide(carID, mountainID, departureDate, departureTime, returnDate, returnTime, seatsAvailable, costPerSeat, meetupLocation)
   .then(function() {
     res.redirect('/rides');
   });
@@ -165,8 +165,8 @@ router.get('/:rideID/edit', function(req, res, next){
     rides.getRideDataByRideID(rideID)
     .then(function(rideData){
       rideData = rideData[0];
-      console.log(rideData)
-      console.log(mountains)
+      console.log(rideData.departure_date)
+      console.log((rideData.departure_date).toString())
       res.render('editride', {loggedIn: isLoggedIn, user: user, rideData: rideData, mountains: mountains});
     });
   })
