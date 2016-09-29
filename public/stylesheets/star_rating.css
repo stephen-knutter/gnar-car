@@ -1,6 +1,6 @@
 /*nn to make readonly and allow db to set value, possibly add drop shadow for stars*/
 
-#rating {
+/*#rating {
   perspective: 250px;
 }
 
@@ -20,4 +20,4 @@
   opacity: 1;
   transform: rotateX(0deg);
   text-shadow: 0 0 30px #ffc;
-}
+}*/
