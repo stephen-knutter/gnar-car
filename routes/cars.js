@@ -7,6 +7,7 @@ router.post('/update', function(req, res, next) {
   if(!req.isAuthenticated()) return res.redirect('/');
   var update = req.body;
 
+  console.log(update);
   var carId = update.id;
   var make = update.make;
   var model = update.model;
