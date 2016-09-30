@@ -7,15 +7,14 @@ router.post('/update', function(req, res, next) {
   if(!req.isAuthenticated()) return res.redirect('/');
   var update = req.body;
 
-  console.log(update);
-  var carId = update.id;
+  var carId = parseInt(update.id);
   var make = update.make;
   var model = update.model;
-  var seats = update.seats;
-  var skiracks = update.skiracks;
-  var dogs = update.dogs;
-  var drive = update.drive;
-  var smoking = update.smoking;
+  var seats = parseInt(update.seats);
+  var skiracks = parseInt(update.skiracks);
+  var dogs = parseInt(update.dogs);
+  var drive = parseInt(update.drive);
+  var smoking = parseInt(update.smoking);
 
   cars.updateCar(carId, make, model, seats, skiracks, dogs, drive, smoking).then(function(data) {
     req.flash('carsuccess', 'Car updated successfully');
