@@ -14,9 +14,11 @@
 
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/signup">Sign Up!</a></li>
-        <li><a href="/login">Log In</a></li>
-        <li><a href="/rides">Ride Updates</a></li>
+        {{#unless loggedIn}}
+          <li><a href="/signup">Sign Up!</a></li>
+          <li><a href="/login">Log In</a></li>
+          <li><a href="/rides">Ride Updates</a></li>
+        {{/unless}}
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {{#if loggedIn}}
