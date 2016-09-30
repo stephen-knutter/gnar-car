@@ -86,16 +86,16 @@ router.get('/:username/edit', function(req, res, next) {
       var driveId = car.drive_id;
       switch(driveId) {
         case 1:
-        drives._awd = true;
+          drives._awd = true;
         break;
         case 2:
-        drives._fwd = true;
+          drives._fwd = true;
         break;
         case 3:
-        drives._rwd = true;
+          drives._rwd = true;
         break;
         case 4:
-        drives._4wd = true;
+          drives._4wd = true;
         break;
       }
     }
@@ -113,6 +113,7 @@ router.post('/:username/edit', function(req, res, next) {
 
   var userId = update.id;
   var username = update.username;
+  var image = update.image;
   var password = update.password;
   var phone = update.phone;
   var email = update.email;
@@ -126,8 +127,8 @@ router.post('/:username/edit', function(req, res, next) {
     req.flash('usererror', 'One or more fields blank');
     return res.redirect('/users/' + usernameParam + '/edit');
   }
-  
-  users.updateUser(userId, username, phone, email, address, city, state, zip)
+
+  users.updateUser(userId, username, image, phone, email, address, city, state, zip)
     .then(function(data) {
       req.flash('usersuccess', 'Profile successfully updated');
       req.login(update, function(err) {

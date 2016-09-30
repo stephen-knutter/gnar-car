@@ -49,7 +49,7 @@ var query = {
        admin: false
      });
   },
-  updateUser: function(userId, username, phone, email, address, city, state, zip) {
+  updateUser: function(userId, username, image, phone, email, address, city, state, zip) {
     return knex('users').where('id', userId).update({
       username: username,
       phone: phone,
@@ -57,7 +57,8 @@ var query = {
       address: address,
       city: city,
       state: state,
-      zip: zip
+      zip: zip,
+      image_url: image
     });
   },
 
