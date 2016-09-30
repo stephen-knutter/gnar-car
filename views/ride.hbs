@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <div class="driver col-lg-3 col-lg-offset-3 text-center">
+  <div class="driver col-lg-3 col-lg-offset-2 text-center">
       <h2>Driver</h2>
       <h3>{{rideData.username}}</h3>
       <img src="{{rideData.image_url}}" alt="" />
@@ -52,23 +52,28 @@
       <h4>Ski Rack: {{carData.ski_rack}}</h4>
       <h4>Dog Friendly: {{carData.dog}}</h4>
   </div>
+
   <div class="riders col-lg-2 col-lg-offset-4 text-center">
     <h2>Other Riders</h2>
     {{#each riderData}}
+
       <a href="/users/{{username}}">
         <h5>{{username}}</h5>
         {{#if signedInUserInRide}}
+
           <form class="reserveSeat" action="/users/{{username}}/rides/{{ride_id}}/delete" method="post">
             <div class="col-lg-2 col-lg-offset-1">
-
               <button type="submit" name="button" class="btn btn-default btn-sm">Cancel Seat in Ride</button>
               </div>
-
+              <br>
             </form>
+
         {{/if}}
+
         <div class="ridersImages">
           <img class="ridersImages" src="{{image_url}}" alt="" />
         </div>
+
       </a>
     {{/each}}
   </div>
