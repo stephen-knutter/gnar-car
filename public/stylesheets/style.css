@@ -15,6 +15,7 @@ h4,h5,h6 {
   height: 65px;
   position: relative;
   top: -11px;
+  -webkit-filter: drop-shadow(2px 3px 4px #6EC0D4);
 }
 
 .main-img {
@@ -49,6 +50,7 @@ h4,h5,h6 {
   position: absolute;
   top: 35%;
   left: 45%;
+  -webkit-filter: drop-shadow(3px 4px 8px #6EC0D4);
 }
 
 .loginNav {
@@ -160,6 +162,7 @@ h4,h5,h6 {
 .radio-text {
   margin: 0 8px 0 0;
 }
+
 
 @media (max-width: 991px) {
     form {
