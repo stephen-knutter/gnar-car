@@ -15,7 +15,6 @@ h4,h5,h6 {
   height: 65px;
   position: relative;
   top: -11px;
-  -webkit-filter: drop-shadow(2px 3px 4px #6EC0D4);
 }
 
 .main-img {
@@ -50,7 +49,6 @@ h4,h5,h6 {
   position: absolute;
   top: 35%;
   left: 45%;
-  -webkit-filter: drop-shadow(3px 4px 8px #6EC0D4);
 }
 
 .loginNav {
@@ -163,6 +161,139 @@ h4,h5,h6 {
   margin: 0 8px 0 0;
 }
 
+.detail-wrap {
+  width: 170px;
+  margin: 0 auto;
+}
+
+.detail-head {
+  float: left;
+}
+
+.detail-info{
+  float: right;
+}
+
+.ride-thumbnail {
+  max-width: 325px;
+  margin: 0 auto;
+}
+
+.content-space-one {
+  margin-bottom: 0px;
+  color: inherit;
+  background: url(https://skimap.org/data/510/7/1209336166.jpg) no-repeat center center fixed;
+  background-size: cover;
+  padding-top: 200px;
+  padding-bottom: 100px;
+}
+
+.page-break {
+    width: 50%;
+    height: 3px;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+/*rides.hbs*/
+
+.pageTitle {
+  padding: 0 0 10px 0;
+}
+
+.destinationList {
+  padding-left: 40px;
+}
+
+.currentDestinations {
+  margin-bottom: 20px;
+  width: 80%;
+  padding-left: 40px;
+}
+
+.currentRides {
+  margin-bottom: 30px;
+}
+
+/*ride.hbs*/
+.ridersImages {
+  height: 150px;
+  width: 150px;
+  margin: 0 auto;
+  display: block;
+}
+
+/*Mountain.hbs*/
+
+.mountainInfo{
+  margin-bottom: 20px;
+}
+
+.mountainImage {
+  margin: 20px 0 20px 0;
+  height: 280px;
+  width: 350px;
+}
+
+.materialCard {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.pageHead{
+  margin-left: 20px;
+}
+
+.reserveSeat{
+  width: 250px;
+  height: 35px;
+  margin: 5px auto;
+}
+
+.head-link-wrap{
+  position: relative;
+}
+
+.head-user-img{
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: -10px;
+}
+/*profile.hbs*/
+
+.userImage {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.rideImage {
+  height: 140px;
+  width: 400px;
+}
+
+.sectionTitle {
+  margin: 50px 0 50px 0;
+}
+/*offerride.hbs*/
+.noCarsGo {
+  padding: 40px;
+}
+.addCar {
+  padding-top: 20px;
+}
+
+.ride-wrap {
+  margin: 5px 0;
+  padding: 10px 0 35px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.right-side {
+  border-left: 1px solid #ddd;
+}
+
+
 
 @media (max-width: 991px) {
     form {
@@ -227,98 +358,4 @@ h4,h5,h6 {
   .content-block-one .h1 {
     font-size: 63px;
   }
-}
-.content-space-one {
-  margin-bottom: 0px;
-  color: inherit;
-  background: url(https://skimap.org/data/510/7/1209336166.jpg) no-repeat center center fixed;
-  background-size: cover;
-  padding-top: 200px;
-  padding-bottom: 100px;
-}
-
-.page-break {
-    width: 50%;
-    height: 3px;
-    background-color: #fff;
-    margin: 0 auto;
-}
-
-/*rides.hbs*/
-
-.pageTitle {
-  padding: 79px 0 20px 40px;
-}
-
-.destinationList {
-  padding-left: 40px;
-}
-
-.currentDestinations {
-  margin-bottom: 20px;
-  width: 80%;
-  padding-left: 40px;
-}
-
-.currentRides {
-  margin-bottom: 30px;
-}
-
-/*ride.hbs*/
-.ridersImages {
-  height: 150px;
-}
-
-/*Mountain.hbs*/
-
-.mountainInfo{
-  margin-bottom: 20px;
-}
-
-.mountainImage {
-  margin: 20px 0 20px 0;
-  height: 280px;
-  width: 350px;
-}
-
-.materialCard {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
-
-.reserveSeat{
-  margin-bottom: 10px;
-  width: 250px;
-  height: auto;
-}
-
-.head-link-wrap{
-  position: relative;
-}
-
-.head-user-img{
-  height: 20px;
-  width: 20px;
-  position: absolute;
-  left: -10px;
-}
-/*profile.hbs*/
-
-.userImage {
-  height: 200px;
-}
-
-.rideImage {
-  height: 140px;
-  width: 210px;
-}
-
-.sectionTitle {
-  margin: 50px 0 50px 0;
-}
-/*offerride.hbs*/
-.noCarsGo {
-  padding: 40px;
-}
-.addCar {
-  padding-top: 20px;
 }

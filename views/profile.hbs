@@ -1,14 +1,11 @@
 
 {{> navbar}}
 
-<div class="row">
   <div class="col-lg-3 col-lg-offset-1 text-center">
     <h2 class="sectionTitle">User Profile</h2>
     {{#each userData}}
       <h3>{{username}}</h3>
-      <!-- <h5>Rating:</h5>
-      <div id="rateYo"></div> -->
-      <img class="userImage" src="{{image_url}}" alt="" />
+      <img class="userImage thumbnail" src="{{image_url}}" alt="{{username}}\'s profile" />
       <h5>{{email}}</h5>
     {{/each}}
     <h5>Average Rating: {{rating}}</h5>
@@ -19,18 +16,19 @@
       </div>
     {{/if}}
   </div>
-  <div class="riders col-lg-3 col-lg-offset-4 text-center">
+  <div class="riders col-lg-8 right-side">
     <h2 class="sectionTitle">Upcoming Rides</h2>
     {{#each rideData}}
-    <a href="/rides/{{rideID}}">
-      <h4>{{name}}</h4>
-    </a>
-    <h6>{{departure_date}}</h6>
-    <a href="/rides/{{rideID}}">
-      <div class="ridersImages">
-        <img class="rideImage" src="{{mountain_image}}" alt="" />
-      </div>
-    </a>
+    <div class="ride-wrap">
+      <a href="/rides/{{rideID}}">
+        <h4>{{name}}</h4>
+      </a>
+      <h6><i class="fa fa-calendar" aria-hidden="true"></i> {{departure_date}} @ {{departure_time}} AM</h6>
+      <a href="/rides/{{rideID}}">
+        <div>
+          <img class="rideImage img-responsive" src="{{mountain_image}}" alt="" />
+        </div>
+      </a>
+    </div>
     {{/each}}
   </div>
-</div>

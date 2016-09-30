@@ -1,13 +1,13 @@
 {{> navbar}}
 
-<div class="pageTitle">
+<div class="pageHead">
   <h2>Ride Details</h2>
 </div>
 
 <div class="pageTitle row">
-  <div class="col-lg-8 col-lg-offset-2">
+  <div class="col-lg-8 col-lg-offset-2 col-md-12 col-md-offset-0 col-sm-offset-0 well">
     <div class="col-lg-4">
-      <img src="{{rideData.mountain_image}}" class="mountainImage img-responsive" alt="" />
+      <img src="{{rideData.mountain_image}}" class="mountainImage img-responsive thumbnail" alt="{{rideData.name}}" />
     </div>
     <div class="col-lg-7 col-lg-offset-1">
       <h1>{{rideData.name}}</h1>
@@ -30,51 +30,59 @@
       {{/if}}
       {{#if signedInUsersRide}}
         <form class="" action="/rides/{{rideData.rideID}}/delete" method="post">
-          <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat"><i class="fa fa-times" aria-hidden="true"></i> Cancel Ride</button>
+          <button type="submit" name="button" class="btn btn-default btn-sm reserveSeat">
+            <i class="fa fa-times" aria-hidden="true"></i> Cancel Ride
+          </button>
         </form>
         <a href="/rides/{{rideData.rideID}}/edit">
-            <button type="button" name="button" class="btn btn-default btn-sm reserveSeat"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Ride </button>
+          <button type="button" name="button" class="btn btn-default btn-sm reserveSeat"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Ride </button>
         </a>
       {{/if}}
     </div>
   </div>
 
-  <div class="driver col-lg-3 col-lg-offset-3 text-center">
-      <h2>Driver</h2>
+  <div class="driver col-lg-3 col-lg-offset-2">
+    <h2 class="text-center">Driver</h2>
     <a href="/users/{{rideData.username}}">
-      <h3
-      >{{rideData.username}}</h3>
+      <h3 class="text-center">{{rideData.username}}</h3>
     </a>
-      <img src="{{rideData.image_url}}" alt="" />
-    <h4>Rating: {{rating}}</h4>
-      <h3>Car Details</h3>
-      <h4>Make: {{carData.make}}</h4>
-      <h4>Model: {{carData.model}}</h4>
-      <h4>Drive Type: {{carData.type}}</h4>
-      <h4>Smoking:
-        {{#if carData.smoking}}
-          <i class="fa fa-fire" aria-hidden="true"></i>
-        {{else}}
-          <i class="fa fa-ban" aria-hidden="true"></i>
-        {{/if}}
+    <img src="{{rideData.image_url}}" alt="{{rideData.username}}" class="thumbnail ride-thumbnail img-responsive" />
+    <div class="detail-wrap">
+      <h4 class="text-center">Rating: {{rating}}</h4>
+      <h3 class="text-center">Car Details</h3>
+      <h4 class="clearfix"><span class="detail-head">Make:</span> <span class="detail-info">{{carData.make}}</span></h4>
+      <h4 class="clearfix"><span class="detail-head">Model:</span> <span class="detail-info">{{carData.model}}</span></h4>
+      <h4 class="clearfix"><span class="detail-head">Drive Type:</span> <span class="detail-info">{{carData.type}}</span></h4>
+      <h4 class="clearfix"><span class="detail-head">Smoking:</span>
+        <span class="detail-info">
+          {{#if carData.smoking}}
+            <i class="fa fa-fire" aria-hidden="true"></i>
+          {{else}}
+            <i class="fa fa-ban" aria-hidden="true"></i>
+          {{/if}}
+        </span>
       </h4>
-      <h4>Ski Rack:
-        {{#if carData.ski_rack}}
-          <i class="fa fa-taxi" aria-hidden="true"></i>
-        {{else}}
-          <i class="fa fa-ban" aria-hidden="true"></i>
-        {{/if}}
+      <h4 class="clearfix"><span class="detail-head">Ski Rack:</span>
+        <span class="detail-info">
+          {{#if carData.ski_rack}}
+            <i class="fa fa-taxi" aria-hidden="true"></i>
+          {{else}}
+            <i class="fa fa-ban" aria-hidden="true"></i>
+          {{/if}}
+        </span>
       </h4>
-      <h4>Dog Friendly:
-        {{#if carData.dog}}
-          <i class="fa fa-paw" aria-hidden="true"></i>
-        {{else}}
-          <i class="fa fa-ban" aria-hidden="true"></i>
-        {{/if}}
+      <h4 class="clearfix"><span class="detail-head">Dog Friendly:</span>
+        <span class="detail-info">
+          {{#if carData.dog}}
+            <i class="fa fa-paw" aria-hidden="true"></i>
+          {{else}}
+            <i class="fa fa-ban" aria-hidden="true"></i>
+          {{/if}}
+        </span>
       </h4>
-
+    </div>
   </div>
-  <div class="riders col-lg-2 col-lg-offset-4 text-center">
+  <div class="riders col-lg-2 col-lg-offset-3 text-center">
     <h2>Other Riders</h2>
     {{#each riderData}}
       <a href="/users/{{username}}">
@@ -82,14 +90,12 @@
         {{#if signedInUserInRide}}
           <form class="reserveSeat" action="/users/{{username}}/rides/{{ride_id}}/delete" method="post">
             <div class="col-lg-2 col-lg-offset-1">
-
               <button type="submit" name="button" class="btn btn-default btn-sm"><i class="fa fa-times" aria-hidden="true"></i> Cancel Seat in Ride</button>
-              </div>
-
-            </form>
+            </div>
+          </form>
         {{/if}}
-        <div class="ridersImages">
-          <img class="ridersImages" src="{{image_url}}" alt="" />
+        <div>
+          <img class="ridersImages" src="{{image_url}}" alt="{{username}}" />
         </div>
       </a>
     {{/each}}
