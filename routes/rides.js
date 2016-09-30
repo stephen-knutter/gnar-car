@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
   rides.getRideData()
   .then(function(rideData) {
     return users.isUserInRideID(user.id)
-    .then(function(userInRideYN){
+    .then(function(userInRideYN) {
       res.render('rides',
       {username: user.username,
         rideData: rideData,
