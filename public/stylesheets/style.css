@@ -49,6 +49,11 @@ h4,h5,h6 {
   position: absolute;
   top: 35%;
   left: 45%;
+  -webkit-filter: drop-shadow(1px 2px 10px #6EC0D4);
+}
+
+.Glogo {
+  -webkit-filter: drop-shadow(2px 3px 6px black);
 }
 
 .loginNav {
@@ -358,4 +363,9 @@ h4,h5,h6 {
   .content-block-one .h1 {
     font-size: 63px;
   }
+.driver {
+  padding-top: 20px;
+}
+.riders {
+  padding-top: 20px;
 }
