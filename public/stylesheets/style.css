@@ -110,6 +110,11 @@ h4,h5,h6 {
   text-decoration: underline;
 }
 
+.headliner {
+  padding: 0 90px 20px 90px;
+  line-height: 35px;
+}
+
 .mainItems {
   text-align: center;
 }
